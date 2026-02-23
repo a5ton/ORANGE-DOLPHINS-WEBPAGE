@@ -1,0 +1,133 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Chi Siamo",
+    "offer": "La Nostra Offerta",
+    "partners": "Partner",
+    "collaborate": "Collabora",
+    "contact": "Contatti",
+    "shopNow": "ORDINA ORA"
+  },
+  "home": {
+    "hero": {
+      "headline": "Fresco, Locale, Consegnato con Cura",
+      "subheadline": "Rifornimento barca rapido e senza sforzo nel Dodecaneso — sapori dell'Egeo direttamente a bordo.",
+      "cta": "ORDINA ORA"
+    },
+    "vision": {
+      "title": "La Nostra Visione",
+      "body": "La nostra visione è ridefinire l'esperienza della vela connettendo senza sforzo i marinai con i vivaci sapori e la ricca cultura dell'Egeo."
+    },
+    "mission": {
+      "title": "La Nostra Missione",
+      "body": "Da Orange Dolphins, semplifichiamo il rifornimento delle barche collegando i marinai con i migliori fornitori locali — fattorie, panetterie, pescherie, negozi, mercati e altro ancora."
+    },
+    "howItWorks": {
+      "title": "Come Funziona",
+      "subtitle": "Rifornire la tua barca non è mai stato così facile",
+      "steps": [
+        { "number": "01", "title": "Ordina Online", "description": "Usa il tuo telefono o laptop per sfogliare e ordinare" },
+        { "number": "02", "title": "Scegli la Posizione", "description": "Seleziona il tuo ancoraggio o porto" },
+        { "number": "03", "title": "Scegli & Programma", "description": "Scegli cosa ti serve e un orario di consegna" },
+        { "number": "04", "title": "Rilassati a Bordo", "description": "Consegniamo fresco alla tua barca, anche all'ancora" }
+      ],
+      "learnMore": "Vedi tutti i dettagli"
+    },
+    "categories": {
+      "title": "Cosa Consegniamo",
+      "subtitle": "Tutto il necessario per la vita in mare",
+      "items": [
+        { "name": "Fresco & Locale", "description": "Frutta, verdura, carne, pesce e altro" },
+        { "name": "Essenziali Quotidiani", "description": "Latticini, colazione, conserve e condimenti" },
+        { "name": "Bevande", "description": "Vino, birra, alcolici, bibite e acqua" },
+        { "name": "Casa & Igiene", "description": "Prodotti per la pulizia, igiene e bellezza" },
+        { "name": "Panetteria", "description": "Pane fresco e dolci da fornai locali" },
+        { "name": "Ghiaccio", "description": "Cubetti di ghiaccio e blocchi di ghiaccio" }
+      ]
+    },
+    "cta": {
+      "title": "Pronto a Rifornire la Tua Barca?",
+      "subtitle": "Ordina ora e goditi i sapori locali più freschi consegnati direttamente alla tua imbarcazione.",
+      "button": "ORDINA ORA"
+    }
+  },
+  "about": {
+    "hero": { "title": "Chi Siamo", "subtitle": "Due velisti in missione per rendere il rifornimento senza sforzo" },
+    "bio": {
+      "title": "Ciao! Siamo Inna e Sigi",
+      "short": "Siamo due velisti appassionati che navigano le onde da quando avevamo 15 anni. Pur amando la vela, il rifornimento della barca è sempre stato un problema! Così è nata Orange Dolphins!",
+      "long": "Ciao! Siamo Inna e Sigi, due velisti appassionati che navigano le onde da quando avevamo 15 anni. Un mattino soleggiato, mentre facevamo colazione in coperta, abbiamo avuto un'idea illuminante. Ed è così che è nata Orange Dolphins!",
+      "readMore": "Leggi tutta la storia",
+      "readLess": "Mostra meno"
+    },
+    "brownie": {
+      "title": "Incontra Brownie!",
+      "description": "Il nostro adorabile labrador Brownie farà parte del nostro equipaggio questa estate, tenendo alto il nostro morale!"
+    },
+    "founding": {
+      "title": "Nata nell'Egeo",
+      "description": "L'estate scorsa ci siamo innamorati della deliziosa isola di Leros e l'abbiamo scelta come isola pilota. Il nostro sogno è espanderci a tutte le isole del Dodecaneso entro il 2027.",
+      "leros": "Isola Pilota: Leros",
+      "expansion": "Espansione a tutto il Dodecaneso entro il 2027"
+    }
+  },
+  "offer": {
+    "hero": { "title": "La Nostra Offerta", "subtitle": "Ordine semplice, prodotti locali freschi, consegnati direttamente alla tua barca" },
+    "steps": {
+      "title": "Come Funziona",
+      "subtitle": "6 semplici passi per rifornimenti freschi alla tua barca",
+      "items": [
+        { "number": "01", "title": "Ordina Online", "description": "Ordina facilmente dal tuo telefono o laptop." },
+        { "number": "02", "title": "Scegli la Posizione", "description": "Seleziona il tuo ancoraggio o porto dalla mappa." },
+        { "number": "03", "title": "Dati della Barca", "description": "Inserisci nome, colore e bandiera della tua barca." },
+        { "number": "04", "title": "Scegli i Prodotti", "description": "Sfoglia la nostra ampia selezione di prodotti locali freschi." },
+        { "number": "05", "title": "Scegli l'Orario", "description": "Mattina 9:00–11:00 o Sera 17:00–19:00." },
+        { "number": "06", "title": "Rilassati", "description": "I nostri delfini consegnano tutto fresco, anche all'ancora." }
+      ]
+    },
+    "delivery": {
+      "title": "I Nostri Delfini Consegnano",
+      "description": "I nostri amichevoli \"delfini\" raccolgono cibo e bevande dai migliori fornitori locali e consegnano direttamente alla tua barca — anche all'ancora!"
+    },
+    "categories": {
+      "title": "Cosa Consegniamo",
+      "groups": [
+        { "name": "Fresco & Locale", "items": ["Frutta & Verdura Fresca", "Carne & Pesce Fresco", "Meze & Snack", "Panetteria", "Il Meglio del Locale"] },
+        { "name": "Essenziali Quotidiani", "items": ["Colazione & Creme", "Latticini, Formaggi & Alternative", "Conserve & Sottaceti", "Condimenti, Oli & Salse", "Surgelati"] },
+        { "name": "Casa & Igiene", "items": ["Igiene & Bellezza", "Casa & Pulizia"] },
+        { "name": "Bevande", "items": ["Vino & Birra", "Superalcolici", "Bibite", "Acqua"] },
+        { "name": "Ghiaccio", "items": ["Cubetti di Ghiaccio", "Blocco di Ghiaccio"] }
+      ]
+    },
+    "map": {
+      "title": "Dove Consegniamo",
+      "subtitle": "Attualmente serviamo Leros — espansione a tutto il Dodecaneso nel 2027",
+      "pilot": "Mercato Pilota: Leros",
+      "expansion": "Espansione al Dodecaneso entro il 2027",
+      "mapNote": "Mappa dettagliata delle baie di consegna in arrivo"
+    }
+  },
+  "partners": {
+    "hero": { "title": "I Nostri Partner Locali", "subtitle": "I migliori fornitori locali che rendono possibile il nostro servizio" },
+    "readMore": "Leggi la nostra storia",
+    "readLess": "Mostra meno",
+    "comingSoon": "Profilo partner in arrivo"
+  },
+  "collaborate": {
+    "hero": { "title": "Collabora Con Noi", "subtitle": "Unisciti alla rete Orange Dolphins e cresci insieme a noi" },
+    "tabs": {
+      "charter": { "label": "Charter & Skipper", "title": "Per Compagnie Charter & Skipper", "bullets": ["Attrai Più Clienti", "Integrazione Senza Sforzo", "Offerte Esclusive", "Supporta l'Economia Locale"] },
+      "marina": { "label": "Cantieri & Marine", "title": "Per Cantieri Navali & Marine", "bullets": ["Migliora i Tuoi Servizi", "Attrai Più Clienti", "Marketing Collaborativo"] },
+      "business": { "label": "Imprese Locali", "title": "Per le Imprese Locali", "bullets": ["Crescita delle Vendite", "Maggiore Visibilità", "Supporto alla Comunità", "Onboarding Facile"] },
+      "rider": { "label": "Diventa un Delfino", "title": "Unisciti al Nostro Team", "bullets": ["Opportunità di Lavoro Attraente", "Guadagni Competitivi", "Sostieni la Tua Comunità", "Fai Parte di un Team Vivace"] }
+    },
+    "form": { "title": "Mettiti in Contatto", "subtitle": "Parlaci di te e di come vorresti collaborare", "name": "Nome Completo", "email": "Indirizzo Email", "organization": "Organizzazione / Azienda", "category": "Sono...", "categoryOptions": { "charter": "Compagnia Charter / Skipper", "marina": "Cantiere / Marina", "business": "Impresa Locale", "rider": "Potenziale Rider", "other": "Altro" }, "message": "Il Tuo Messaggio", "submit": "Invia Messaggio", "success": "Grazie! Ti contatteremo presto.", "error": "Qualcosa è andato storto. Riprova." }
+  },
+  "contact": {
+    "hero": { "title": "Contatti", "subtitle": "Siamo felici di sentirti" },
+    "topics": { "title": "Di cosa si tratta?", "feedback": "Feedback", "complaint": "Reclamo", "suggestion": "Suggerimento", "general": "Richiesta Generale" },
+    "social": { "title": "Trovaci Online", "instagram": "Instagram", "facebook": "Facebook", "linkedin": "LinkedIn" },
+    "form": { "title": "Inviaci un Messaggio", "name": "Nome Completo", "email": "Indirizzo Email", "topic": "Argomento", "message": "Il Tuo Messaggio", "submit": "Invia Messaggio", "success": "Grazie! Ti risponderemo presto.", "error": "Qualcosa è andato storto. Riprova." }
+  },
+  "footer": { "tagline": "Rifornimenti locali freschi consegnati alla tua barca nell'Egeo.", "pages": "Pagine", "connect": "Connettiti", "rights": "Tutti i diritti riservati.", "madeWith": "Fatto con amore a Leros" }
+}

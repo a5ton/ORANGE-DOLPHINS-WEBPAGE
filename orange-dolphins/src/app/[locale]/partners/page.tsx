@@ -1,0 +1,31 @@
+import { useTranslations } from "next-intl";
+import { PartnerGrid } from "@/components/partners/PartnerGrid";
+import { CtaSection } from "@/components/home/CtaSection";
+import { HandshakeIcon } from "@/components/ui/icons";
+
+function PartnersHero() {
+  const t = useTranslations("partners.hero");
+  return (
+    <section className="bg-gradient-to-br from-ocean-900 to-ocean-700 py-24 text-center">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-center mb-6">
+          <HandshakeIcon className="h-16 w-16 text-ocean-300" />
+        </div>
+        <h1 className="font-display font-bold text-white text-4xl md:text-5xl lg:text-6xl mb-4">
+          {t("title")}
+        </h1>
+        <p className="text-ocean-100 text-xl">{t("subtitle")}</p>
+      </div>
+    </section>
+  );
+}
+
+export default function PartnersPage() {
+  return (
+    <>
+      <PartnersHero />
+      <PartnerGrid />
+      <CtaSection />
+    </>
+  );
+}
