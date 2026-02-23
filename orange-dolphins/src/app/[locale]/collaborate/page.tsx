@@ -1,21 +1,25 @@
 import { useTranslations } from "next-intl";
 import { AudienceTabs } from "@/components/collaborate/AudienceTabs";
 import { CollaborateForm } from "@/components/collaborate/CollaborateForm";
-import { HandshakeIcon } from "@/components/ui/icons";
 import { FadeReveal } from "@/components/ui/FadeReveal";
 
 function CollaborateHero() {
   const t = useTranslations("collaborate.hero");
   return (
-    <section className="bg-gradient-to-br from-ocean-900 to-ocean-700 py-24 text-center">
-      <FadeReveal className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-center mb-6">
-          <HandshakeIcon className="h-16 w-16 text-ocean-300" />
-        </div>
-        <h1 className="font-display font-bold text-white text-4xl md:text-5xl lg:text-6xl mb-4">
+    <section className="border-b border-gray-100 pt-20 pb-16">
+      <FadeReveal className="mx-auto max-w-7xl px-6">
+        <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-6">
+          Work With Us
+        </p>
+        <h1
+          className="font-display font-black italic text-gray-900 leading-[0.9] tracking-tight"
+          style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
+        >
           {t("title")}
         </h1>
-        <p className="text-ocean-100 text-xl">{t("subtitle")}</p>
+        <p className="mt-6 text-gray-400 text-xl max-w-xl font-light">
+          {t("subtitle")}
+        </p>
       </FadeReveal>
     </section>
   );

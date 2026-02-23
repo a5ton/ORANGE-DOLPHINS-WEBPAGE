@@ -6,7 +6,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111111;
+  --foreground: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -14,6 +18,14 @@ body {
   background: var(--background);
   font-family: Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection colour */
+::selection {
+  background-color: #f97316;
+  color: #fff;
 }
 
 @layer utilities {
@@ -22,22 +34,16 @@ body {
   }
 }
 
-/* Parallax/scroll-driven sections — hint to compositor */
-.sticky {
-  will-change: transform;
-}
-
 /* Marquee animation */
 @keyframes marquee {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
-

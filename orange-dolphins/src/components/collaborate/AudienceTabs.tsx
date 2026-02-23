@@ -4,23 +4,9 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
-import {
-  SailboatIcon,
-  AnchorIcon,
-  BuildingStorefrontIcon,
-  DolphinIcon,
-} from "@/components/ui/icons";
-import { ComponentType, SVGProps } from "react";
 
 const TAB_KEYS = ["charter", "marina", "business", "rider"] as const;
 type TabKey = (typeof TAB_KEYS)[number];
-
-const TAB_ICONS: Record<TabKey, ComponentType<SVGProps<SVGSVGElement> & { className?: string }>> = {
-  charter: SailboatIcon,
-  marina: AnchorIcon,
-  business: BuildingStorefrontIcon,
-  rider: DolphinIcon,
-};
 
 export function AudienceTabs() {
   const [active, setActive] = useState<TabKey>("charter");
@@ -31,87 +17,49 @@ export function AudienceTabs() {
     label: t(`${key}.label`),
     title: t(`${key}.title`),
     bullets: t.raw(`${key}.bullets`) as string[],
-    isRider: key === "rider",
   }));
 
   const activeTab = tabs.find((tab) => tab.key === active)!;
-  const ActiveIcon = TAB_ICONS[active];
 
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        {/* Tab bar */}
-        <div className="flex flex-wrap gap-2 justify-center mb-10">
-          {tabs.map((tab) => {
-            const Icon = TAB_ICONS[tab.key];
-            return (
-              <button
-                key={tab.key}
-                onClick={() => setActive(tab.key)}
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200",
-                  tab.isRider
-                    ? active === tab.key
-                      ? "bg-orange-500 text-white shadow-md"
-                      : "bg-orange-50 text-orange-600 hover:bg-orange-100 border-2 border-orange-200"
-                    : active === tab.key
-                      ? "bg-ocean-700 text-white shadow-md"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                )}
-              >
-                <Icon className="h-4 w-4" />
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Tab content */}
-        <div
-          className={cn(
-            "rounded-3xl p-8 md:p-12",
-            activeTab.isRider
-              ? "bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200"
-              : "bg-ocean-50 border border-ocean-100"
-          )}
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <ActiveIcon
+      <div className="mx-auto max-w-5xl px-6">
+        {/* Underline tab bar */}
+        <div className="flex flex-wrap gap-0 border-b border-gray-100 mb-12">
+          {tabs.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setActive(tab.key)}
               className={cn(
-                "h-10 w-10 shrink-0",
-                activeTab.isRider ? "text-orange-500" : "text-ocean-600"
-              )}
-            />
-            <h3
-              className={cn(
-                "font-display font-bold text-2xl md:text-3xl",
-                activeTab.isRider ? "text-orange-700" : "text-ocean-900"
+                "px-5 py-3 text-sm font-semibold border-b-2 -mb-px transition-colors",
+                active === tab.key
+                  ? "border-orange-500 text-gray-900"
+                  : "border-transparent text-gray-400 hover:text-gray-700"
               )}
             >
-              {activeTab.title}
-            </h3>
-          </div>
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-          <ul className="space-y-4">
+        {/* Content — left border accent */}
+        <div className="pl-8 border-l-2 border-orange-500">
+          <h3 className="font-display font-bold text-gray-900 text-2xl md:text-3xl mb-8">
+            {activeTab.title}
+          </h3>
+          <ul className="space-y-5">
             {activeTab.bullets.map((bullet, i) => {
-              const [boldPart, ...rest] = bullet.split(":");
+              const colonIdx = bullet.indexOf(":");
+              const bold = colonIdx > -1 ? bullet.slice(0, colonIdx) : bullet;
+              const rest = colonIdx > -1 ? bullet.slice(colonIdx + 1) : "";
               return (
                 <li key={i} className="flex items-start gap-3">
-                  <CheckCircleIcon
-                    className={cn(
-                      "h-6 w-6 shrink-0 mt-0.5",
-                      activeTab.isRider ? "text-orange-500" : "text-ocean-600"
-                    )}
-                  />
-                  <p className="text-gray-700 leading-relaxed">
-                    <strong
-                      className={
-                        activeTab.isRider ? "text-orange-700" : "text-ocean-900"
-                      }
-                    >
-                      {boldPart}:
-                    </strong>{" "}
-                    {rest.join(":")}
+                  <CheckCircleIcon className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+                  <p className="text-gray-600 leading-relaxed">
+                    <strong className="text-gray-900 font-semibold">
+                      {bold}
+                    </strong>
+                    {rest ? `:${rest}` : ""}
                   </p>
                 </li>
               );

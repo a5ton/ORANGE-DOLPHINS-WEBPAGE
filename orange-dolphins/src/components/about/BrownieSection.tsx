@@ -1,20 +1,22 @@
 import { useTranslations } from "next-intl";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { PawIcon } from "@/components/ui/icons";
 
 export function BrownieSection() {
   const t = useTranslations("about.brownie");
 
   return (
-    <SectionWrapper className="bg-orange-50">
-      <div className="max-w-2xl mx-auto text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-orange-100 border-2 border-orange-200 mb-6 text-orange-500">
-          <PawIcon className="h-10 w-10" />
-        </div>
-        <h2 className="font-display font-bold text-ocean-900 text-3xl md:text-4xl mb-4">
+    <SectionWrapper className="bg-cream-50">
+      <div className="max-w-xl">
+        <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-orange-500 mb-5">
+          Meet the Crew
+        </p>
+        <h2
+          className="font-display font-bold italic text-gray-900 leading-[0.93] tracking-tight mb-6"
+          style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+        >
           {t("title")}
         </h2>
-        <p className="text-gray-600 text-lg leading-relaxed">{t("description")}</p>
+        <p className="text-gray-500 text-lg leading-relaxed">{t("description")}</p>
       </div>
     </SectionWrapper>
   );
