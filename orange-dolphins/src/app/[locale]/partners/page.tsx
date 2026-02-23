@@ -2,12 +2,13 @@ import { useTranslations } from "next-intl";
 import { PartnerGrid } from "@/components/partners/PartnerGrid";
 import { CtaSection } from "@/components/home/CtaSection";
 import { HandshakeIcon } from "@/components/ui/icons";
+import { FadeReveal } from "@/components/ui/FadeReveal";
 
 function PartnersHero() {
   const t = useTranslations("partners.hero");
   return (
     <section className="bg-gradient-to-br from-ocean-900 to-ocean-700 py-24 text-center">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <FadeReveal className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center mb-6">
           <HandshakeIcon className="h-16 w-16 text-ocean-300" />
         </div>
@@ -15,7 +16,7 @@ function PartnersHero() {
           {t("title")}
         </h1>
         <p className="text-ocean-100 text-xl">{t("subtitle")}</p>
-      </div>
+      </FadeReveal>
     </section>
   );
 }

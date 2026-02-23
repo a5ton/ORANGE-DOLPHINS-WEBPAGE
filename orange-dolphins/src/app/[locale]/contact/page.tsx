@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { FadeReveal } from "@/components/ui/FadeReveal";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { SOCIAL_URLS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -78,7 +79,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section className="bg-gradient-to-br from-ocean-900 to-ocean-700 py-24 text-center">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <FadeReveal className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center mb-6">
             <EnvelopeIcon className="h-16 w-16 text-ocean-300" />
           </div>
@@ -86,7 +87,7 @@ export default function ContactPage() {
             {t("hero.title")}
           </h1>
           <p className="text-ocean-100 text-xl">{t("hero.subtitle")}</p>
-        </div>
+        </FadeReveal>
       </section>
 
       {/* Topic selector */}
