@@ -1,24 +1,6 @@
 import { useTranslations } from "next-intl";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import {
-  PhoneIcon,
-  AnchorIcon,
-  SailboatIcon,
-  ShoppingBagIcon,
-  ClockIcon,
-  SunIcon,
-  MoonIcon,
-} from "@/components/ui/icons";
-import { ComponentType, SVGProps } from "react";
-
-const STEP_ICONS: ComponentType<SVGProps<SVGSVGElement> & { className?: string }>[] = [
-  PhoneIcon,
-  AnchorIcon,
-  SailboatIcon,
-  ShoppingBagIcon,
-  ClockIcon,
-  SunIcon,
-];
+import { SunIcon, MoonIcon } from "@/components/ui/icons";
 
 export function OrderStepsSection() {
   const t = useTranslations("offer.steps");
@@ -30,58 +12,59 @@ export function OrderStepsSection() {
 
   return (
     <SectionWrapper className="bg-white">
-      <div className="text-center mb-12">
-        <h2 className="font-display font-bold text-ocean-900 text-3xl md:text-4xl mb-4">
-          {t("title")}
-        </h2>
-        <p className="text-gray-500 text-lg">{t("subtitle")}</p>
-      </div>
+      <div className="max-w-2xl mx-auto">
+        {/* Heading */}
+        <div className="mb-16">
+          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-4 block">
+            {t("title")}
+          </span>
+          <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight">
+            {t("subtitle")}
+          </h2>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {steps.map((step, i) => {
-          const Icon = STEP_ICONS[i % STEP_ICONS.length];
-          return (
-            <div
+        {/* Numbered steps — vertical list */}
+        <ol className="space-y-0">
+          {steps.map((step) => (
+            <li
               key={step.number}
-              className="relative flex gap-4 p-6 rounded-2xl bg-sand-100 border border-gray-100 hover:border-orange-200 hover:shadow-md transition-all duration-200"
+              className="flex gap-8 py-8 border-t border-gray-100 first:border-0 group"
             >
-              <div className="shrink-0">
-                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-orange-500 text-white shadow-md">
-                  <Icon className="h-7 w-7" />
-                </div>
-              </div>
+              {/* Number */}
+              <span className="font-display font-black text-gray-200 text-4xl leading-none w-12 shrink-0 group-hover:text-orange-200 transition-colors duration-300">
+                {step.number}
+              </span>
+
+              {/* Content */}
               <div>
-                <span className="text-xs font-bold text-orange-500 tracking-widest uppercase">
-                  Step {step.number}
-                </span>
-                <h3 className="font-display font-semibold text-ocean-900 text-lg mt-0.5 mb-2">
+                <h3 className="font-display font-bold text-gray-900 text-xl mb-2">
                   {step.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
+                <p className="text-gray-500 leading-relaxed">
                   {step.description}
                 </p>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            </li>
+          ))}
+        </ol>
 
-      {/* Delivery times callout */}
-      <div className="mt-10 p-6 rounded-2xl bg-ocean-50 border border-ocean-100 max-w-lg mx-auto text-center">
-        <p className="font-semibold text-ocean-900 mb-3">Delivery Windows</p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="flex items-center gap-2 text-ocean-700">
-            <SunIcon className="h-5 w-5" />
-            <span className="font-medium">Morning: 9:00 – 11:00</span>
-          </div>
-          <div className="hidden sm:block text-ocean-300">|</div>
-          <div className="flex items-center gap-2 text-ocean-700">
-            <MoonIcon className="h-5 w-5" />
-            <span className="font-medium">Evening: 17:00 – 19:00</span>
+        {/* Delivery windows — clean pill callout */}
+        <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center gap-4">
+          <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest shrink-0">
+            Delivery windows
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 border border-orange-100 text-orange-700 text-sm font-medium px-4 py-2">
+              <SunIcon className="h-4 w-4 text-orange-500" />
+              Morning · 9:00 – 11:00
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-ocean-50 border border-ocean-100 text-ocean-700 text-sm font-medium px-4 py-2">
+              <MoonIcon className="h-4 w-4 text-ocean-500" />
+              Evening · 17:00 – 19:00
+            </span>
           </div>
         </div>
       </div>
     </SectionWrapper>
   );
 }
-

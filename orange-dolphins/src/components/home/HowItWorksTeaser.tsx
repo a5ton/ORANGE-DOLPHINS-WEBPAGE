@@ -1,9 +1,8 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { PhoneIcon, AnchorIcon, ShoppingBagIcon, SunIcon } from "@/components/ui/icons";
-
-const STEP_ICONS = [PhoneIcon, AnchorIcon, ShoppingBagIcon, SunIcon];
+import { ScrollHijack } from "@/components/ui/ScrollHijack";
 
 export function HowItWorksTeaser() {
   const t = useTranslations("home.howItWorks");
@@ -13,48 +12,64 @@ export function HowItWorksTeaser() {
     description: string;
   }>;
 
-  return (
-    <SectionWrapper className="bg-white" id="how-it-works">
-      <div className="text-center mb-12">
-        <h2 className="font-display font-bold text-ocean-900 text-3xl md:text-4xl mb-4">
-          {t("title")}
-        </h2>
-        <p className="text-gray-500 text-lg">{t("subtitle")}</p>
-      </div>
+  const slides = [
+    /* ── Intro slide ── */
+    <div key="intro" className="text-center px-6 max-w-3xl">
+      <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-400 mb-8 block">
+        How It Works
+      </span>
+      <h2 className="font-display font-black text-white text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
+        {t("title")}
+      </h2>
+      <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
+      <p className="mt-8 text-gray-400 text-xl font-light max-w-sm mx-auto leading-relaxed">
+        {t("subtitle")}
+      </p>
+    </div>,
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        {steps.map((step, i) => (
-          <div key={step.number} className="relative flex flex-col items-center text-center">
-            {/* Connector line */}
-            {i < steps.length - 1 && (
-              <div className="hidden lg:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-orange-200 to-orange-100 z-0" />
-            )}
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-orange-500 text-white shadow-lg mb-4">
-                {(() => { const Icon = STEP_ICONS[i]; return <Icon className="h-7 w-7" />; })()}
-              </div>
-              <span className="text-xs font-bold text-orange-500 tracking-widest uppercase mb-1">
-                {step.number}
-              </span>
-              <h3 className="font-display font-semibold text-ocean-900 text-base mb-2">
-                {step.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="text-center">
-        <Link
-          href="/our-offer"
-          className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold transition-colors"
+    /* ── One slide per step ── */
+    ...steps.map((step, i) => (
+      <div key={step.number} className="text-center px-6 max-w-2xl relative">
+        {/* Ghost number — decorative backdrop */}
+        <span
+          className="absolute inset-x-0 top-1/2 -translate-y-1/2 font-display font-black text-white/[0.04] select-none pointer-events-none leading-none"
+          style={{ fontSize: "32vw" }}
+          aria-hidden="true"
         >
-          {t("learnMore")} →
-        </Link>
+          {step.number}
+        </span>
+        <span className="relative text-xs font-semibold tracking-[0.2em] uppercase text-orange-400 mb-6 block">
+          Step {i + 1} of {steps.length}
+        </span>
+        <h3 className="relative font-display font-black text-white text-4xl sm:text-6xl md:text-7xl leading-[0.93] tracking-tight mb-8">
+          {step.title}
+        </h3>
+        <p className="relative text-gray-400 text-xl font-light leading-relaxed">
+          {step.description}
+        </p>
       </div>
-    </SectionWrapper>
+    )),
+
+    /* ── CTA slide ── */
+    <div key="cta" className="text-center px-6 max-w-2xl">
+      <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-400 mb-8 block">
+        Ready?
+      </span>
+      <h3 className="font-display font-black text-white text-4xl sm:text-6xl leading-[0.93] tracking-tight mb-10">
+        Ready to order?
+      </h3>
+      <Link
+        href="/our-offer"
+        className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm px-10 py-4 transition-colors shadow-lg shadow-orange-500/25"
+      >
+        {t("learnMore")} →
+      </Link>
+    </div>,
+  ];
+
+  return (
+    <section className="bg-gray-950">
+      <ScrollHijack slides={slides} speedPerSlide={100} />
+    </section>
   );
 }

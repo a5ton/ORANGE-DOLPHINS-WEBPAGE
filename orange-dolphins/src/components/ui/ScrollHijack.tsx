@@ -4,137 +4,149 @@ import { useEffect, useRef } from "react";
 
 interface ScrollHijackProps {
   slides: React.ReactNode[];
-  /** How many vh of scroll track per slide (default 120) */
+  /**
+   * How many viewport heights of scroll track each slide gets (default 100).
+   * Higher = more breathing room inside a slide before it advances.
+   */
   speedPerSlide?: number;
 }
 
-// Smooth ease-in-out curve
-function ease(t: number): number {
-  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-}
-
 /**
- * Scroll-hijack component.
+ * Scroll-hijack with discrete slide snapping.
  *
- * Renders a tall scroll track. While the track is in view the inner panel
- * stays pinned (position: sticky) and slides transition based on scroll
- * progress through the track.
+ * Architecture:
+ *  - A tall scroll track (n × speedPerSlide vh) keeps the sticky panel pinned.
+ *  - rawProgress maps the entire track to 0→1.
+ *  - targetIdx = Math.floor(rawProgress × n) — switches once per "slide zone".
+ *  - When targetIdx changes, a CSS transition (700 ms, spring ease) animates
+ *    the outgoing slide out and the incoming slide in.
+ *  - While the animation runs, new targetIdx changes are debounced so the user
+ *    never sees a partially-visible intermediate state ("no man's land").
  *
- * Performance: uses direct DOM style writes + requestAnimationFrame — no
- * React state updates on scroll, so the browser compositor runs the animation
- * at full frame rate with zero React re-render overhead.
- *
- * Visual: slides cross-fade (overlap window of 15% on each side) so the
- * outgoing slide fades while the incoming one rises, exactly like the
- * reference sites (mushstudios, amourliquide, studiorotate).
+ * Because the trigger is integer-based (not fractional), the user is always
+ * looking at either a fully-visible slide or a short cross-fade between two
+ * fully-visible slides — exactly the behaviour of the reference sites.
  */
-export function ScrollHijack({ slides, speedPerSlide = 120 }: ScrollHijackProps) {
+export function ScrollHijack({ slides, speedPerSlide = 100 }: ScrollHijackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const rafRef = useRef<number>(0);
   const n = slides.length;
 
-  // Cross-fade window: slide starts entering at local = ENTER (-0.15)
-  // and starts exiting at local = EXIT (0.85). At any given moment during
-  // the transition, the exiting slide (local 0.85→1) and the entering slide
-  // (local -0.15→0) are both partially visible — a proper cross-fade.
-  const ENTER = -0.15;
-  const EXIT = 0.85;
-
   useEffect(() => {
-    const update = () => {
-      const track = trackRef.current;
-      if (!track) return;
+    const DURATION = 700; // ms — must match the CSS transition values below
 
-      const { top, height } = track.getBoundingClientRect();
-      const vh = window.innerHeight;
+    let currentIdx = -1; // -1 forces the first applySlide to run
+    let animating = false;
+    let animTimer = 0;
+    let rafId = 0;
 
-      // rawProgress: 0 when track enters viewport, 1 when track fully scrolled
-      const rawProgress = Math.max(0, Math.min(1, (vh - top) / height));
+    /**
+     * Drive all slide + dot elements to show `idx` as the active slide.
+     * Pass `instant = true` on mount to set the initial state with no animation.
+     */
+    const applySlide = (idx: number, instant = false) => {
+      if (idx === currentIdx) return;
+      // While animating, defer to prevent the user seeing partial states.
+      // Exception: instant = true bypasses this (used on mount).
+      if (animating && !instant) return;
+
+      clearTimeout(animTimer);
+      currentIdx = idx;
+      animating = !instant;
+
+      const transition = instant
+        ? "none"
+        : `opacity ${DURATION}ms cubic-bezier(0.16,1,0.3,1), transform ${DURATION}ms cubic-bezier(0.16,1,0.3,1)`;
 
       slideRefs.current.forEach((el, i) => {
         if (!el) return;
+        el.style.transition = transition;
 
-        // Each slide owns a [0,1] band of rawProgress.
-        // local < 0: slide is in the future; local > 1: slide is in the past.
-        const local = rawProgress * n - i;
-
-        let opacity: number;
-        let translateY: number;
-        let scale: number;
-        let pointerEvents: string;
-
-        if (local <= ENTER) {
-          // Future — hidden below the pinned panel
-          opacity = 0;
-          translateY = 50;
-          scale = 1;
-          pointerEvents = "none";
-        } else if (local < 0) {
-          // Entering — cross-fading in while previous slide exits
-          const t = ease((local - ENTER) / -ENTER); // 0→1
-          opacity = t;
-          translateY = (1 - t) * 50;
-          scale = 1;
-          pointerEvents = "none";
-        } else if (local < EXIT) {
-          // Active — fully in view
-          opacity = 1;
-          translateY = 0;
-          scale = 1;
-          pointerEvents = "auto";
-        } else if (local < 1) {
-          // Exiting — cross-fading out while next slide enters
-          const t = ease((local - EXIT) / (1 - EXIT)); // 0→1
-          opacity = 1 - t;
-          translateY = -t * 30;
-          scale = 1 - t * 0.04;
-          pointerEvents = "none";
+        if (i === idx) {
+          // Active slide: fully visible, centred
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0px) scale(1)";
+          el.style.pointerEvents = "auto";
+          el.setAttribute("aria-hidden", "false");
+        } else if (i < idx) {
+          // Past slide: ghosted above
+          el.style.opacity = "0";
+          el.style.transform = "translateY(-40px) scale(0.96)";
+          el.style.pointerEvents = "none";
+          el.setAttribute("aria-hidden", "true");
         } else {
-          // Past — hidden above the pinned panel
-          opacity = 0;
-          translateY = -30;
-          scale = 0.96;
-          pointerEvents = "none";
+          // Future slide: waiting below
+          el.style.opacity = "0";
+          el.style.transform = "translateY(50px) scale(1)";
+          el.style.pointerEvents = "none";
+          el.setAttribute("aria-hidden", "true");
         }
-
-        el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
-        el.style.transform = `translateY(${translateY}px) scale(${scale})`;
-        el.style.pointerEvents = pointerEvents;
       });
 
-      // Update progress dots
       dotRefs.current.forEach((dot, i) => {
         if (!dot) return;
-        const local = rawProgress * n - i;
-        // Dot is "active" when its slide is the dominant one on screen
-        const isActive = local >= 0 && local < EXIT;
-        dot.style.width = isActive ? "24px" : "6px";
-        dot.style.backgroundColor = isActive
-          ? "#f97316"
-          : "rgba(156, 163, 175, 0.4)";
+        dot.style.transition = instant
+          ? "none"
+          : "width 0.4s ease, background-color 0.4s ease";
+        dot.style.width = i === idx ? "24px" : "6px";
+        dot.style.backgroundColor =
+          i === idx ? "#f97316" : "rgba(156, 163, 175, 0.4)";
       });
+
+      if (animating) {
+        animTimer = window.setTimeout(() => {
+          animating = false;
+          // After debounce window, re-sync in case scroll moved on
+          const el = trackRef.current;
+          if (!el) return;
+          const { top, height } = el.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const rp = Math.max(0, Math.min(1, (vh - top) / height));
+          const ti = Math.max(0, Math.min(n - 1, Math.floor(rp * n)));
+          applySlide(ti);
+        }, DURATION + 80);
+      }
     };
 
+    // Set slide 0 immediately with no transition
+    applySlide(0, true);
+
     const onScroll = () => {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(update);
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const track = trackRef.current;
+        if (!track) return;
+
+        const { top, height } = track.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // Outside our section entirely — nothing to do
+        if (top > vh || -top > height) return;
+
+        // rawProgress: 0 when section enters viewport bottom, 1 when fully gone
+        const rawProgress = Math.max(0, Math.min(1, (vh - top) / height));
+
+        // Integer slide index — each slide owns 1/n of the progress range
+        const targetIdx = Math.max(0, Math.min(n - 1, Math.floor(rawProgress * n)));
+
+        applySlide(targetIdx);
+      });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Run once immediately so the initial state is correct
-    update();
+    onScroll(); // sync immediately on mount
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafRef.current);
+      cancelAnimationFrame(rafId);
+      clearTimeout(animTimer);
     };
   }, [n]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div ref={trackRef} style={{ height: `${n * speedPerSlide}vh` }} className="relative">
-      {/* Sticky viewport-pinned display area */}
+      {/* Sticky viewport-pinned panel */}
       <div className="sticky top-0 h-screen overflow-hidden">
         {slides.map((slide, i) => (
           <div
@@ -150,14 +162,11 @@ export function ScrollHijack({ slides, speedPerSlide = 120 }: ScrollHijackProps)
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              // Initial state applied before first scroll event fires
+              // Initial state before JS runs — slide 0 visible, rest below
               opacity: i === 0 ? 1 : 0,
               transform:
-                i === 0
-                  ? "translateY(0px) scale(1)"
-                  : "translateY(50px) scale(1)",
+                i === 0 ? "translateY(0px) scale(1)" : "translateY(50px) scale(1)",
               pointerEvents: i === 0 ? "auto" : "none",
-              // GPU-accelerate the animated properties
               willChange: "transform, opacity",
             }}
           >
@@ -168,7 +177,7 @@ export function ScrollHijack({ slides, speedPerSlide = 120 }: ScrollHijackProps)
         {/* Progress dots */}
         {n > 1 && (
           <div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10"
             aria-hidden="true"
           >
             {slides.map((_, i) => (
@@ -184,7 +193,8 @@ export function ScrollHijack({ slides, speedPerSlide = 120 }: ScrollHijackProps)
                   width: i === 0 ? "24px" : "6px",
                   backgroundColor:
                     i === 0 ? "#f97316" : "rgba(156, 163, 175, 0.4)",
-                  transition: "width 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.35s ease",
+                  transition:
+                    "width 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.35s ease",
                   flexShrink: 0,
                 }}
               />
