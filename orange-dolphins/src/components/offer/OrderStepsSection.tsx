@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import { SunIcon, MoonIcon } from "@/components/ui/icons";
 
 export function OrderStepsSection() {
   const t = useTranslations("offer.steps");
@@ -48,22 +47,6 @@ export function OrderStepsSection() {
           ))}
         </ol>
 
-        {/* Delivery windows — clean pill callout */}
-        <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center gap-4">
-          <p className="text-sm font-semibold text-gray-400 uppercase tracking-widest shrink-0">
-            Delivery windows
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 border border-orange-100 text-orange-700 text-sm font-medium px-4 py-2">
-              <SunIcon className="h-4 w-4 text-orange-500" />
-              Morning · 9:00 – 11:00
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 border border-blue-100 text-blue-500 text-sm font-medium px-4 py-2">
-              <MoonIcon className="h-4 w-4 text-blue-500" />
-              Evening · 17:00 – 19:00
-            </span>
-          </div>
-        </div>
       </div>
     </SectionWrapper>
   );

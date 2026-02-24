@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { SunIcon, MoonIcon, AnchorIcon } from "@/components/ui/icons";
 
 export function HeroSection() {
   const t = useTranslations("home.hero");
@@ -48,25 +47,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom delivery-info strip */}
-      <div className="border-t border-grey-100 bg-grey-50">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-gray-500 font-sans">
-          <span className="flex items-center gap-2">
-            <SunIcon className="h-4 w-4 text-orange-500 shrink-0" />
-            Morning&nbsp;·&nbsp;9:00–11:00
-          </span>
-          <span className="hidden sm:block text-grey-200">|</span>
-          <span className="flex items-center gap-2">
-            <MoonIcon className="h-4 w-4 shrink-0" />
-            Evening&nbsp;·&nbsp;17:00–19:00
-          </span>
-          <span className="hidden sm:block text-grey-200">|</span>
-          <span className="flex items-center gap-2">
-            <AnchorIcon className="h-4 w-4 shrink-0" />
-            Even at anchor
-          </span>
-        </div>
-      </div>
     </section>
   );
 }

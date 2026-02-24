@@ -22,7 +22,7 @@ export function HowItWorksTeaser() {
         {t("title")}
       </h2>
       <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
-      <p className="mt-8 text-blue-200 text-xl font-sans font-normal max-w-sm mx-auto leading-relaxed">
+      <p className="mt-8 text-lightGreen text-xl font-sans font-normal max-w-sm mx-auto leading-relaxed">
         {t("subtitle")}
       </p>
     </div>,
@@ -44,7 +44,7 @@ export function HowItWorksTeaser() {
         <h3 className="relative font-display font-extrabold text-white text-4xl sm:text-6xl md:text-7xl leading-[0.93] tracking-tight mb-8">
           {step.title}
         </h3>
-        <p className="relative text-blue-200 text-xl font-sans font-normal leading-relaxed">
+        <p className="relative text-lightGreen text-xl font-sans font-normal leading-relaxed">
           {step.description}
         </p>
       </div>

@@ -4,7 +4,7 @@ export function MissionStatement() {
   const t = useTranslations("home.mission");
 
   return (
-    <section className="h-screen bg-blue-500 flex flex-col items-center justify-center text-center px-6 sm:px-10 overflow-hidden relative">
+    <section className="h-screen bg-darkGreen flex flex-col items-center justify-center text-center px-6 sm:px-10 overflow-hidden relative">
       {/* Faint background word — adds depth without distraction */}
       <span
         className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-white/[0.05] select-none pointer-events-none leading-none overflow-hidden"
@@ -31,7 +31,7 @@ export function MissionStatement() {
 
         <div className="mt-10 w-16 h-px bg-orange-400" />
 
-        <p className="mt-10 text-blue-100 text-lg sm:text-xl leading-relaxed max-w-lg font-sans font-normal">
+        <p className="mt-10 text-lightGreen text-lg sm:text-xl leading-relaxed max-w-lg font-sans font-normal">
           {t("body")}
         </p>
       </div>

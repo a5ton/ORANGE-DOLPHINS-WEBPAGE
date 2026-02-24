@@ -34,7 +34,7 @@ export function VisionStatement() {
         {t("title")}
       </h2>
       <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
-      <p className="mt-8 text-gray-500 text-lg sm:text-xl font-sans font-normal max-w-lg mx-auto leading-relaxed">
+      <p className="mt-8 text-darkGreen/70 text-lg sm:text-xl font-sans font-normal max-w-lg mx-auto leading-relaxed">
         {t("body")}
       </p>
     </div>,
@@ -51,7 +51,7 @@ export function VisionStatement() {
           {p.headline[1]}
         </h3>
         <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
-        <p className="mt-8 text-gray-500 text-xl font-sans font-normal">{p.body}</p>
+        <p className="mt-8 text-darkGreen/70 text-xl font-sans font-normal">{p.body}</p>
       </div>
     )),
   ];
