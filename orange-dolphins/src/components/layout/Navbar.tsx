@@ -72,7 +72,7 @@ export default function Navbar() {
                     "font-display font-semibold uppercase tracking-[0.18em] text-[0.68rem] xl:text-[0.75rem] 2xl:text-xs transition-colors rounded-full px-3.5 py-2",
                     transparent
                       ? isActive(link.href)
-                        ? "text-orange-400"
+                        ? "text-orange-500"
                         : "text-white/80 hover:text-white"
                       : isActive(link.href)
                       ? "bg-orange-500/10 text-orange-500"

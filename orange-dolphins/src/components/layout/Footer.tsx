@@ -25,7 +25,7 @@ export default function Footer() {
             <Link href="/" className="inline-block mb-5">
               <Logo variant="white" showWordmark showTagline markSize={40} />
             </Link>
-            <p className="text-sm text-blue-100 leading-relaxed max-w-xs mb-6 font-sans">
+            <p className="text-sm text-white/75 leading-relaxed max-w-xs mb-6 font-sans">
               {tf("tagline")}
             </p>
             <div className="flex items-center gap-5 text-sm">
@@ -33,7 +33,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-200 hover:text-orange-400 font-display font-semibold transition-colors"
+                className="text-white/60 hover:text-orange-500 font-display font-semibold transition-colors"
               >
                 Instagram
               </a>
@@ -41,7 +41,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-200 hover:text-orange-400 font-display font-semibold transition-colors"
+                className="text-white/60 hover:text-orange-500 font-display font-semibold transition-colors"
               >
                 Facebook
               </a>
@@ -49,7 +49,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-200 hover:text-orange-400 font-display font-semibold transition-colors"
+                className="text-white/60 hover:text-orange-500 font-display font-semibold transition-colors"
               >
                 LinkedIn
               </a>
@@ -58,7 +58,7 @@ export default function Footer() {
 
           {/* Pages */}
           <div>
-            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-6">
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
               {tf("pages")}
             </p>
             <ul className="space-y-3">
@@ -66,7 +66,7 @@ export default function Footer() {
                 <li key={link.key}>
                   <Link
                     href={link.href}
-                    className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
+                    className="text-sm font-sans text-white/75 hover:text-orange-500 transition-colors"
                   >
                     {t(link.key)}
                   </Link>
@@ -77,14 +77,14 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-6">
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
               {tf("connect")}
             </p>
             <ul className="space-y-3 mb-8">
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
+                  className="text-sm font-sans text-white/75 hover:text-orange-500 transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -92,7 +92,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/collaborate"
-                  className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
+                  className="text-sm font-sans text-white/75 hover:text-orange-500 transition-colors"
                 >
                   Collaborate
                 </Link>
@@ -100,7 +100,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/partners"
-                  className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
+                  className="text-sm font-sans text-white/75 hover:text-orange-500 transition-colors"
                 >
                   Partners
                 </Link>
@@ -116,8 +116,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-blue-400/50">
-        <div className="mx-auto max-w-7xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-200 font-sans">
+      <div className="border-t border-white/15">
+        <div className="mx-auto max-w-7xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/50 font-sans">
           <span>
             © {new Date().getFullYear()} Orange Dolphins.{" "}
             {tf("rights")}

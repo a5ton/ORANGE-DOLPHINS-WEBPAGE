@@ -30,7 +30,7 @@ export function VisionStatement() {
       <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
         Our Vision
       </span>
-      <h2 className="font-display font-extrabold text-gray-900 text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
+      <h2 className="font-display font-extrabold text-darkGreen text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
         {t("title")}
       </h2>
       <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
@@ -45,7 +45,7 @@ export function VisionStatement() {
         <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
           {p.label}
         </span>
-        <h3 className="font-display font-extrabold text-gray-900 text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
+        <h3 className="font-display font-extrabold text-darkGreen text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
           {p.headline[0]}
           <br />
           {p.headline[1]}

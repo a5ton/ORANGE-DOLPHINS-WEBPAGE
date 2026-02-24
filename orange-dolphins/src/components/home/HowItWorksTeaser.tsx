@@ -15,14 +15,14 @@ export function HowItWorksTeaser() {
 
         {/* Section header */}
         <div className="mb-20 max-w-2xl">
-          <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-8 block">
+          <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
             How It Works
           </span>
           <h2 className="font-display font-extrabold text-white text-5xl sm:text-6xl md:text-7xl leading-[0.93] tracking-tight">
             {t("title")}
           </h2>
           <div className="mt-8 w-12 h-px bg-orange-500" />
-          <p className="mt-8 text-lightGreen text-xl font-sans font-normal leading-relaxed max-w-sm">
+          <p className="mt-8 text-white/75 text-xl font-sans font-normal leading-relaxed max-w-sm">
             {t("subtitle")}
           </p>
         </div>
@@ -44,13 +44,13 @@ export function HowItWorksTeaser() {
               </span>
 
               <div className="relative max-w-2xl">
-                <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-5 block">
+                <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5 block">
                   Step {i + 1} of {steps.length}
                 </span>
                 <h3 className="font-display font-extrabold text-white text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight mb-5">
                   {step.title}
                 </h3>
-                <p className="text-lightGreen text-lg sm:text-xl font-sans font-normal leading-relaxed">
+                <p className="text-white/75 text-lg sm:text-xl font-sans font-normal leading-relaxed">
                   {step.description}
                 </p>
               </div>

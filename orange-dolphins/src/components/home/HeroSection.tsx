@@ -23,7 +23,7 @@ export function HeroSection() {
       {/* Content — pinned to bottom-left like CHCKN */}
       <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-16 lg:pb-20">
         {/* Eyebrow */}
-        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-6">
+        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
           Leros · Dodecanese · Est.&nbsp;2024
         </p>
 

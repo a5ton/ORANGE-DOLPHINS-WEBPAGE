@@ -8,7 +8,7 @@ export function FoundingStory() {
   return (
     <SectionWrapper className="bg-darkGreen">
       <div className="max-w-3xl">
-        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-300 mb-5">
+        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
           Origins
         </p>
         <h2
@@ -31,7 +31,7 @@ export function FoundingStory() {
           </div>
           <div className="flex items-center gap-3">
             <ArrowRightIcon className="h-4 w-4 text-orange-500 shrink-0" />
-            <span className="text-sm text-orange-400 font-medium">{t("expansion")}</span>
+            <span className="text-sm text-orange-500 font-medium">{t("expansion")}</span>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export function CtaSection() {
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           {/* Left: heading */}
           <div>
-            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-white/60 mb-6">
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-blue-500 mb-6">
               Ready to Order?
             </p>
             <h2

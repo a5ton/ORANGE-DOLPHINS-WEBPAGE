@@ -27,7 +27,7 @@ export function ProductCategoriesPreview() {
           {items.map((item) => (
             <span
               key={item.name}
-              className="inline-flex flex-col border border-gray-100 hover:border-orange-300 hover:bg-orange-50 px-5 py-3 transition-colors cursor-default"
+              className="inline-flex flex-col border border-gray-100 hover:border-orange-500/40 hover:bg-orange-50 px-5 py-3 transition-colors cursor-default"
             >
               <span className="font-semibold text-gray-900 text-sm">
                 {item.name}

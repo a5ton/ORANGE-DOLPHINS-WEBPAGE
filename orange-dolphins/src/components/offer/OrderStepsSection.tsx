@@ -30,7 +30,7 @@ export function OrderStepsSection() {
               className="flex gap-8 py-8 border-t border-gray-100 first:border-0 group"
             >
               {/* Number */}
-              <span className="font-display font-black text-gray-200 text-4xl leading-none w-12 shrink-0 group-hover:text-orange-200 transition-colors duration-300">
+              <span className="font-display font-black text-gray-200 text-4xl leading-none w-12 shrink-0 group-hover:text-orange-500/30 transition-colors duration-300">
                 {step.number}
               </span>
 

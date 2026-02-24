@@ -7,7 +7,7 @@ export function DeliveryDescription() {
   return (
     <SectionWrapper className="bg-blue-500">
       <div className="max-w-3xl">
-        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-300 mb-5">
+        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
           Our Service
         </p>
         <h2
@@ -16,7 +16,7 @@ export function DeliveryDescription() {
         >
           {t("title")}
         </h2>
-        <p className="text-blue-100 text-lg md:text-xl leading-relaxed mb-10 font-sans">
+        <p className="text-white/75 text-lg md:text-xl leading-relaxed mb-10 font-sans">
           {t("description")}
         </p>
       </div>
