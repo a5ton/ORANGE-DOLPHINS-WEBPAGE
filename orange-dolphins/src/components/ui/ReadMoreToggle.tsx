@@ -24,7 +24,17 @@ export function ReadMoreToggle({
   return (
     <div className={className}>
       <div>{short}</div>
-      {expanded && <div className="mt-4">{long}</div>}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateRows: expanded ? "1fr" : "0fr",
+          transition: "grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      >
+        <div className="overflow-hidden">
+          <div className="mt-4">{long}</div>
+        </div>
+      </div>
       <button
         onClick={() => setExpanded(!expanded)}
         className="mt-4 inline-flex items-center gap-1.5 text-orange-500 hover:text-orange-600 font-semibold text-sm transition-colors"

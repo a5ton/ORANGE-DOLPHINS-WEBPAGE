@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { RouteTransition } from "@/components/ui/RouteTransition";
 import "../globals.css";
 
 type Props = {
@@ -36,7 +37,9 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <NextIntlClientProvider messages={messages}>
           <Navbar />
-          <main className="min-h-screen">{children}</main>
+          <RouteTransition>
+            <main className="min-h-screen">{children}</main>
+          </RouteTransition>
           <Footer />
         </NextIntlClientProvider>
       </body>

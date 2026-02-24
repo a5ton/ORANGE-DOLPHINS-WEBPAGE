@@ -23,7 +23,7 @@ export function FadeReveal({ children, delay = 0, className }: FadeRevealProps) 
 
     const show = () => {
       el.style.opacity = "1";
-      el.style.transform = "translateY(0px)";
+      el.style.transform = "translateY(0px) scale(1)";
     };
 
     // If user prefers reduced motion, reveal immediately with no animation
@@ -56,7 +56,7 @@ export function FadeReveal({ children, delay = 0, className }: FadeRevealProps) 
       className={className}
       style={{
         opacity: 0,
-        transform: "translateY(32px)",
+        transform: "translateY(24px) scale(0.97)",
         transition:
           "opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
         transitionDelay: delay > 0 ? "0ms" : "0ms", // delay handled in JS for accuracy

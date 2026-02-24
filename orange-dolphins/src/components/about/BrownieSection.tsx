@@ -6,17 +6,36 @@ export function BrownieSection() {
 
   return (
     <SectionWrapper className="bg-grey-100">
-      <div className="max-w-xl">
-        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
-          Meet the Crew
-        </p>
-        <h2
-          className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight mb-6"
-          style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-        >
-          {t("title")}
-        </h2>
-        <p className="text-darkGreen/70 text-lg leading-relaxed">{t("description")}</p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        {/* Left: circular photo */}
+        <div className="flex items-center justify-center">
+          {/* Swap the inner div for: <Image src="..." alt="Brownie" fill className="object-cover" /> */}
+          <div className="relative w-full max-w-[380px] mx-auto aspect-square rounded-full overflow-hidden bg-white shadow-md">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+              <p className="text-sm font-display font-bold text-gray-300">Brownie</p>
+              <p className="text-xs text-gray-300 font-sans italic">Photo coming soon</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: text */}
+        <div>
+          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
+            Meet the Crew
+          </p>
+          <h2
+            className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight mb-6"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+          >
+            {t("title")}
+          </h2>
+          <div className="w-10 h-px bg-orange-500 mb-6" />
+          <p className="text-darkGreen/70 text-lg leading-relaxed font-sans">
+            {t("description")}
+          </p>
+        </div>
+
       </div>
     </SectionWrapper>
   );
