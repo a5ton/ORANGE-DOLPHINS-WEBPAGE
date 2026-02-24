@@ -51,126 +51,136 @@ export function CollaborateForm() {
 
   const inputClass = (hasError: boolean) =>
     cn(
-      "w-full rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all",
+      "w-full border-0 border-b bg-transparent px-0 py-3 text-darkGreen placeholder-darkGreen/30 outline-none transition-colors text-sm",
       hasError
-        ? "border-red-300 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-        : "border-gray-200 bg-white focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+        ? "border-red-400 focus:border-red-500"
+        : "border-darkGreen/20 focus:border-orange-500"
     );
 
   return (
-    <section className="py-16 md:py-24 bg-grey-100">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h2 className="font-display font-extrabold text-gray-900 text-3xl md:text-4xl mb-3">
-            {t("title")}
-          </h2>
-          <p className="text-gray-500">{t("subtitle")}</p>
-        </div>
+    <section className="bg-grey-100 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-        {status === "success" ? (
-          <div className="rounded-2xl bg-green-50 border border-green-200 p-8 text-center">
-            <div className="flex justify-center mb-4">
-              <CheckCircleIcon className="h-12 w-12 text-green-500" />
-            </div>
-            <p className="text-green-800 font-semibold text-lg">{t("success")}</p>
-          </div>
-        ) : (
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="rounded-2xl bg-white border border-gray-100 shadow-sm p-8 space-y-5"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  {t("name")} *
-                </label>
-                <input
-                  {...register("name")}
-                  placeholder="Inna Smirnova"
-                  className={inputClass(!!errors.name)}
-                />
-                {errors.name && (
-                  <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
-                )}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  {t("email")} *
-                </label>
-                <input
-                  {...register("email")}
-                  type="email"
-                  placeholder="inna@example.com"
-                  className={inputClass(!!errors.email)}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                {t("organization")}
-              </label>
-              <input
-                {...register("organization")}
-                placeholder="My Charter Company"
-                className={inputClass(false)}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                {t("category")} *
-              </label>
-              <select
-                {...register("category")}
-                className={cn(inputClass(!!errors.category), "cursor-pointer")}
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  — select —
-                </option>
-                <option value="charter">{t("categoryOptions.charter")}</option>
-                <option value="marina">{t("categoryOptions.marina")}</option>
-                <option value="business">{t("categoryOptions.business")}</option>
-                <option value="rider">{t("categoryOptions.rider")}</option>
-                <option value="other">{t("categoryOptions.other")}</option>
-              </select>
-              {errors.category && (
-                <p className="mt-1 text-xs text-red-500">{errors.category.message}</p>
-              )}
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                {t("message")} *
-              </label>
-              <textarea
-                {...register("message")}
-                rows={5}
-                placeholder="Tell us about yourself and how you'd like to collaborate..."
-                className={inputClass(!!errors.message)}
-              />
-              {errors.message && (
-                <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
-              )}
-            </div>
-
-            {status === "error" && (
-              <p className="text-sm text-red-500 text-center">{t("error")}</p>
-            )}
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-display font-semibold text-[0.7rem] tracking-[0.18em] uppercase py-3.5 sm:py-4 transition-all duration-200 shadow-md shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+          {/* Left: editorial heading */}
+          <div className="lg:pt-2">
+            <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6 block">
+              {t("title")}
+            </span>
+            <h2
+              className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
             >
-              {isSubmitting ? "Sending…" : t("submit")}
-            </button>
-          </form>
-        )}
+              {t("title")}
+            </h2>
+            <div className="mt-8 w-12 h-px bg-orange-500" />
+            <p className="mt-8 text-darkGreen/60 text-lg font-sans font-normal leading-relaxed max-w-sm">
+              {t("subtitle")}
+            </p>
+          </div>
+
+          {/* Right: form */}
+          <div>
+            {status === "success" ? (
+              <div className="flex flex-col items-start gap-4 py-8">
+                <CheckCircleIcon className="h-10 w-10 text-orange-500" />
+                <p className="font-display font-bold text-darkGreen text-xl">{t("success")}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
+                      {t("name")} *
+                    </label>
+                    <input
+                      {...register("name")}
+                      placeholder="Inna Smirnova"
+                      className={inputClass(!!errors.name)}
+                    />
+                    {errors.name && (
+                      <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
+                      {t("email")} *
+                    </label>
+                    <input
+                      {...register("email")}
+                      type="email"
+                      placeholder="inna@example.com"
+                      className={inputClass(!!errors.email)}
+                    />
+                    {errors.email && (
+                      <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
+                    {t("organization")}
+                  </label>
+                  <input
+                    {...register("organization")}
+                    placeholder="My Charter Company"
+                    className={inputClass(false)}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
+                    {t("category")} *
+                  </label>
+                  <select
+                    {...register("category")}
+                    defaultValue=""
+                    className={cn(inputClass(!!errors.category), "cursor-pointer appearance-none")}
+                  >
+                    <option value="" disabled>— select —</option>
+                    <option value="charter">{t("categoryOptions.charter")}</option>
+                    <option value="marina">{t("categoryOptions.marina")}</option>
+                    <option value="business">{t("categoryOptions.business")}</option>
+                    <option value="rider">{t("categoryOptions.rider")}</option>
+                    <option value="other">{t("categoryOptions.other")}</option>
+                  </select>
+                  {errors.category && (
+                    <p className="mt-1.5 text-xs text-red-500">{errors.category.message}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
+                    {t("message")} *
+                  </label>
+                  <textarea
+                    {...register("message")}
+                    rows={5}
+                    placeholder="Tell us about yourself and how you'd like to collaborate..."
+                    className={cn(inputClass(!!errors.message), "resize-none")}
+                  />
+                  {errors.message && (
+                    <p className="mt-1.5 text-xs text-red-500">{errors.message.message}</p>
+                  )}
+                </div>
+
+                {status === "error" && (
+                  <p className="text-sm text-red-500">{t("error")}</p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-10 py-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? "Sending…" : t("submit")}
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
       </div>
     </section>
   );

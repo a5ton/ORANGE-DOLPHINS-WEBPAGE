@@ -31,9 +31,9 @@ export function ProductCategoriesGrid() {
               key={group.name}
               className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 py-7 cursor-default"
             >
-              {/* Index */}
-              <span className="font-display font-extrabold text-darkGreen/20 text-xs tracking-widest w-8 shrink-0 group-hover:text-orange-500 transition-colors duration-200">
-                {String(i + 1).padStart(2, "0")}
+              {/* Bullet */}
+              <span className="text-darkGreen/25 text-base w-8 shrink-0 group-hover:text-orange-500 transition-colors duration-200 select-none">
+                •
               </span>
 
               {/* Category name */}

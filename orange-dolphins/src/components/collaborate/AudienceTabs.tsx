@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
 
 const TAB_KEYS = ["charter", "marina", "business", "rider"] as const;
 type TabKey = (typeof TAB_KEYS)[number];
@@ -22,19 +21,20 @@ export function AudienceTabs() {
   const activeTab = tabs.find((tab) => tab.key === active)!;
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-5xl px-6">
-        {/* Underline tab bar */}
-        <div className="flex flex-wrap gap-0 border-b border-gray-100 mb-12">
+    <section className="bg-darkGreen py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6">
+
+        {/* Tab navigation */}
+        <div className="flex flex-wrap gap-0 border-b border-white/10 mb-16">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActive(tab.key)}
               className={cn(
-                "px-5 py-3 text-sm font-semibold border-b-2 -mb-px transition-colors",
+                "pr-8 py-4 text-xs font-display font-bold tracking-[0.18em] uppercase border-b-2 -mb-px transition-colors",
                 active === tab.key
-                  ? "border-orange-500 text-gray-900"
-                  : "border-transparent text-gray-400 hover:text-gray-700"
+                  ? "border-orange-500 text-white"
+                  : "border-transparent text-white/35 hover:text-white/60"
               )}
             >
               {tab.label}
@@ -42,23 +42,34 @@ export function AudienceTabs() {
           ))}
         </div>
 
-        {/* Content — left border accent */}
-        <div className="pl-8 border-l-2 border-orange-500">
-          <h3 className="font-display font-bold text-gray-900 text-2xl md:text-3xl mb-8">
+        {/* Content */}
+        <div className="max-w-3xl">
+          <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6 block">
+            {activeTab.label}
+          </span>
+          <h3
+            className="font-display font-extrabold text-white leading-[0.93] tracking-tight"
+            style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
+          >
             {activeTab.title}
           </h3>
-          <ul className="space-y-5">
+          <div className="mt-8 w-12 h-px bg-orange-500" />
+          <ul className="mt-12 space-y-7">
             {activeTab.bullets.map((bullet, i) => {
               const colonIdx = bullet.indexOf(":");
               const bold = colonIdx > -1 ? bullet.slice(0, colonIdx) : bullet;
               const rest = colonIdx > -1 ? bullet.slice(colonIdx + 1) : "";
               return (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircleIcon className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
-                  <p className="text-gray-600 leading-relaxed">
-                    <strong className="text-gray-900 font-semibold">
-                      {bold}
-                    </strong>
+                <li key={i} className="flex items-start gap-4">
+                  <span
+                    className="text-orange-500 shrink-0 leading-none select-none"
+                    style={{ fontSize: "1.1rem", marginTop: "0.15em" }}
+                    aria-hidden="true"
+                  >
+                    •
+                  </span>
+                  <p className="text-white/65 leading-relaxed text-base sm:text-lg">
+                    <strong className="text-white font-semibold">{bold}</strong>
                     {rest ? `:${rest}` : ""}
                   </p>
                 </li>
@@ -66,6 +77,7 @@ export function AudienceTabs() {
             })}
           </ul>
         </div>
+
       </div>
     </section>
   );
