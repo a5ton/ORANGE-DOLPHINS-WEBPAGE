@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
 
 export function OrderStepsSection() {
   const t = useTranslations("offer.steps");
@@ -10,44 +9,52 @@ export function OrderStepsSection() {
   }>;
 
   return (
-    <SectionWrapper className="bg-white">
-      <div className="max-w-2xl mx-auto">
-        {/* Heading */}
-        <div className="mb-16">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-4 block">
+    <section className="bg-blue-500 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+
+        {/* Section header */}
+        <div className="mb-20 max-w-2xl">
+          <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
             {t("title")}
           </span>
-          <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight">
+          <h2 className="font-display font-extrabold text-white text-5xl sm:text-6xl md:text-7xl leading-[0.93] tracking-tight">
             {t("subtitle")}
           </h2>
+          <div className="mt-8 w-12 h-px bg-orange-500" />
         </div>
 
-        {/* Numbered steps — vertical list */}
-        <ol className="space-y-0">
-          {steps.map((step) => (
-            <li
+        {/* Steps — stacked with ghost number backdrop */}
+        <div>
+          {steps.map((step, i) => (
+            <div
               key={step.number}
-              className="flex gap-8 py-8 border-t border-gray-100 first:border-0 group"
+              className="relative py-14 border-t border-white/10 overflow-hidden"
             >
-              {/* Number */}
-              <span className="font-display font-black text-gray-200 text-4xl leading-none w-12 shrink-0 group-hover:text-orange-500/30 transition-colors duration-300">
+              {/* Ghost number — decorative right-side backdrop */}
+              <span
+                className="absolute right-0 top-1/2 -translate-y-1/2 font-display font-extrabold text-white/[0.06] select-none pointer-events-none leading-none"
+                style={{ fontSize: "clamp(8rem, 20vw, 18rem)" }}
+                aria-hidden="true"
+              >
                 {step.number}
               </span>
 
-              {/* Content */}
-              <div>
-                <h3 className="font-display font-bold text-gray-900 text-xl mb-2">
+              <div className="relative max-w-2xl">
+                <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5 block">
+                  Step {i + 1} of {steps.length}
+                </span>
+                <h3 className="font-display font-extrabold text-white text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight mb-5">
                   {step.title}
                 </h3>
-                <p className="text-gray-500 leading-relaxed">
+                <p className="text-white/75 text-lg sm:text-xl font-sans font-normal leading-relaxed">
                   {step.description}
                 </p>
               </div>
-            </li>
+            </div>
           ))}
-        </ol>
+        </div>
 
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
