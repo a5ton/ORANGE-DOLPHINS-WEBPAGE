@@ -3,19 +3,18 @@
 import { useEffect, type ReactNode } from "react";
 
 /**
- * After the user stops scrolling, nudges the page so the nearest
- * [data-snap] section aligns flush below the navbar.
+ * After the user stops scrolling, snaps the nearest [data-snap] section
+ * so it is CENTRED on screen.
  *
- * Threshold = 100 % of viewport height (1 full screen).
- * This is the key value:
- *   - Short sections (~100 vh): snap fires throughout → feels fully snapped.
- *   - VisionStatement (400 vh track): first 100 vh snaps to VS start,
- *     middle 200 vh is free-scroll (slides), last 100 vh snaps to
- *     MissionStatement — completely eliminating the no-man's-land gap
- *     that appeared when the sticky panel released at the 300 vh mark.
+ * Centering rule:
+ *   • Section fits inside the viewport (height ≤ vh) → scroll so
+ *     the section's vertical midpoint aligns with the viewport's midpoint.
+ *   • Section is taller than the viewport (e.g. the 400 vh ScrollHijack) →
+ *     fall back to pinning its top flush below the navbar, because centering
+ *     a 400 vh block would jump 200 vh into the middle of the slide sequence.
  *
- * An `isSnapping` flag prevents the programmatic scrollTo() from
- * re-triggering the logic mid-animation (cascading snap loop).
+ * Threshold = 100 % viewport height — covers the full no-man's-land gap
+ * between VisionStatement's sticky release point and MissionStatement.
  */
 export function ScrollSnapPage({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -30,42 +29,48 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
       );
       if (!sections.length) return;
 
-      // 100 % viewport → bridges the full no-man's-land between sections
-      const threshold = window.innerHeight;
+      const vh = window.innerHeight;
+      const threshold = vh; // 100 % viewport
 
       let closest: { scrollTarget: number; dist: number } | null = null;
 
       for (const el of sections) {
-        const diff = el.getBoundingClientRect().top - NAV_H;
-        const dist = Math.abs(diff);
+        const rect = el.getBoundingClientRect();
 
+        // Choose snap anchor:
+        //   short/medium section → centre on screen
+        //   taller-than-viewport section → pin top below navbar
+        const diff =
+          rect.height <= vh
+            ? rect.top + rect.height / 2 - vh / 2   // centre ↔ centre
+            : rect.top - NAV_H;                       // top → just below nav
+
+        const dist = Math.abs(diff);
         if (dist < threshold && (!closest || dist < closest.dist)) {
           closest = { scrollTarget: window.scrollY + diff, dist };
         }
       }
 
-      // Skip if already well-aligned (< 6 px) to avoid pointless micro-scrolls
+      // Skip if already well-aligned (< 6 px off)
       if (closest && closest.dist > 6) {
         isSnapping = true;
         window.scrollTo({
           top: Math.max(0, closest.scrollTarget),
           behavior: "smooth",
         });
-        // Hold lock until smooth scroll settles (~600 ms typical)
         setTimeout(() => {
           isSnapping = false;
         }, 800);
       }
     };
 
-    // scrollend fires once inertia/momentum has fully stopped.
-    // Supported in Chrome 114+, Firefox 109+, Safari 16.4+.
+    // scrollend fires once momentum has fully stopped (Chrome 114+, FF 109+, Safari 16.4+)
     window.addEventListener("scrollend", snapToNearest);
 
     // 150 ms debounce fallback for older browsers
     let debounceTimer: ReturnType<typeof setTimeout> | null = null;
     const onScroll = () => {
-      if (isSnapping) return; // ignore events from our own scrollTo()
+      if (isSnapping) return;
       if (debounceTimer) clearTimeout(debounceTimer);
       debounceTimer = setTimeout(snapToNearest, 150);
     };
