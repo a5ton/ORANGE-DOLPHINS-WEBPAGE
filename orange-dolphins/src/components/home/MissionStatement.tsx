@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 
 const REPEAT = "ORANGE DOLPHINS  ";
 const ROW = REPEAT.repeat(12);
-const ROWS = Array.from({ length: 14 });
+const ROWS = Array.from({ length: 30 });
 
 export function MissionStatement() {
   const t = useTranslations("home.mission");
@@ -11,13 +11,13 @@ export function MissionStatement() {
     <section className="h-screen bg-darkGreen flex flex-col items-center justify-center text-center px-6 sm:px-10 overflow-hidden relative">
       {/* Repeating background text — very subtle */}
       <div
-        className="absolute inset-0 flex flex-col justify-center select-none pointer-events-none overflow-hidden"
+        className="absolute inset-0 flex flex-col select-none pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
         {ROWS.map((_, i) => (
           <p
             key={i}
-            className="font-display font-extrabold text-white/[0.045] whitespace-nowrap leading-none"
+            className="font-display font-extrabold text-white/[0.022] whitespace-nowrap leading-none"
             style={{ fontSize: "clamp(1.6rem, 3.5vw, 4rem)" }}
           >
             {ROW}
