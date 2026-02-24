@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { FadeReveal } from "@/components/ui/FadeReveal";
+import { Link } from "@/i18n/navigation";
 
 export function ProductCategoriesPreview() {
   const t = useTranslations("home.categories");
@@ -9,36 +9,59 @@ export function ProductCategoriesPreview() {
   }>;
 
   return (
-    <section className="bg-white py-24 md:py-32">
-      <FadeReveal className="mx-auto max-w-7xl px-6">
-        <div className="mb-14">
-          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-4">
-            What We Deliver
-          </p>
-          <h2
-            className="font-display font-extrabold text-gray-900 leading-[0.93] tracking-tight"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
+    <section className="bg-grey-100 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+
+        {/* Header row */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-4">
+          <div>
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
+              What We Deliver
+            </p>
+            <h2
+              className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
+            >
+              {t("title")}
+            </h2>
+          </div>
+          <Link
+            href="/our-offer"
+            className="shrink-0 self-start lg:self-auto inline-flex items-center justify-center rounded-full border-2 border-darkGreen text-darkGreen hover:bg-darkGreen hover:text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-7 py-3 transition-colors"
           >
-            {t("title")}
-          </h2>
+            Full Catalogue →
+          </Link>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {items.map((item) => (
-            <span
+        {/* Editorial numbered rows */}
+        <div className="divide-y divide-darkGreen/10 mt-12">
+          {items.map((item, i) => (
+            <div
               key={item.name}
-              className="inline-flex flex-col border border-gray-100 hover:border-orange-500/40 hover:bg-orange-50 px-5 py-3 transition-colors cursor-default"
+              className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 py-7 cursor-default"
             >
-              <span className="font-semibold text-gray-900 text-sm">
+              {/* Index */}
+              <span className="font-display font-extrabold text-darkGreen/20 text-xs tracking-widest w-8 shrink-0 group-hover:text-orange-500 transition-colors duration-200">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              {/* Category name — the star */}
+              <h3
+                className="font-display font-extrabold text-darkGreen leading-none group-hover:text-orange-500 transition-colors duration-200"
+                style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.4rem)" }}
+              >
                 {item.name}
-              </span>
-              <span className="text-gray-400 text-xs mt-0.5">
+              </h3>
+
+              {/* Description — pushed right */}
+              <p className="sm:ml-auto text-darkGreen/55 font-sans text-sm leading-relaxed sm:text-right max-w-xs shrink-0">
                 {item.description}
-              </span>
-            </span>
+              </p>
+            </div>
           ))}
         </div>
-      </FadeReveal>
+
+      </div>
     </section>
   );
 }
