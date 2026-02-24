@@ -19,7 +19,7 @@ function AboutHero() {
         >
           {t("title")}
         </h1>
-        <p className="mt-6 text-gray-500 text-xl max-w-xl font-sans font-normal">
+        <p className="mt-6 text-xl max-w-xl font-display font-semibold text-blue-500">
           {t("subtitle")}
         </p>
       </FadeReveal>

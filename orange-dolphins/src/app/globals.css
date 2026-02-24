@@ -2,9 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Brand fonts: Nunito (Kit Rounded substitute) + Inter (body) */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+/* ── Brand fonts ──────────────────────────────────────────── */
 
+/* Kit Rounded Bold — headlines */
+@font-face {
+  font-family: 'Kit Rounded';
+  src: url('/fonts/KitRounded-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Kit Rounded SemiBold — subheadlines */
+@font-face {
+  font-family: 'Kit Rounded';
+  src: url('/fonts/KitRounded-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter — body copy */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Brand tokens ─────────────────────────────────────────── */
 :root {
   --brand-orange: #ff7900;
   --brand-blue: #1e4cec;
@@ -28,7 +49,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Selection colour — brand orange */
+/* Selection — brand orange */
 ::selection {
   background-color: var(--brand-orange);
   color: #fff;

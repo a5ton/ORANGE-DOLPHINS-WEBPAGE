@@ -66,7 +66,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["'Inter'", "system-ui", "sans-serif"],
-        display: ["'Nunito'", "system-ui", "sans-serif"],
+        display: ["'Kit Rounded'", "system-ui", "sans-serif"],
       },
     },
   },

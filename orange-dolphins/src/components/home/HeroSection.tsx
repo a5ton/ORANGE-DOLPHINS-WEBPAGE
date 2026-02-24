@@ -27,7 +27,7 @@ export function HeroSection() {
         </h1>
 
         {/* Subheadline */}
-        <p className="text-gray-600 text-lg sm:text-xl font-sans font-normal max-w-md mb-12 leading-relaxed">
+        <p className="text-lg sm:text-xl font-display font-semibold text-blue-500 max-w-md mb-12 leading-snug">
           {t("subheadline")}
         </p>
 
