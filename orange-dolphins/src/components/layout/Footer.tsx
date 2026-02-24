@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { SOCIAL_URLS } from "@/lib/constants";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV_LINKS = [
   { href: "/", key: "home" },
@@ -16,18 +17,15 @@ export default function Footer() {
   const tf = useTranslations("footer");
 
   return (
-    <footer className="bg-white border-t border-gray-100">
+    <footer className="bg-blue-500 text-white">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="inline-block mb-5">
-              <span className="font-display font-bold text-gray-900 text-lg leading-none">
-                Orange{" "}
-                <em className="text-orange-500 not-italic italic">Dolphins</em>
-              </span>
+              <Logo variant="white" showWordmark showTagline markSize={40} />
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xs mb-6">
+            <p className="text-sm text-blue-100 leading-relaxed max-w-xs mb-6 font-sans">
               {tf("tagline")}
             </p>
             <div className="flex items-center gap-5 text-sm">
@@ -35,7 +33,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-900 font-medium transition-colors"
+                className="text-blue-200 hover:text-orange-400 font-display font-semibold transition-colors"
               >
                 Instagram
               </a>
@@ -43,7 +41,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-900 font-medium transition-colors"
+                className="text-blue-200 hover:text-orange-400 font-display font-semibold transition-colors"
               >
                 Facebook
               </a>
@@ -51,7 +49,7 @@ export default function Footer() {
                 href={SOCIAL_URLS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-900 font-medium transition-colors"
+                className="text-blue-200 hover:text-orange-400 font-display font-semibold transition-colors"
               >
                 LinkedIn
               </a>
@@ -60,7 +58,7 @@ export default function Footer() {
 
           {/* Pages */}
           <div>
-            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-6">
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-6">
               {tf("pages")}
             </p>
             <ul className="space-y-3">
@@ -68,7 +66,7 @@ export default function Footer() {
                 <li key={link.key}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                    className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
                   >
                     {t(link.key)}
                   </Link>
@@ -79,14 +77,14 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-6">
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-400 mb-6">
               {tf("connect")}
             </p>
             <ul className="space-y-3 mb-8">
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                  className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -94,7 +92,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/collaborate"
-                  className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                  className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
                 >
                   Collaborate
                 </Link>
@@ -102,7 +100,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/partners"
-                  className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                  className="text-sm font-sans text-blue-100 hover:text-orange-400 transition-colors"
                 >
                   Partners
                 </Link>
@@ -110,7 +108,7 @@ export default function Footer() {
             </ul>
             <Link
               href="/our-offer"
-              className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+              className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white text-sm font-display font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-colors"
             >
               Order Now
             </Link>
@@ -118,8 +116,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
+      <div className="border-t border-blue-400/50">
+        <div className="mx-auto max-w-7xl px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-200 font-sans">
           <span>
             © {new Date().getFullYear()} Orange Dolphins.{" "}
             {tf("rights")}

@@ -60,7 +60,7 @@ export function PartnerCard({
   return (
     <div className="border border-gray-100 hover:border-orange-200 transition-colors overflow-hidden group">
       {/* Image / placeholder */}
-      <div className="aspect-[4/3] bg-cream-50 flex items-center justify-center overflow-hidden">
+      <div className="aspect-[4/3] bg-grey-100 flex items-center justify-center overflow-hidden">
         {imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img

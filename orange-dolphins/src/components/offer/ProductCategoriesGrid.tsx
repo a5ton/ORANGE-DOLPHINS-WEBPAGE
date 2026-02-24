@@ -9,13 +9,13 @@ export function ProductCategoriesGrid() {
   }>;
 
   return (
-    <SectionWrapper className="bg-cream-50">
+    <SectionWrapper className="bg-grey-100">
       <div className="max-w-4xl mx-auto">
         <div className="mb-14">
           <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-4 block">
             What We Deliver
           </span>
-          <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight">
+          <h2 className="font-display font-extrabold text-gray-900 text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight">
             {t("title")}
           </h2>
         </div>

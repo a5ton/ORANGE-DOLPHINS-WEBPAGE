@@ -13,19 +13,19 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white shadow-md",
+    "bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white",
   secondary:
-    "bg-ocean-700 hover:bg-ocean-900 active:bg-ocean-900 text-white shadow-md",
+    "bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white",
   outline:
-    "border-2 border-orange-500 text-orange-500 hover:bg-orange-50 active:bg-orange-100",
-  ghost: "text-ocean-700 hover:bg-ocean-50 active:bg-ocean-100",
-  white: "bg-white hover:bg-orange-50 text-orange-500 shadow-md",
+    "border-2 border-orange-500 text-orange-500 hover:bg-orange-500/5 active:bg-orange-500/10",
+  ghost: "text-blue-500 hover:bg-blue-500/5 active:bg-blue-500/10",
+  white: "bg-white hover:bg-grey-50 text-orange-500",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-base",
+  sm: "px-4 py-2 text-[0.85rem]",
+  md: "px-6 py-2.75 text-[0.9rem]",
+  lg: "px-8 py-3.5 text-[1rem]",
 };
 
 export function Button({
@@ -38,7 +38,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex items-center justify-center gap-2 rounded-full font-display font-bold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         variantClasses[variant],
         sizeClasses[size],
         className

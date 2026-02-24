@@ -12,11 +12,11 @@ export function ProductCategoriesPreview() {
     <section className="bg-white py-24 md:py-32">
       <FadeReveal className="mx-auto max-w-7xl px-6">
         <div className="mb-14">
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-4">
+          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-4">
             What We Deliver
           </p>
           <h2
-            className="font-display font-black italic text-gray-900 leading-[0.93] tracking-tight"
+            className="font-display font-extrabold text-gray-900 leading-[0.93] tracking-tight"
             style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
           >
             {t("title")}

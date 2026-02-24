@@ -12,7 +12,7 @@ export function DeliveryMapSection() {
           Coverage
         </p>
         <h2
-          className="font-display font-black italic text-gray-900 leading-[0.93] tracking-tight mb-10"
+          className="font-display font-extrabold text-gray-900 leading-[0.93] tracking-tight mb-10"
           style={{ fontSize: "clamp(2rem, 4vw, 4rem)" }}
         >
           {t("title")}
@@ -22,7 +22,7 @@ export function DeliveryMapSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Dodecanese placeholder */}
-        <div className="aspect-video bg-cream-50 border border-gray-100 flex flex-col items-center justify-center gap-3">
+        <div className="aspect-video bg-grey-100 border border-gray-100 flex flex-col items-center justify-center gap-3">
           <MapPinIcon className="h-8 w-8 text-gray-200" />
           <p className="text-sm text-gray-400">Dodecanese Islands</p>
           <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-orange-500 border border-orange-200 px-3 py-1">
@@ -31,7 +31,7 @@ export function DeliveryMapSection() {
         </div>
 
         {/* Leros zoom placeholder */}
-        <div className="aspect-video bg-cream-50 border border-gray-100 flex flex-col items-center justify-center gap-3">
+        <div className="aspect-video bg-grey-100 border border-gray-100 flex flex-col items-center justify-center gap-3">
           <MapPinIcon className="h-8 w-8 text-gray-200" />
           <p className="text-sm text-gray-400">Leros — Delivery Bays</p>
           <p className="text-xs text-gray-300 text-center px-8">{t("mapNote")}</p>

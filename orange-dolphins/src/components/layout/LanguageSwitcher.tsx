@@ -30,7 +30,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
               "text-xs font-semibold transition-colors px-1 py-0.5 rounded",
               locale === loc.code
                 ? "text-orange-500"
-                : "text-gray-500 hover:text-ocean-700"
+                : "text-gray-500 hover:text-orange-500"
             )}
             aria-label={`Switch to ${loc.label}`}
           >

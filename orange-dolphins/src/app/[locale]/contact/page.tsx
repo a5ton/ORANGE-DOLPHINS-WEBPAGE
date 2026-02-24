@@ -34,16 +34,16 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="border-b border-gray-100 pt-20 pb-16">
         <FadeReveal className="mx-auto max-w-7xl px-6">
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-6">
+          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
             Get in Touch
           </p>
           <h1
-            className="font-display font-black italic text-gray-900 leading-[0.9] tracking-tight"
+            className="font-display font-extrabold text-gray-900 leading-[0.9] tracking-tight"
             style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
           >
             {t("hero.title")}
           </h1>
-          <p className="mt-6 text-gray-400 text-xl max-w-xl font-light">
+          <p className="mt-6 text-gray-500 text-xl max-w-xl font-sans font-normal">
             {t("hero.subtitle")}
           </p>
         </FadeReveal>
@@ -80,7 +80,7 @@ export default function ContactPage() {
       </section>
 
       {/* Social links */}
-      <section className="py-16 bg-cream-50 border-b border-gray-100">
+      <section className="py-16 bg-grey-100 border-b border-gray-100">
         <div className="mx-auto max-w-7xl px-6">
           <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-8">
             {t("social.title")}
@@ -122,7 +122,7 @@ export default function ContactPage() {
               Send a Message
             </p>
             <h2
-              className="font-display font-black italic text-gray-900 leading-[0.9] tracking-tight mb-10"
+              className="font-display font-extrabold text-gray-900 leading-[0.9] tracking-tight mb-10"
               style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
             >
               {t("form.title")}

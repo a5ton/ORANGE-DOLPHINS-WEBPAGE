@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { Logo } from "@/components/ui/Logo";
 
 const NAV_LINKS = [
   { href: "/", key: "home" },
@@ -29,28 +30,25 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-0 z-50">
-      <header className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <header className="w-full bg-white/95 backdrop-blur-sm border-b border-grey-100 shadow-sm">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex h-16 items-center justify-between gap-8">
             {/* Logo */}
             <Link href="/" className="shrink-0">
-              <span className="font-display font-bold text-gray-900 text-lg leading-none">
-                Orange{" "}
-                <em className="text-orange-500 not-italic italic">Dolphins</em>
-              </span>
+              <Logo showWordmark showTagline={false} markSize={36} />
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-7 flex-1 justify-center">
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-5 flex-1 justify-center whitespace-nowrap">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.key}
                   href={link.href}
                   className={cn(
-                    "text-sm font-medium transition-colors",
+                    "font-display font-semibold uppercase tracking-[0.18em] text-[0.68rem] xl:text-[0.75rem] 2xl:text-xs transition-colors rounded-full px-3.5 py-2",
                     isActive(link.href)
-                      ? "text-gray-900"
-                      : "text-gray-400 hover:text-gray-900"
+                      ? "bg-orange-500/10 text-orange-500"
+                      : "text-gray-700 hover:text-orange-500 hover:bg-orange-500/5"
                   )}
                 >
                   {t(link.key)}
@@ -63,13 +61,13 @@ export default function Navbar() {
               <LanguageSwitcher className="hidden md:flex" />
               <Link
                 href="/our-offer"
-                className="hidden sm:inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+                className="hidden sm:inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-display font-bold uppercase tracking-[0.2em] text-[0.7rem] xl:text-[0.78rem] px-6 py-2.5 transition-colors whitespace-nowrap"
               >
                 {t("shopNow")}
               </Link>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+                className="lg:hidden p-2 text-gray-600 hover:text-orange-500 rounded-full bg-grey-50 transition-colors"
                 aria-label="Toggle menu"
                 aria-expanded={mobileOpen}
               >
@@ -85,7 +83,7 @@ export default function Navbar() {
 
         {/* Mobile drawer */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white">
+          <div className="lg:hidden border-t border-grey-100 bg-white/98 backdrop-blur-md">
             <div className="mx-auto max-w-7xl px-6 py-4 space-y-0">
               {NAV_LINKS.map((link) => (
                 <Link
@@ -93,10 +91,10 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block py-3 text-sm font-medium border-b border-gray-50 transition-colors",
+                    "block py-3 text-sm font-display font-semibold border-b border-grey-100 transition-colors",
                     isActive(link.href)
-                      ? "text-gray-900"
-                      : "text-gray-500 hover:text-gray-900"
+                      ? "text-orange-500"
+                      : "text-gray-600 hover:text-orange-500"
                   )}
                 >
                   {t(link.key)}
@@ -107,7 +105,7 @@ export default function Navbar() {
                 <Link
                   href="/our-offer"
                   onClick={() => setMobileOpen(false)}
-                  className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+                  className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-display font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-colors"
                 >
                   {t("shopNow")}
                 </Link>

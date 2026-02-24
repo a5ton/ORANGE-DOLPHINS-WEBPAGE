@@ -58,10 +58,10 @@ export function CollaborateForm() {
     );
 
   return (
-    <section className="py-16 md:py-24 bg-sand-100">
+    <section className="py-16 md:py-24 bg-grey-100">
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="font-display font-bold text-ocean-900 text-3xl md:text-4xl mb-3">
+          <h2 className="font-display font-extrabold text-gray-900 text-3xl md:text-4xl mb-3">
             {t("title")}
           </h2>
           <p className="text-gray-500">{t("subtitle")}</p>
@@ -165,7 +165,7 @@ export function CollaborateForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-sm py-4 transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-display font-semibold text-[0.7rem] tracking-[0.18em] uppercase py-3.5 sm:py-4 transition-all duration-200 shadow-md shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Sending…" : t("submit")}
             </button>

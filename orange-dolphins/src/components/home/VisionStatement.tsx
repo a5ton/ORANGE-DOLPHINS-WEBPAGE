@@ -27,14 +27,14 @@ export function VisionStatement() {
   const slides = [
     /* ── Opening slide ── */
     <div key="open" className="text-center px-6 max-w-4xl">
-      <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-400 mb-8 block">
+      <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
         Our Vision
       </span>
-      <h2 className="font-display font-black text-gray-900 text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
+      <h2 className="font-display font-extrabold text-gray-900 text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
         {t("title")}
       </h2>
-      <div className="mt-10 w-12 h-px bg-orange-400 mx-auto" />
-      <p className="mt-8 text-gray-400 text-lg sm:text-xl font-light max-w-lg mx-auto leading-relaxed">
+      <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
+      <p className="mt-8 text-gray-500 text-lg sm:text-xl font-sans font-normal max-w-lg mx-auto leading-relaxed">
         {t("body")}
       </p>
     </div>,
@@ -42,22 +42,22 @@ export function VisionStatement() {
     /* ── One slide per pillar ── */
     ...PILLARS.map((p) => (
       <div key={p.label} className="text-center px-6 max-w-3xl">
-        <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-400 mb-8 block">
+        <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
           {p.label}
         </span>
-        <h3 className="font-display font-black text-gray-900 text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
+        <h3 className="font-display font-extrabold text-gray-900 text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
           {p.headline[0]}
           <br />
           {p.headline[1]}
         </h3>
-        <div className="mt-10 w-12 h-px bg-orange-400 mx-auto" />
-        <p className="mt-8 text-gray-400 text-xl font-light">{p.body}</p>
+        <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
+        <p className="mt-8 text-gray-500 text-xl font-sans font-normal">{p.body}</p>
       </div>
     )),
   ];
 
   return (
-    <section className="bg-cream-50">
+    <section className="bg-grey-100">
       <ScrollHijack slides={slides} speedPerSlide={100} />
     </section>
   );

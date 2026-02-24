@@ -7,11 +7,11 @@ export function PartnerGrid() {
     <section className="py-16 md:py-24 bg-white">
       <div className="mx-auto max-w-7xl px-6">
         <FadeReveal className="mb-14">
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-4">
+          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-4">
             Our Partners
           </p>
           <h2
-            className="font-display font-black italic text-gray-900 leading-[0.93] tracking-tight"
+            className="font-display font-extrabold text-gray-900 leading-[0.93] tracking-tight"
             style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
           >
             Local Suppliers

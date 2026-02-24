@@ -10,7 +10,7 @@ export function FounderBio() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         {/* Photo placeholder */}
         <div className="order-2 lg:order-1">
-          <div className="aspect-[4/3] bg-cream-50 border border-gray-100 flex items-center justify-center">
+          <div className="aspect-[4/3] bg-grey-100 border border-gray-100 flex items-center justify-center">
             <p className="text-sm text-gray-300 font-medium text-center px-6">
               Inna &amp; Sigi<br />Photo coming soon
             </p>
@@ -23,7 +23,7 @@ export function FounderBio() {
             Our Story
           </p>
           <h2
-            className="font-display font-bold italic text-gray-900 leading-[0.93] tracking-tight mb-8"
+            className="font-display font-extrabold text-gray-900 leading-[0.93] tracking-tight mb-8"
             style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
           >
             {t("title")}
