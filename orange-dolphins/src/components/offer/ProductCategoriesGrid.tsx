@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
 
 export function ProductCategoriesGrid() {
   const t = useTranslations("offer.categories");
@@ -9,39 +8,51 @@ export function ProductCategoriesGrid() {
   }>;
 
   return (
-    <SectionWrapper className="bg-grey-100">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-14">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-orange-500 mb-4 block">
+    <section className="bg-grey-100 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+
+        {/* Header */}
+        <div className="mb-4">
+          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
             What We Deliver
-          </span>
-          <h2 className="font-display font-extrabold text-darkGreen text-4xl sm:text-5xl md:text-6xl leading-[0.93] tracking-tight">
+          </p>
+          <h2
+            className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
+          >
             {t("title")}
           </h2>
         </div>
 
-        <div className="divide-y divide-darkGreen/10">
-          {groups.map((group) => (
-            <div key={group.name} className="py-8 flex flex-col sm:flex-row sm:gap-16 gap-4">
+        {/* Editorial numbered rows */}
+        <div className="divide-y divide-darkGreen/10 mt-12">
+          {groups.map((group, i) => (
+            <div
+              key={group.name}
+              className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 py-7 cursor-default"
+            >
+              {/* Index */}
+              <span className="font-display font-extrabold text-darkGreen/20 text-xs tracking-widest w-8 shrink-0 group-hover:text-orange-500 transition-colors duration-200">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
               {/* Category name */}
-              <h3 className="font-display font-bold text-darkGreen text-lg sm:w-48 shrink-0">
+              <h3
+                className="font-display font-extrabold text-darkGreen leading-none group-hover:text-orange-500 transition-colors duration-200"
+                style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.4rem)" }}
+              >
                 {group.name}
               </h3>
 
-              {/* Item list */}
-              <ul className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li key={item}>
-                    <span className="inline-block text-sm text-darkGreen/60 bg-white border border-darkGreen/10 rounded-full px-4 py-1.5 hover:border-orange-500/40 hover:text-orange-500 transition-colors cursor-default">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              {/* Items — pushed right as dot-separated list */}
+              <p className="sm:ml-auto text-darkGreen/55 font-sans text-sm leading-relaxed sm:text-right max-w-xs shrink-0">
+                {group.items.join(" · ")}
+              </p>
             </div>
           ))}
         </div>
+
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
