@@ -17,7 +17,7 @@ export function MissionStatement() {
         {ROWS.map((_, i) => (
           <p
             key={i}
-            className="font-display font-extrabold text-white/[0.022] whitespace-nowrap leading-none"
+            className="font-display font-extrabold text-white/[0.012] whitespace-nowrap leading-none"
             style={{
               fontSize: "clamp(1.6rem, 3.5vw, 4rem)",
               transform: i % 2 === 1 ? "translateX(-6rem)" : undefined,
@@ -29,7 +29,7 @@ export function MissionStatement() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center">
-        <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-300 mb-10 block">
+        <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-10 block">
           Our Mission
         </span>
 
@@ -43,7 +43,7 @@ export function MissionStatement() {
           Wherever&nbsp;you float.&rdquo;
         </blockquote>
 
-        <div className="mt-10 w-16 h-px bg-orange-400" />
+        <div className="mt-10 w-16 h-px bg-orange-500" />
 
         <p className="mt-10 text-lightGreen text-lg sm:text-xl leading-relaxed max-w-lg font-sans font-normal">
           {t("body")}
