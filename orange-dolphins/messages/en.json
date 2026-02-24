@@ -81,14 +81,12 @@
     },
     "steps": {
       "title": "How It Works",
-      "subtitle": "6 easy steps to fresh provisions at your boat",
+      "subtitle": "4 easy steps to fresh provisions",
       "items": [
         { "number": "01", "title": "Order Online", "description": "Order easily on your phone or laptop — wherever you are." },
-        { "number": "02", "title": "Choose Your Location", "description": "Select your anchorage or port from our map." },
-        { "number": "03", "title": "Add Your Boat Details", "description": "Enter your boat name, color, and flag so we can find you." },
-        { "number": "04", "title": "Pick What You Need", "description": "Browse our wide selection of fresh local products." },
-        { "number": "05", "title": "Choose Delivery Time", "description": "Morning 9:00–11:00 or Evening 17:00–19:00. Your call." },
-        { "number": "06", "title": "Relax and Enjoy", "description": "Our dolphins deliver everything fresh, even to your anchorage." }
+        { "number": "02", "title": "Your Boat & Location", "description": "Select your anchorage or port, then enter your boat name, colour and flag so we can find you." },
+        { "number": "03", "title": "Pick & Schedule", "description": "Browse our fresh local products and choose morning (9–11) or evening (17–19) delivery." },
+        { "number": "04", "title": "Relax on Board", "description": "Our dolphins deliver everything fresh, even to your anchorage." }
       ]
     },
     "delivery": {

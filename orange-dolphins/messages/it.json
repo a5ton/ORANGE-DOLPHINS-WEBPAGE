@@ -75,14 +75,12 @@
     "hero": { "title": "La Nostra Offerta", "subtitle": "Ordine semplice, prodotti locali freschi, consegnati direttamente alla tua barca" },
     "steps": {
       "title": "Come Funziona",
-      "subtitle": "6 semplici passi per rifornimenti freschi alla tua barca",
+      "subtitle": "4 semplici passi per rifornimenti freschi",
       "items": [
         { "number": "01", "title": "Ordina Online", "description": "Ordina facilmente dal tuo telefono o laptop." },
-        { "number": "02", "title": "Scegli la Posizione", "description": "Seleziona il tuo ancoraggio o porto dalla mappa." },
-        { "number": "03", "title": "Dati della Barca", "description": "Inserisci nome, colore e bandiera della tua barca." },
-        { "number": "04", "title": "Scegli i Prodotti", "description": "Sfoglia la nostra ampia selezione di prodotti locali freschi." },
-        { "number": "05", "title": "Scegli l'Orario", "description": "Mattina 9:00–11:00 o Sera 17:00–19:00." },
-        { "number": "06", "title": "Rilassati", "description": "I nostri delfini consegnano tutto fresco, anche all'ancora." }
+        { "number": "02", "title": "La Tua Barca & Posizione", "description": "Seleziona l'ancoraggio o il porto e inserisci nome, colore e bandiera della tua barca." },
+        { "number": "03", "title": "Scegli & Pianifica", "description": "Sfoglia i prodotti freschi locali e scegli la consegna mattutina (9–11) o serale (17–19)." },
+        { "number": "04", "title": "Rilassati a Bordo", "description": "I nostri delfini consegnano tutto fresco, anche all'ancora." }
       ]
     },
     "delivery": {

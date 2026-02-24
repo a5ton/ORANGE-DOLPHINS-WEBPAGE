@@ -75,14 +75,12 @@
     "hero": { "title": "Teklifimiz", "subtitle": "Kolay sipariş, taze yerel ürünler, doğrudan teknenize" },
     "steps": {
       "title": "Nasıl Çalışır",
-      "subtitle": "Teknenize taze erzak için 6 kolay adım",
+      "subtitle": "Taze erzak için 4 kolay adım",
       "items": [
         { "number": "01", "title": "Online Sipariş", "description": "Telefon veya dizüstü bilgisayarınızdan kolayca sipariş verin." },
-        { "number": "02", "title": "Konum Seçin", "description": "Haritamızdan demirleme yerinizi veya limanınızı seçin." },
-        { "number": "03", "title": "Tekne Bilgileri", "description": "Teknenizin adını, rengini ve bayrağını girin." },
-        { "number": "04", "title": "Ürün Seçin", "description": "Geniş taze yerel ürün yelpazemize göz atın." },
-        { "number": "05", "title": "Saati Seçin", "description": "Sabah 9:00–11:00 veya Akşam 17:00–19:00." },
-        { "number": "06", "title": "Rahatlayın", "description": "Yunuslarımız her şeyi taze teslim eder, demirde bile." }
+        { "number": "02", "title": "Tekneniz & Konumunuz", "description": "Demirleme yerinizi veya limanınızı seçin ve tekne adı, rengi ve bayrağını girin." },
+        { "number": "03", "title": "Seçin & Planlayın", "description": "Taze yerel ürünlere göz atın ve sabah (9–11) veya akşam (17–19) teslimatını seçin." },
+        { "number": "04", "title": "Teknede Rahatlayın", "description": "Yunuslarımız her şeyi taze teslim eder, demirde bile." }
       ]
     },
     "delivery": {
