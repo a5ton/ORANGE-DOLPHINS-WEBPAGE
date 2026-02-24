@@ -4,13 +4,18 @@ import { useEffect, type ReactNode } from "react";
 
 /**
  * After the user stops scrolling, nudges the page so the nearest
- * [data-snap] section aligns flush with the bottom of the navbar.
+ * [data-snap] section aligns flush below the navbar.
  *
- * Uses the native `scrollend` event (fires once momentum fully stops) with a
- * 150 ms debounce fallback for older browsers.
+ * Threshold = 100 % of viewport height (1 full screen).
+ * This is the key value:
+ *   - Short sections (~100 vh): snap fires throughout → feels fully snapped.
+ *   - VisionStatement (400 vh track): first 100 vh snaps to VS start,
+ *     middle 200 vh is free-scroll (slides), last 100 vh snaps to
+ *     MissionStatement — completely eliminating the no-man's-land gap
+ *     that appeared when the sticky panel released at the 300 vh mark.
  *
- * An `isSnapping` flag prevents the programmatic smooth-scroll from
- * re-triggering the snap logic mid-animation.
+ * An `isSnapping` flag prevents the programmatic scrollTo() from
+ * re-triggering the logic mid-animation (cascading snap loop).
  */
 export function ScrollSnapPage({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -25,17 +30,13 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
       );
       if (!sections.length) return;
 
-      // 25 % of viewport height — tight enough to avoid firing mid-section,
-      // wide enough to catch users who stop a little before/after a boundary.
-      const threshold = window.innerHeight * 0.25;
+      // 100 % viewport → bridges the full no-man's-land between sections
+      const threshold = window.innerHeight;
 
       let closest: { scrollTarget: number; dist: number } | null = null;
 
       for (const el of sections) {
-        const rect = el.getBoundingClientRect();
-        // diff > 0 → section top is below the nav line (not yet reached)
-        // diff < 0 → section top is above the nav line (slightly passed)
-        const diff = rect.top - NAV_H;
+        const diff = el.getBoundingClientRect().top - NAV_H;
         const dist = Math.abs(diff);
 
         if (dist < threshold && (!closest || dist < closest.dist)) {
@@ -50,10 +51,10 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
           top: Math.max(0, closest.scrollTarget),
           behavior: "smooth",
         });
-        // Release the lock once the smooth scroll settles (~600 ms typical)
+        // Hold lock until smooth scroll settles (~600 ms typical)
         setTimeout(() => {
           isSnapping = false;
-        }, 700);
+        }, 800);
       }
     };
 
@@ -64,7 +65,7 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
     // 150 ms debounce fallback for older browsers
     let debounceTimer: ReturnType<typeof setTimeout> | null = null;
     const onScroll = () => {
-      if (isSnapping) return; // ignore scroll events from our own scrollTo()
+      if (isSnapping) return; // ignore events from our own scrollTo()
       if (debounceTimer) clearTimeout(debounceTimer);
       debounceTimer = setTimeout(snapToNearest, 150);
     };
