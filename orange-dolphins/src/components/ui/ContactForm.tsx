@@ -56,31 +56,26 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
 
   const inputClass = (hasError: boolean) =>
     cn(
-      "w-full rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all",
+      "w-full border-0 border-b bg-transparent px-0 py-3 text-darkGreen placeholder-darkGreen/30 outline-none transition-colors text-sm",
       hasError
-        ? "border-red-300 bg-red-50 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-        : "border-gray-200 bg-white focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+        ? "border-red-400 focus:border-red-500"
+        : "border-darkGreen/20 focus:border-orange-500"
     );
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl bg-green-50 border border-green-200 p-8 text-center">
-        <div className="flex justify-center mb-4">
-          <CheckCircleIcon className="h-12 w-12 text-green-500" />
-        </div>
-        <p className="text-green-800 font-semibold text-lg">{t("success")}</p>
+      <div className="flex flex-col items-start gap-4 py-8">
+        <CheckCircleIcon className="h-10 w-10 text-orange-500" />
+        <p className="font-display font-bold text-darkGreen text-xl">{t("success")}</p>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="rounded-2xl bg-white border border-gray-100 shadow-sm p-8 space-y-5"
-    >
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
             {t("name")} *
           </label>
           <input
@@ -89,11 +84,11 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
             className={inputClass(!!errors.name)}
           />
           {errors.name && (
-            <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+            <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
             {t("email")} *
           </label>
           <input
@@ -103,56 +98,54 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
             className={inputClass(!!errors.email)}
           />
           {errors.email && (
-            <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+            <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>
           )}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
           {t("topic")} *
         </label>
         <select
           {...register("topic")}
-          className={cn(inputClass(!!errors.topic), "cursor-pointer")}
           defaultValue={defaultTopic || ""}
+          className={cn(inputClass(!!errors.topic), "cursor-pointer appearance-none")}
         >
-          <option value="" disabled>
-            — select —
-          </option>
+          <option value="" disabled>— select —</option>
           <option value="feedback">{tTopics("feedback")}</option>
           <option value="complaint">{tTopics("complaint")}</option>
           <option value="suggestion">{tTopics("suggestion")}</option>
           <option value="general">{tTopics("general")}</option>
         </select>
         {errors.topic && (
-          <p className="mt-1 text-xs text-red-500">{errors.topic.message}</p>
+          <p className="mt-1.5 text-xs text-red-500">{errors.topic.message}</p>
         )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-xs font-display font-bold tracking-[0.15em] uppercase text-darkGreen/50 mb-3">
           {t("message")} *
         </label>
         <textarea
           {...register("message")}
           rows={5}
           placeholder="Write your message here…"
-          className={inputClass(!!errors.message)}
+          className={cn(inputClass(!!errors.message), "resize-none")}
         />
         {errors.message && (
-          <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
+          <p className="mt-1.5 text-xs text-red-500">{errors.message.message}</p>
         )}
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-red-500 text-center">{t("error")}</p>
+        <p className="text-sm text-red-500">{t("error")}</p>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-display font-semibold text-[0.7rem] tracking-[0.18em] uppercase py-3.5 sm:py-4 transition-all duration-200 shadow-md shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-10 py-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Sending…" : t("submit")}
       </button>

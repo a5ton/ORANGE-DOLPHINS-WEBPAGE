@@ -1,134 +1,76 @@
-"use client";
-
-import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { FadeReveal } from "@/components/ui/FadeReveal";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { SOCIAL_URLS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
-import {
-  ChatBubbleIcon,
-  ExclamationTriangleIcon,
-  LightBulbIcon,
-  InboxIcon,
-} from "@/components/ui/icons";
-import { ComponentType, SVGProps } from "react";
+
+const SOCIALS = [
+  { label: "Instagram", href: SOCIAL_URLS.instagram },
+  { label: "Facebook", href: SOCIAL_URLS.facebook },
+  { label: "LinkedIn", href: SOCIAL_URLS.linkedin },
+];
 
 export default function ContactPage() {
   const t = useTranslations("contact");
-  const [selectedTopic, setSelectedTopic] = useState<string>("");
-
-  const topics: Array<{
-    key: string;
-    label: string;
-    Icon: ComponentType<SVGProps<SVGSVGElement> & { className?: string }>;
-  }> = [
-    { key: "feedback", label: t("topics.feedback"), Icon: ChatBubbleIcon },
-    { key: "complaint", label: t("topics.complaint"), Icon: ExclamationTriangleIcon },
-    { key: "suggestion", label: t("topics.suggestion"), Icon: LightBulbIcon },
-    { key: "general", label: t("topics.general"), Icon: InboxIcon },
-  ];
 
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-gray-100 pt-20 pb-16">
-        <FadeReveal className="mx-auto max-w-7xl px-6">
+      <section className="bg-blue-500 pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="mx-auto max-w-7xl px-6">
           <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
             Get in Touch
           </p>
           <h1
-            className="font-display font-extrabold text-gray-900 leading-[0.9] tracking-tight"
+            className="font-display font-extrabold text-white leading-[0.9] tracking-tight"
             style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
           >
             {t("hero.title")}
           </h1>
-          <p className="mt-6 text-xl max-w-xl font-display font-semibold text-blue-500">
+          <div className="mt-8 w-12 h-px bg-orange-500" />
+          <p className="mt-8 text-white/70 text-lg sm:text-xl max-w-xl font-sans font-normal leading-relaxed">
             {t("hero.subtitle")}
           </p>
-        </FadeReveal>
-      </section>
-
-      {/* Topic selector */}
-      <section className="py-16 bg-white border-b border-gray-100">
-        <div className="mx-auto max-w-7xl px-6">
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-8">
-            {t("topics.title")}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {topics.map((topic) => (
-              <button
-                key={topic.key}
-                onClick={() =>
-                  setSelectedTopic(
-                    selectedTopic === topic.key ? "" : topic.key
-                  )
-                }
-                className={cn(
-                  "inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold border transition-all duration-200",
-                  selectedTopic === topic.key
-                    ? "bg-orange-500 border-orange-500 text-white"
-                    : "bg-white border-gray-200 text-gray-700 hover:border-orange-300 hover:text-orange-600"
-                )}
-              >
-                <topic.Icon className="h-4 w-4" />
-                {topic.label}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Social links */}
-      <section className="py-16 bg-grey-100 border-b border-gray-100">
+      {/* Main: social links + form */}
+      <section className="bg-grey-100 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-8">
-            {t("social.title")}
-          </p>
-          <div className="flex gap-8">
-            <a
-              href={SOCIAL_URLS.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-gray-900 hover:text-orange-500 transition-colors"
-            >
-              Instagram
-            </a>
-            <a
-              href={SOCIAL_URLS.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-gray-900 hover:text-orange-500 transition-colors"
-            >
-              Facebook
-            </a>
-            <a
-              href={SOCIAL_URLS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-gray-900 hover:text-orange-500 transition-colors"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-      {/* Contact form */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="mx-auto max-w-2xl px-6">
-          <FadeReveal>
-            <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-400 mb-4">
-              Send a Message
-            </p>
-            <h2
-              className="font-display font-extrabold text-gray-900 leading-[0.9] tracking-tight mb-10"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-            >
-              {t("form.title")}
-            </h2>
-          </FadeReveal>
-          <ContactForm defaultTopic={selectedTopic} />
+            {/* Left: find us online */}
+            <div className="lg:pt-2">
+              <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
+                {t("social.title")}
+              </span>
+              <div className="space-y-2">
+                {SOCIALS.map(({ label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block font-display font-extrabold text-darkGreen leading-none hover:text-orange-500 transition-colors duration-200"
+                    style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </div>
+              <div className="mt-10 w-12 h-px bg-orange-500" />
+              <p className="mt-8 text-darkGreen/55 text-base font-sans leading-relaxed max-w-xs">
+                {t("hero.subtitle")}
+              </p>
+            </div>
+
+            {/* Right: form */}
+            <div>
+              <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
+                {t("form.title")}
+              </span>
+              <ContactForm />
+            </div>
+
+          </div>
         </div>
       </section>
     </>
