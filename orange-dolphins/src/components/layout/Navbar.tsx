@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
@@ -22,6 +22,18 @@ export default function Navbar() {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const transparent = isHome && !scrolled && !mobileOpen;
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -29,13 +41,25 @@ export default function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-50">
-      <header className="w-full bg-white/95 backdrop-blur-sm border-b border-grey-100 shadow-sm">
+    <div className="fixed top-0 left-0 right-0 z-50">
+      <header
+        className={cn(
+          "w-full transition-all duration-300",
+          transparent
+            ? "bg-transparent border-transparent"
+            : "bg-white/95 backdrop-blur-sm border-b border-grey-100 shadow-sm"
+        )}
+      >
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex h-16 items-center justify-between gap-8">
             {/* Logo */}
             <Link href="/" className="shrink-0">
-              <Logo showWordmark showTagline={false} markSize={36} />
+              <Logo
+                variant={transparent ? "white" : "orange"}
+                showWordmark
+                showTagline={false}
+                markSize={36}
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -46,7 +70,11 @@ export default function Navbar() {
                   href={link.href}
                   className={cn(
                     "font-display font-semibold uppercase tracking-[0.18em] text-[0.68rem] xl:text-[0.75rem] 2xl:text-xs transition-colors rounded-full px-3.5 py-2",
-                    isActive(link.href)
+                    transparent
+                      ? isActive(link.href)
+                        ? "text-orange-400"
+                        : "text-white/80 hover:text-white"
+                      : isActive(link.href)
                       ? "bg-orange-500/10 text-orange-500"
                       : "text-gray-700 hover:text-orange-500 hover:bg-orange-500/5"
                   )}
@@ -67,7 +95,12 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 text-gray-600 hover:text-orange-500 rounded-full bg-grey-50 transition-colors"
+                className={cn(
+                  "lg:hidden p-2 rounded-full transition-colors",
+                  transparent
+                    ? "text-white/80 hover:text-white"
+                    : "text-gray-600 hover:text-orange-500 bg-grey-50"
+                )}
                 aria-label="Toggle menu"
                 aria-expanded={mobileOpen}
               >
