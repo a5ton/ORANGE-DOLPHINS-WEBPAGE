@@ -78,7 +78,7 @@ export function PartnerCard({
         <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-orange-500 mb-2">
           {typeLabel}
         </p>
-        <h3 className="font-display font-bold text-gray-900 text-lg mb-1">
+        <h3 className="font-display font-bold text-darkGreen text-lg mb-1">
           {name}
         </h3>
         {location && (

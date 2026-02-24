@@ -11,7 +11,7 @@ export function PartnerGrid() {
             Our Partners
           </p>
           <h2
-            className="font-display font-extrabold text-gray-900 leading-[0.93] tracking-tight"
+            className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
             style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }}
           >
             Local Suppliers
