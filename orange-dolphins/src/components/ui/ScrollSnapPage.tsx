@@ -3,82 +3,145 @@
 import { useEffect, type ReactNode } from "react";
 
 /**
- * After the user stops scrolling, snaps the nearest [data-snap] section
- * so it is CENTRED on screen.
+ * Section-centering scroll assist.
  *
- * Centering rule:
- *   • Section fits inside the viewport (height ≤ vh) → scroll so
- *     the section's vertical midpoint aligns with the viewport's midpoint.
- *   • Section is taller than the viewport (e.g. the 400 vh ScrollHijack) →
- *     fall back to pinning its top flush below the navbar, because centering
- *     a 400 vh block would jump 200 vh into the middle of the slide sequence.
+ * When the user stops scrolling, the nearest [data-snap] section is
+ * smoothly centred in the viewport using a custom RAF animation with an
+ * easeInOutQuart curve — giving a premium, app-like feel rather than the
+ * browser's generic CSS smooth scroll.
  *
- * Threshold = 100 % viewport height — covers the full no-man's-land gap
- * between VisionStatement's sticky release point and MissionStatement.
+ * Centering: section is centred in the space BELOW the navbar, so equal
+ * blank space appears above and below it. Sections taller than the
+ * available height are top-aligned to the navbar instead (they fill the
+ * screen, so centering has no effect).
+ *
+ * VisionStatement (400 vh ScrollHijack) fix: once the user has scrolled
+ * more than ~2 × NAV_H into a tall section, that section is excluded from
+ * snap candidates. Without this, the snap fired back to slide 1 while the
+ * user was reading slide 2 / 3 / 4.
  */
 export function ScrollSnapPage({ children }: { children: ReactNode }) {
   useEffect(() => {
-    const NAV_H = 64; // matches h-16 navbar
+    const NAV_H = 64; // px — matches the h-16 navbar
     let isSnapping = false;
+    let rafRef: number | null = null;
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const snapToNearest = () => {
+    // ── Easing ────────────────────────────────────────────────────────────
+    // easeInOutQuart: fast start, smooth deceleration into the resting point
+    const ease = (t: number) =>
+      t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
+
+    // ── Custom smooth scroll ──────────────────────────────────────────────
+    const doSnap = (targetY: number) => {
+      if (rafRef) cancelAnimationFrame(rafRef);
+
+      const clampedTarget = Math.max(0, targetY);
+      const startY = window.scrollY;
+      const delta = clampedTarget - startY;
+      if (Math.abs(delta) < 6) { isSnapping = false; return; }
+
+      // Temporarily override CSS scroll-behavior so it doesn't compete with
+      // our RAF animation (it would add a second smooth layer on top).
+      document.documentElement.style.scrollBehavior = "auto";
+      isSnapping = true;
+
+      const DURATION = 520; // ms — fast enough to feel snappy, smooth enough to feel quality
+      const t0 = performance.now();
+
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / DURATION, 1);
+        window.scrollTo(0, startY + delta * ease(p));
+
+        if (p < 1) {
+          rafRef = requestAnimationFrame(tick);
+        } else {
+          rafRef = null;
+          isSnapping = false;
+          document.documentElement.style.scrollBehavior = "";
+        }
+      };
+
+      rafRef = requestAnimationFrame(tick);
+    };
+
+    // ── Cancel in-flight animation ────────────────────────────────────────
+    const cancelSnap = () => {
+      if (rafRef) { cancelAnimationFrame(rafRef); rafRef = null; }
+      isSnapping = false;
+      document.documentElement.style.scrollBehavior = "";
+    };
+
+    // ── Core snap logic ───────────────────────────────────────────────────
+    const findAndSnap = () => {
       if (isSnapping) return;
+
+      const vh = window.innerHeight;
+      if (!vh) return;
+
+      const availH = vh - NAV_H; // usable height below the navbar
 
       const sections = Array.from(
         document.querySelectorAll<HTMLElement>("[data-snap]"),
       );
       if (!sections.length) return;
 
-      const vh = window.innerHeight;
-      const threshold = vh; // 100 % viewport
-
-      let closest: { scrollTarget: number; dist: number } | null = null;
+      let best: { target: number; dist: number } | null = null;
 
       for (const el of sections) {
         const rect = el.getBoundingClientRect();
+        const tall = rect.height > availH;
 
-        // Choose snap anchor:
-        //   short/medium section → centre on screen
-        //   taller-than-viewport section → pin top below navbar
-        const diff =
-          rect.height <= vh
-            ? rect.top + rect.height / 2 - vh / 2   // centre ↔ centre
-            : rect.top - NAV_H;                       // top → just below nav
+        // ── VisionStatement / ScrollHijack guard ──────────────────────────
+        // If user has scrolled more than 2 × NAV_H past a tall section's
+        // top, exclude it from snap candidates. Without this, the snap fires
+        // back to slide 1 while the user is reading slides 2–4.
+        if (tall && rect.top < -(NAV_H * 2)) continue;
 
+        // ── Snap target: centre section below the navbar ──────────────────
+        // padding = half the blank space that surrounds a short section.
+        // For tall sections (fills or overflows the screen): padding = 0,
+        // which is the same as top-aligning to the navbar.
+        const padding = tall ? 0 : Math.max(0, availH - rect.height) / 2;
+        const diff = rect.top - NAV_H - padding;
         const dist = Math.abs(diff);
-        if (dist < threshold && (!closest || dist < closest.dist)) {
-          closest = { scrollTarget: window.scrollY + diff, dist };
+
+        // Only consider sections within 1 full viewport height
+        if (dist < vh && (!best || dist < best.dist)) {
+          best = { target: window.scrollY + diff, dist };
         }
       }
 
-      // Skip if already well-aligned (< 6 px off)
-      if (closest && closest.dist > 6) {
-        isSnapping = true;
-        window.scrollTo({
-          top: Math.max(0, closest.scrollTarget),
-          behavior: "smooth",
-        });
-        setTimeout(() => {
-          isSnapping = false;
-        }, 800);
-      }
+      // Skip if already well-aligned (< 6 px) to avoid pointless micro-scrolls
+      if (best && best.dist > 6) doSnap(best.target);
     };
 
-    // scrollend fires once momentum has fully stopped (Chrome 114+, FF 109+, Safari 16.4+)
-    window.addEventListener("scrollend", snapToNearest);
+    // ── Event wiring ──────────────────────────────────────────────────────
 
-    // 150 ms debounce fallback for older browsers
-    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+    // scrollend: fires once inertia/momentum has fully stopped.
+    // Chrome 114+, Firefox 109+, Safari 16.4+.
+    window.addEventListener("scrollend", findAndSnap);
+
+    // Debounce fallback for browsers without scrollend support
     const onScroll = () => {
-      if (isSnapping) return;
+      if (isSnapping) return; // Our own RAF fires scroll events — ignore them
       if (debounceTimer) clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(snapToNearest, 150);
+      debounceTimer = setTimeout(findAndSnap, 150);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
+    // If the user physically starts a new gesture mid-animation, cancel
+    // immediately so their input takes priority.
+    const onInteraction = () => { if (isSnapping) cancelSnap(); };
+    window.addEventListener("wheel", onInteraction, { passive: true });
+    window.addEventListener("touchstart", onInteraction, { passive: true });
+
     return () => {
-      window.removeEventListener("scrollend", snapToNearest);
+      cancelSnap();
+      window.removeEventListener("scrollend", findAndSnap);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onInteraction);
+      window.removeEventListener("touchstart", onInteraction);
       if (debounceTimer) clearTimeout(debounceTimer);
     };
   }, []);
