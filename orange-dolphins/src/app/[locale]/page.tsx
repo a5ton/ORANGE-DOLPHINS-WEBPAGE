@@ -9,12 +9,12 @@ import { ScrollSnapPage } from "@/components/ui/ScrollSnapPage";
 export default function HomePage() {
   return (
     <ScrollSnapPage>
-      <div data-snap><HeroSection /></div>
-      <div data-snap><VisionStatement /></div>
-      <div data-snap><MissionStatement /></div>
-      <div data-snap><HowItWorksTeaser /></div>
-      <div data-snap><ProductCategoriesPreview /></div>
-      <div data-snap><CtaSection /></div>
+      <div data-snap="true"><HeroSection /></div>
+      <div data-snap="true"><VisionStatement /></div>
+      <div data-snap="true"><MissionStatement /></div>
+      <div data-snap="true"><HowItWorksTeaser /></div>
+      <div data-snap="true"><ProductCategoriesPreview /></div>
+      <div data-snap="true"><CtaSection /></div>
     </ScrollSnapPage>
   );
 }
