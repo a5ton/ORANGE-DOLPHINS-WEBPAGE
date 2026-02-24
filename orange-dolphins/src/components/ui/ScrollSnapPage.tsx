@@ -7,29 +7,39 @@ import { useEffect, type ReactNode } from "react";
  *
  * Key behaviours
  * ──────────────
- * 1. DIRECTION GUARD
- *    Tracks whether the user last scrolled up or down. Sections that have
- *    drifted more than MIN_DRIFT (15 % of vh) in the SAME direction as the
- *    user's scroll are skipped, so we never fight the user's intent.
+ * 1. DEAD ZONE
+ *    Drifts smaller than MIN_DRIFT (15 % of vh, ~135 px on a 900 px screen)
+ *    are left completely alone — no snap-back, no correction. The user
+ *    barely moved; pulling them back would feel like the page fighting them.
+ *    This is the model used by Apple, Linear, and fullPage.js.
  *
- *    • Scrolled UP  → skip sections whose diff >  MIN_DRIFT (below centre,
- *                     would need scrolling DOWN to re-centre — wrong way).
- *    • Scrolled DOWN → skip sections whose diff < -MIN_DRIFT (above centre,
- *                     would need scrolling UP to re-centre — wrong way).
- *    Small drifts (< MIN_DRIFT) always trigger a re-centre correction regardless
- *    of direction (the user barely moved; snapping them back feels natural).
+ * 2. DIRECTION GUARD
+ *    For drifts ≥ MIN_DRIFT the guard kicks in: sections that drifted in the
+ *    same direction as the scroll are skipped so we never snap against the
+ *    user's intent. The result is always a forward advance to the adjacent
+ *    section, never a snap-back to the current one.
  *
- * 2. SCROLLHIJACK GUARD
+ *    • Scrolled UP  → skip sections whose diff >  MIN_DRIFT (below centre).
+ *    • Scrolled DOWN → skip sections whose diff < -MIN_DRIFT (above centre).
+ *
+ * 3. VELOCITY FAST-ADVANCE
+ *    Wheel events are monitored while the user is scrolling.  If the peak
+ *    accumulated delta within any 150 ms window exceeds VELOCITY_THRESHOLD
+ *    (a clear "flick" gesture), the debounce is cut from 150 ms → 50 ms so
+ *    the advance feels instant.  This prevents fast-flick gestures on a
+ *    trackpad from "stalling" inside the dead zone.
+ *
+ * 4. SCROLLHIJACK GUARD
  *    Once the user is more than 2 × NAV_H into a tall section (the 400 vh
  *    VisionStatement track), that section is excluded from candidates.
  *    Without this the snap fired back to slide 1 while reading slides 2–4.
  *
- * 3. CENTRING
+ * 5. CENTRING
  *    padding = (available height below navbar − section height) / 2, giving
  *    equal blank space above and below every section that fits on screen.
  *    Sections taller than the available height are top-aligned to the navbar.
  *
- * 4. CUSTOM RAF ANIMATION
+ * 6. CUSTOM RAF ANIMATION
  *    520 ms easeInOutQuart curve — fast start, soft landing.
  *    CSS scroll-behavior is temporarily set to "auto" during the animation
  *    to prevent the browser's own smooth layer competing with ours.
@@ -45,6 +55,35 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
     // Track scroll direction so we never snap against the user's intent
     let scrollDirection: "up" | "down" = "down";
     let lastScrollY = window.scrollY;
+
+    // ── Velocity tracking (wheel events) ──────────────────────────────────
+    // Accumulate wheel delta over a rolling 150 ms window to detect "flick"
+    // gestures that should advance the section without waiting for the full
+    // 150 ms debounce.
+    const VELOCITY_THRESHOLD = 300; // accumulated deltaY (px) in 150 ms = flick
+    let wheelAccum = 0;
+    let wheelAccumTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const onWheel = (e: WheelEvent) => {
+      // Cancel any in-progress snap animation on new gesture
+      if (isSnapping) {
+        if (rafRef) { cancelAnimationFrame(rafRef); rafRef = null; }
+        isSnapping = false;
+        document.documentElement.style.scrollBehavior = "";
+      }
+
+      wheelAccum += e.deltaY;
+
+      // Reset accumulator after 150 ms of no wheel events
+      if (wheelAccumTimer) clearTimeout(wheelAccumTimer);
+      wheelAccumTimer = setTimeout(() => { wheelAccum = 0; }, 150);
+
+      // Fast flick detected — shorten the debounce so the snap fires quickly
+      if (Math.abs(wheelAccum) >= VELOCITY_THRESHOLD) {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(findAndSnap, 50);
+      }
+    };
 
     // ── Easing ─────────────────────────────────────────────────────────────
     const ease = (t: number) =>
@@ -87,15 +126,18 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
     };
 
     // ── Core snap logic ────────────────────────────────────────────────────
-    const findAndSnap = () => {
+    function findAndSnap() {
       if (isSnapping) return;
 
       const vh = window.innerHeight;
       if (!vh) return;
 
       const availH = vh - NAV_H;
-      // Small corrections (< 15 % vh) always snap back regardless of direction.
-      // Larger drifts only snap in the matching direction so we never fight the user.
+
+      // MIN_DRIFT doubles as both the dead-zone floor AND the direction-guard
+      // threshold.  Drifts below it are ignored entirely; drifts at or above
+      // it trigger the direction guard which skips the current section, so
+      // the snap always advances forward — never yanks back.
       const MIN_DRIFT = vh * 0.15;
 
       const sections = Array.from(
@@ -118,7 +160,6 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
         const dist = Math.abs(diff);
 
         // Direction guard — skip sections that would be snapped against user intent
-        // (only applies when the drift is large enough to be intentional)
         if (scrollDirection === "up"   && diff >  MIN_DRIFT) continue;
         if (scrollDirection === "down" && diff < -MIN_DRIFT) continue;
 
@@ -127,8 +168,13 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
         }
       }
 
-      if (best && best.dist > 6) doSnap(best.target);
-    };
+      // Dead zone: only fire if the drift is at least MIN_DRIFT.
+      // Tiny scrolls (< MIN_DRIFT) fall inside the dead zone and are left
+      // alone — no snap-back, no fighting the user.
+      // For drifts ≥ MIN_DRIFT the direction guard already excluded the
+      // current section, so best points at the adjacent section (advance).
+      if (best && best.dist >= MIN_DRIFT) doSnap(best.target);
+    }
 
     // ── Event wiring ───────────────────────────────────────────────────────
     window.addEventListener("scrollend", findAndSnap);
@@ -148,18 +194,17 @@ export function ScrollSnapPage({ children }: { children: ReactNode }) {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // Cancel animation immediately if user starts a new gesture
-    const onInteraction = () => { if (isSnapping) cancelSnap(); };
-    window.addEventListener("wheel", onInteraction, { passive: true });
-    window.addEventListener("touchstart", onInteraction, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("touchstart", cancelSnap, { passive: true });
 
     return () => {
       cancelSnap();
       window.removeEventListener("scrollend", findAndSnap);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", onInteraction);
-      window.removeEventListener("touchstart", onInteraction);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", cancelSnap);
       if (debounceTimer) clearTimeout(debounceTimer);
+      if (wheelAccumTimer) clearTimeout(wheelAccumTimer);
     };
   }, []);
 

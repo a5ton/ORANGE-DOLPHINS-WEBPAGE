@@ -59,7 +59,7 @@ export function HowItWorksTeaser() {
         </div>
 
         {/* CTA */}
-        <div className="pt-10 border-t border-white/10 mt-px">
+        <div className="pt-10 mt-px">
           <Link
             href="/our-offer"
             className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-display font-bold text-[0.7rem] sm:text-[0.8rem] tracking-[0.18em] uppercase px-9 sm:px-10 py-3.5 sm:py-4 transition-colors"

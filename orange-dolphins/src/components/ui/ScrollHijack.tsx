@@ -24,12 +24,17 @@ interface ScrollHijackProps {
  *
  * Architecture:
  *  - A tall scroll track (n × speedPerSlide vh) keeps the sticky panel pinned.
- *  - rawProgress maps the entire track to 0→1.
+ *  - rawProgress maps the STICKY phase (top: 0 → -(height−vh)) to 0→1.
+ *    It starts from zero when the section is fully pinned at the top of the
+ *    viewport — NOT from when it first enters from below.  This gives the
+ *    first slide a full slide-zone of buffer before it transitions, preventing
+ *    accidental jumps when the user scrolls into the section.
  *  - targetIdx = Math.floor(rawProgress × n) — switches once per "slide zone".
- *  - When targetIdx changes, a CSS transition (700 ms, spring ease) animates
+ *  - When targetIdx changes, a CSS transition (400 ms, spring ease) animates
  *    the outgoing slide out and the incoming slide in.
- *  - While the animation runs, new targetIdx changes are debounced so the user
- *    never sees a partially-visible intermediate state ("no man's land").
+ *  - Transitions are never blocked mid-animation — interrupting one simply
+ *    starts the next from the current visual state, which feels natural on
+ *    fast scroll (similar to drag-and-release behaviour).
  *
  * Because the trigger is integer-based (not fractional), the user is always
  * looking at either a fully-visible slide or a short cross-fade between two
@@ -42,7 +47,7 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
   const n = slides.length;
 
   useEffect(() => {
-    const DURATION = 700; // ms — must match the CSS transition values below
+    const DURATION = 400; // ms — must match the CSS transition values below
 
     let currentIdx = -1; // -1 forces the first applySlide to run
     let animating = false;
@@ -55,9 +60,8 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
      */
     const applySlide = (idx: number, instant = false) => {
       if (idx === currentIdx) return;
-      // While animating, defer to prevent the user seeing partial states.
-      // Exception: instant = true bypasses this (used on mount).
-      if (animating && !instant) return;
+      // Transitions are never blocked — interrupting one starts the next from
+      // the current visual state, which feels natural on fast scroll.
 
       clearTimeout(animTimer);
       currentIdx = idx;
@@ -132,8 +136,13 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
         // Outside our section entirely — nothing to do
         if (top > vh || -top > height) return;
 
-        // rawProgress: 0 when section enters viewport bottom, 1 when fully gone
-        const rawProgress = Math.max(0, Math.min(1, (vh - top) / height));
+        // rawProgress: 0 when section is pinned at top (rect.top = 0),
+        // 1 when the track is fully scrolled through.
+        // Starting from the PINNED state (not from when the section enters
+        // from below) gives slide 0 a full zone of buffer — the user must
+        // scroll an entire slide-zone past the snap point before slide 1 shows.
+        const stickyRange = Math.max(1, height - vh);
+        const rawProgress = Math.max(0, Math.min(1, -top / stickyRange));
 
         // Integer slide index — each slide owns 1/n of the progress range
         const targetIdx = Math.max(0, Math.min(n - 1, Math.floor(rawProgress * n)));
