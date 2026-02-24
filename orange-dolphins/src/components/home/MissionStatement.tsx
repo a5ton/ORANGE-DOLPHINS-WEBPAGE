@@ -18,7 +18,10 @@ export function MissionStatement() {
           <p
             key={i}
             className="font-display font-extrabold text-white/[0.022] whitespace-nowrap leading-none"
-            style={{ fontSize: "clamp(1.6rem, 3.5vw, 4rem)" }}
+            style={{
+              fontSize: "clamp(1.6rem, 3.5vw, 4rem)",
+              transform: i % 2 === 1 ? "translateX(-6rem)" : undefined,
+            }}
           >
             {ROW}
           </p>
