@@ -1,18 +1,29 @@
 import { useTranslations } from "next-intl";
 
+const REPEAT = "ORANGE DOLPHINS  ";
+const ROW = REPEAT.repeat(12);
+const ROWS = Array.from({ length: 14 });
+
 export function MissionStatement() {
   const t = useTranslations("home.mission");
 
   return (
     <section className="h-screen bg-darkGreen flex flex-col items-center justify-center text-center px-6 sm:px-10 overflow-hidden relative">
-      {/* Faint background word — adds depth without distraction */}
-      <span
-        className="absolute inset-0 flex items-center justify-center font-display font-extrabold text-white/[0.05] select-none pointer-events-none leading-none overflow-hidden"
-        style={{ fontSize: "22vw" }}
+      {/* Repeating background text — very subtle */}
+      <div
+        className="absolute inset-0 flex flex-col justify-center select-none pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        DOLPHINS
-      </span>
+        {ROWS.map((_, i) => (
+          <p
+            key={i}
+            className="font-display font-extrabold text-white/[0.045] whitespace-nowrap leading-none"
+            style={{ fontSize: "clamp(1.6rem, 3.5vw, 4rem)" }}
+          >
+            {ROW}
+          </p>
+        ))}
+      </div>
 
       <div className="relative z-10 flex flex-col items-center">
         <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-300 mb-10 block">
