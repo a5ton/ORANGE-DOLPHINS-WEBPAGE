@@ -32,11 +32,11 @@ export function HeroSection() {
           className="font-display font-extrabold text-white leading-[0.9] tracking-tight mb-6"
           style={{ fontSize: "clamp(3rem, 7vw, 8rem)" }}
         >
-          Fresh, Local,
+          {t("headlineLine1")}
           <br />
-          Delivered
+          {t("headlineLine2")}
           <br />
-          <span className="text-orange-500">with Care.</span>
+          <span className="text-orange-500">{t("headlineAccent")}</span>
         </h1>
 
         {/* Subheadline */}
@@ -56,7 +56,7 @@ export function HeroSection() {
             href="/about"
             className="inline-flex items-center justify-center font-display font-semibold text-[0.7rem] tracking-[0.18em] uppercase text-white/70 hover:text-white px-4 sm:px-5 py-2 rounded-full hover:bg-white/10 transition-colors"
           >
-            Our Story →
+            {t("ourStory")} →
           </Link>
         </div>
       </div>

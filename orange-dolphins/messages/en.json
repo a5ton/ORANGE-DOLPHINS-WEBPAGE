@@ -11,20 +11,32 @@
   "home": {
     "hero": {
       "headline": "Fresh, Local, Delivered with Care",
+      "headlineLine1": "Fresh, Local,",
+      "headlineLine2": "Delivered",
+      "headlineAccent": "with Care.",
       "subheadline": "Swift and effortless boat provisioning in the Dodecanese — connecting sailors to the vibrant flavors of the Aegean.",
-      "cta": "SHOP NOW"
+      "cta": "SHOP NOW",
+      "ourStory": "Our Story"
     },
     "vision": {
       "title": "Our Vision",
-      "body": "Our vision is to redefine the sailing experience by effortlessly connecting sailors with the vibrant flavors and rich culture of the Aegean. We aim to become the go-to source for fresh, local provisions, making every sailing adventure a delightful culinary journey."
+      "body": "Our vision is to redefine the sailing experience by effortlessly connecting sailors with the vibrant flavors and rich culture of the Aegean. We aim to become the go-to source for fresh, local provisions, making every sailing adventure a delightful culinary journey.",
+      "pillars": [
+        { "label": "Boat-first", "headline1": "We come", "headline2": "to you.", "body": "Wherever you're anchored in Leros — drop the dinghy, we'll do the rest." },
+        { "label": "Fresh & local", "headline1": "Island-fresh.", "headline2": "Every time.", "body": "Sourced daily from Leros producers — farmers, bakers, fishmongers." },
+        { "label": "Two slots daily", "headline1": "Morning", "headline2": "or evening.", "body": "9:00–11:00 or 17:00–19:00. Pick what fits your sailing day." }
+      ]
     },
     "mission": {
       "title": "Our Mission",
+      "quoteLine1": "Fresh. Fast.",
+      "quoteLine2": "Wherever you float.",
       "body": "At Orange Dolphins, we simplify boat provisioning by linking sailors to the best local suppliers — farms, bakeries, fishmongers, shops, markets and more — delivering fresh, sustainable Aegean flavors directly to their boats while supporting the local economy."
     },
     "howItWorks": {
       "title": "How It Works",
       "subtitle": "Getting fresh provisions to your boat has never been easier",
+      "stepLabel": "Step",
       "steps": [
         { "number": "01", "title": "Order Online", "description": "Use your phone or laptop to browse and order" },
         { "number": "02", "title": "Choose Your Location", "description": "Select your anchorage or port" },
@@ -36,6 +48,7 @@
     "categories": {
       "title": "What We Deliver",
       "subtitle": "Everything you need for life on the water",
+      "fullCatalogue": "Full Catalogue",
       "items": [
         { "name": "Fresh & Local", "description": "Fruit, vegetables, meat, fish and more" },
         { "name": "Daily Essentials", "description": "Dairy, breakfast, canned goods and condiments" },
@@ -48,7 +61,9 @@
     "cta": {
       "title": "Ready to Provision Your Boat?",
       "subtitle": "Order now and enjoy the freshest local flavors delivered right to your vessel.",
-      "button": "SHOP NOW"
+      "button": "SHOP NOW",
+      "label": "Ready to Order?",
+      "getInTouch": "Get in Touch"
     }
   },
   "about": {
@@ -82,6 +97,7 @@
     "steps": {
       "title": "How It Works",
       "subtitle": "4 easy steps to fresh provisions",
+      "stepLabel": "Step",
       "items": [
         { "number": "01", "title": "Order Online", "description": "Order easily on your phone or laptop — wherever you are." },
         { "number": "02", "title": "Your Boat & Location", "description": "Select your anchorage or port, then enter your boat name, colour and flag so we can find you." },

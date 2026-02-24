@@ -41,7 +41,7 @@ export function OrderStepsSection() {
 
               <div className="relative">
                 <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5 block">
-                  Step {i + 1}
+                  {t("stepLabel")} {i + 1}
                 </span>
                 <h3 className="font-display font-extrabold text-white text-3xl sm:text-4xl leading-[0.93] tracking-tight mb-4">
                   {step.title}

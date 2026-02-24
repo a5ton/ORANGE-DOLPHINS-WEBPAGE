@@ -86,7 +86,7 @@ export default function Navbar() {
 
             {/* Right side */}
             <div className="flex items-center gap-4 shrink-0">
-              <LanguageSwitcher className="hidden md:flex" />
+              <LanguageSwitcher className="hidden md:flex" transparent={transparent} />
               <Link
                 href="/our-offer"
                 className="hidden sm:inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-display font-bold uppercase tracking-[0.2em] text-[0.7rem] xl:text-[0.78rem] px-6 py-2.5 transition-colors whitespace-nowrap"

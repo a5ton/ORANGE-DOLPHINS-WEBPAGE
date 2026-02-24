@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface ScrollHijackProps {
   slides: React.ReactNode[];
@@ -9,6 +10,13 @@ interface ScrollHijackProps {
    * Higher = more breathing room inside a slide before it advances.
    */
   speedPerSlide?: number;
+  /**
+   * Tailwind class(es) applied to the sticky viewport-pinned panel.
+   * Use this to match the parent section's background so the panel fully
+   * covers the page behind it during the sticky-release handoff — preventing
+   * the next section from bleeding through (e.g. "bg-grey-100").
+   */
+  panelClassName?: string;
 }
 
 /**
@@ -27,7 +35,7 @@ interface ScrollHijackProps {
  * looking at either a fully-visible slide or a short cross-fade between two
  * fully-visible slides — exactly the behaviour of the reference sites.
  */
-export function ScrollHijack({ slides, speedPerSlide = 100 }: ScrollHijackProps) {
+export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: ScrollHijackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -147,7 +155,7 @@ export function ScrollHijack({ slides, speedPerSlide = 100 }: ScrollHijackProps)
   return (
     <div ref={trackRef} style={{ height: `${n * speedPerSlide}vh` }} className="relative">
       {/* Sticky viewport-pinned panel */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className={cn("sticky top-0 h-screen overflow-hidden", panelClassName)}>
         {slides.map((slide, i) => (
           <div
             key={i}

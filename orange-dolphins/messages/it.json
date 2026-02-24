@@ -11,20 +11,32 @@
   "home": {
     "hero": {
       "headline": "Fresco, Locale, Consegnato con Cura",
+      "headlineLine1": "Fresco, Locale,",
+      "headlineLine2": "Consegnato",
+      "headlineAccent": "con Cura.",
       "subheadline": "Rifornimento barca rapido e senza sforzo nel Dodecaneso — sapori dell'Egeo direttamente a bordo.",
-      "cta": "ORDINA ORA"
+      "cta": "ORDINA ORA",
+      "ourStory": "La Nostra Storia"
     },
     "vision": {
       "title": "La Nostra Visione",
-      "body": "La nostra visione è ridefinire l'esperienza della vela connettendo senza sforzo i marinai con i vivaci sapori e la ricca cultura dell'Egeo."
+      "body": "La nostra visione è ridefinire l'esperienza della vela connettendo senza sforzo i marinai con i vivaci sapori e la ricca cultura dell'Egeo.",
+      "pillars": [
+        { "label": "Prima la Barca", "headline1": "Veniamo", "headline2": "da te.", "body": "Ovunque tu sia ancorato a Leros — cala il tender, pensiamo noi al resto." },
+        { "label": "Fresco & Locale", "headline1": "Fresco d'isola.", "headline2": "Ogni volta.", "body": "Ogni giorno dai produttori di Leros — agricoltori, panettieri, pescatori." },
+        { "label": "Due Consegne al Giorno", "headline1": "Mattina", "headline2": "o sera.", "body": "9:00–11:00 o 17:00–19:00. Scegli quello che si adatta alla tua giornata di vela." }
+      ]
     },
     "mission": {
       "title": "La Nostra Missione",
+      "quoteLine1": "Fresco. Veloce.",
+      "quoteLine2": "Ovunque tu navighi.",
       "body": "Da Orange Dolphins, semplifichiamo il rifornimento delle barche collegando i marinai con i migliori fornitori locali — fattorie, panetterie, pescherie, negozi, mercati e altro ancora."
     },
     "howItWorks": {
       "title": "Come Funziona",
       "subtitle": "Rifornire la tua barca non è mai stato così facile",
+      "stepLabel": "Passo",
       "steps": [
         { "number": "01", "title": "Ordina Online", "description": "Usa il tuo telefono o laptop per sfogliare e ordinare" },
         { "number": "02", "title": "Scegli la Posizione", "description": "Seleziona il tuo ancoraggio o porto" },
@@ -36,6 +48,7 @@
     "categories": {
       "title": "Cosa Consegniamo",
       "subtitle": "Tutto il necessario per la vita in mare",
+      "fullCatalogue": "Catalogo Completo",
       "items": [
         { "name": "Fresco & Locale", "description": "Frutta, verdura, carne, pesce e altro" },
         { "name": "Essenziali Quotidiani", "description": "Latticini, colazione, conserve e condimenti" },
@@ -48,7 +61,9 @@
     "cta": {
       "title": "Pronto a Rifornire la Tua Barca?",
       "subtitle": "Ordina ora e goditi i sapori locali più freschi consegnati direttamente alla tua imbarcazione.",
-      "button": "ORDINA ORA"
+      "button": "ORDINA ORA",
+      "label": "Pronto a Ordinare?",
+      "getInTouch": "Contattaci"
     }
   },
   "about": {
@@ -76,6 +91,7 @@
     "steps": {
       "title": "Come Funziona",
       "subtitle": "4 semplici passi per rifornimenti freschi",
+      "stepLabel": "Passo",
       "items": [
         { "number": "01", "title": "Ordina Online", "description": "Ordina facilmente dal tuo telefono o laptop." },
         { "number": "02", "title": "La Tua Barca & Posizione", "description": "Seleziona l'ancoraggio o il porto e inserisci nome, colore e bandiera della tua barca." },

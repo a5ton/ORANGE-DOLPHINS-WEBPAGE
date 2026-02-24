@@ -16,7 +16,7 @@ export function ProductCategoriesPreview() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-4">
           <div>
             <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
-              What We Deliver
+              {t("title")}
             </p>
             <h2
               className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
@@ -29,7 +29,7 @@ export function ProductCategoriesPreview() {
             href="/our-offer"
             className="shrink-0 self-start lg:self-auto inline-flex items-center justify-center rounded-full border-2 border-darkGreen text-darkGreen hover:bg-darkGreen hover:text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-7 py-3 transition-colors"
           >
-            Full Catalogue →
+            {t("fullCatalogue")} →
           </Link>
         </div>
 

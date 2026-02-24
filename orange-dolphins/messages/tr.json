@@ -11,20 +11,32 @@
   "home": {
     "hero": {
       "headline": "Taze, Yerel, Özenle Teslim",
+      "headlineLine1": "Taze, Yerel,",
+      "headlineLine2": "Teslim",
+      "headlineAccent": "Özenle.",
       "subheadline": "Ege'nin canlı lezzetlerini yelkencilere bağlayarak Onikiadalar'da hızlı ve zahmetsiz tekne ikmal hizmeti.",
-      "cta": "ŞİMDİ AL"
+      "cta": "ŞİMDİ AL",
+      "ourStory": "Hikayemiz"
     },
     "vision": {
       "title": "Vizyonumuz",
-      "body": "Vizyonumuz, yelkencileri Ege'nin canlı tatlarıyla ve zengin kültürüyle zahmetsizce buluşturarak yelken deneyimini yeniden tanımlamaktır."
+      "body": "Vizyonumuz, yelkencileri Ege'nin canlı tatlarıyla ve zengin kültürüyle zahmetsizce buluşturarak yelken deneyimini yeniden tanımlamaktır.",
+      "pillars": [
+        { "label": "Tekne Önce", "headline1": "Biz geliyoruz", "headline2": "size.", "body": "Leros'ta nerede demirlerseniz demirhleyin — botu indirin, gerisini biz hallederiz." },
+        { "label": "Taze & Yerel", "headline1": "Ada tazeliğinde.", "headline2": "Her zaman.", "body": "Her gün Leros üreticilerinden — çiftçiler, fırıncılar, balıkçılar." },
+        { "label": "Günde İki Teslimat", "headline1": "Sabah", "headline2": "ya da akşam.", "body": "09:00–11:00 veya 17:00–19:00. Yelken gününüze uyan zamanı seçin." }
+      ]
     },
     "mission": {
       "title": "Misyonumuz",
+      "quoteLine1": "Taze. Hızlı.",
+      "quoteLine2": "Nerede yüzerseniz yüzün.",
       "body": "Orange Dolphins olarak, yelkencileri en iyi yerel tedarikçilerle — çiftlikler, fırınlar, balıkçılar, dükkanlar ve pazarlarla — buluşturarak tekne ikmalini kolaylaştırıyoruz."
     },
     "howItWorks": {
       "title": "Nasıl Çalışır",
       "subtitle": "Teknenize taze erzak sağlamak hiç bu kadar kolay olmamıştı",
+      "stepLabel": "Adım",
       "steps": [
         { "number": "01", "title": "Online Sipariş", "description": "Telefon veya dizüstü bilgisayarınızdan sipariş verin" },
         { "number": "02", "title": "Konum Seçin", "description": "Demirleme yerinizi veya limanınızı seçin" },
@@ -36,6 +48,7 @@
     "categories": {
       "title": "Ne Teslim Ediyoruz",
       "subtitle": "Denizde yaşam için ihtiyacınız olan her şey",
+      "fullCatalogue": "Tam Katalog",
       "items": [
         { "name": "Taze & Yerel", "description": "Meyve, sebze, et, balık ve daha fazlası" },
         { "name": "Günlük Temel İhtiyaçlar", "description": "Süt ürünleri, kahvaltı, konserve ve çeşniler" },
@@ -48,7 +61,9 @@
     "cta": {
       "title": "Teknenizi İkmal Etmeye Hazır mısınız?",
       "subtitle": "Hemen sipariş verin ve en taze yerel lezzetlerin teknenize teslim edilmesini sağlayın.",
-      "button": "ŞİMDİ AL"
+      "button": "ŞİMDİ AL",
+      "label": "Sipariş Vermeye Hazır mısınız?",
+      "getInTouch": "İletişime Geçin"
     }
   },
   "about": {
@@ -76,6 +91,7 @@
     "steps": {
       "title": "Nasıl Çalışır",
       "subtitle": "Taze erzak için 4 kolay adım",
+      "stepLabel": "Adım",
       "items": [
         { "number": "01", "title": "Online Sipariş", "description": "Telefon veya dizüstü bilgisayarınızdan kolayca sipariş verin." },
         { "number": "02", "title": "Tekneniz & Konumunuz", "description": "Demirleme yerinizi veya limanınızı seçin ve tekne adı, rengi ve bayrağını girin." },

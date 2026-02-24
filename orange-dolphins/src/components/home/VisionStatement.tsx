@@ -3,32 +3,20 @@
 import { useTranslations } from "next-intl";
 import { ScrollHijack } from "@/components/ui/ScrollHijack";
 
-const PILLARS = [
-  {
-    label: "Boat-first",
-    headline: ["We come", "to you."],
-    body: "Wherever you're anchored in Leros — drop the dinghy, we'll do the rest.",
-  },
-  {
-    label: "Fresh & local",
-    headline: ["Island-fresh.", "Every time."],
-    body: "Sourced daily from Leros producers — farmers, bakers, fishmongers.",
-  },
-  {
-    label: "Two slots daily",
-    headline: ["Morning", "or evening."],
-    body: "9:00–11:00 or 17:00–19:00. Pick what fits your sailing day.",
-  },
-];
-
 export function VisionStatement() {
   const t = useTranslations("home.vision");
+  const pillars = t.raw("pillars") as Array<{
+    label: string;
+    headline1: string;
+    headline2: string;
+    body: string;
+  }>;
 
   const slides = [
     /* ── Opening slide ── */
     <div key="open" className="text-center px-6 max-w-4xl">
       <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
-        Our Vision
+        {t("title")}
       </span>
       <h2 className="font-display font-extrabold text-darkGreen text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
         {t("title")}
@@ -40,15 +28,15 @@ export function VisionStatement() {
     </div>,
 
     /* ── One slide per pillar ── */
-    ...PILLARS.map((p) => (
+    ...pillars.map((p) => (
       <div key={p.label} className="text-center px-6 max-w-3xl">
         <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
           {p.label}
         </span>
         <h3 className="font-display font-extrabold text-darkGreen text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
-          {p.headline[0]}
+          {p.headline1}
           <br />
-          {p.headline[1]}
+          {p.headline2}
         </h3>
         <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
         <p className="mt-8 text-darkGreen/70 text-xl font-sans font-normal">{p.body}</p>
@@ -58,7 +46,7 @@ export function VisionStatement() {
 
   return (
     <section className="bg-grey-100">
-      <ScrollHijack slides={slides} speedPerSlide={100} />
+      <ScrollHijack slides={slides} speedPerSlide={100} panelClassName="bg-grey-100" />
     </section>
   );
 }

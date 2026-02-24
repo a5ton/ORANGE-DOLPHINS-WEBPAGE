@@ -11,7 +11,7 @@ export function CtaSection() {
           {/* Left: heading */}
           <div>
             <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-blue-500 mb-6">
-              Ready to Order?
+              {t("label")}
             </p>
             <h2
               className="font-display font-extrabold text-white leading-[0.9] tracking-tight"
@@ -33,7 +33,7 @@ export function CtaSection() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full border-2 border-white/50 hover:border-white text-white font-display font-bold text-[0.7rem] sm:text-[0.8rem] tracking-[0.18em] uppercase px-9 sm:px-10 py-3.5 sm:py-4 transition-colors"
             >
-              Get in Touch
+              {t("getInTouch")}
             </Link>
           </div>
         </div>

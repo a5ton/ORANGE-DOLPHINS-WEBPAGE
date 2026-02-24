@@ -30,7 +30,7 @@ export function MissionStatement() {
 
       <div className="relative z-10 flex flex-col items-center">
         <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-10 block">
-          Our Mission
+          {t("title")}
         </span>
 
         {/* The headline — fluid type that fills the viewport */}
@@ -38,9 +38,9 @@ export function MissionStatement() {
           className="font-display font-extrabold text-white leading-[0.9] tracking-tight"
           style={{ fontSize: "clamp(3rem, 8vw, 9rem)" }}
         >
-          &ldquo;Fresh. Fast.
+          &ldquo;{t("quoteLine1")}
           <br />
-          Wherever&nbsp;you float.&rdquo;
+          {t("quoteLine2")}&rdquo;
         </blockquote>
 
         <div className="mt-10 w-16 h-px bg-orange-500" />
