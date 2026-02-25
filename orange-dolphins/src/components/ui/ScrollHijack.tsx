@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface ScrollHijackProps {
@@ -14,16 +14,16 @@ interface ScrollHijackProps {
  * When the sticky panel reaches the top of the viewport the page scroll is
  * locked (overflow:hidden on <html>). The user then scrolls deliberately
  * through each slide one at a time. On the final slide a further scroll
- * down releases the lock and continues the page. A "Skip" button also
- * releases immediately.
+ * down releases the lock and continues the page. A down-arrow button also
+ * releases immediately and scrolls to the next section.
  */
 export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const currentIdxRef = useRef(0); // sync ref for event handlers
+  const currentIdxRef = useRef(0);
   const lockedRef = useRef(false);  // cooldown between slides
+  const isPinnedRef = useRef(false);
   const n = slides.length;
 
   // ── Apply slide styles directly to DOM (no re-render needed) ────────────
@@ -62,7 +62,6 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
     });
 
     currentIdxRef.current = idx;
-    setCurrentIdx(idx);
   };
 
   // ── Lock / unlock page scroll ─────────────────────────────────────────
@@ -74,23 +73,22 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
     document.documentElement.style.overflow = "";
   };
 
-  // ── Skip: jump to end of section and unlock ───────────────────────────
+  // ── Skip: scroll to next sibling section ─────────────────────────────
   const skip = () => {
     unlockPage();
+    isPinnedRef.current = false;
     const track = trackRef.current;
     if (!track) return;
-    // Scroll just past the end of the track
-    window.scrollTo({ top: track.offsetTop + track.offsetHeight, behavior: "smooth" });
-    applySlide(n - 1, true);
+    // Scroll just past the end of the track so the next section comes into view
+    window.scrollTo({ top: track.offsetTop + track.offsetHeight + 10, behavior: "smooth" });
   };
 
   useEffect(() => {
-    const COOLDOWN = 650;
-    const WHEEL_THRESHOLD = 25;
+    const COOLDOWN = 700;
+    const WHEEL_THRESHOLD = 30;
     let wheelAccum = 0;
     let wheelTimer = 0;
     let touchStartY = 0;
-    let isPinned = false;
 
     applySlide(0, true);
 
@@ -101,9 +99,9 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
       const rect = track.getBoundingClientRect();
       const nowPinned = rect.top <= 0 && rect.bottom >= window.innerHeight;
 
-      if (nowPinned && !isPinned) {
+      if (nowPinned && !isPinnedRef.current) {
         // Just pinned — lock page, snap to correct slide based on direction
-        isPinned = true;
+        isPinnedRef.current = true;
         const scrollY = window.scrollY;
         const enteredFromBelow = scrollY >= track.offsetTop + (n - 0.5) * window.innerHeight;
         if (enteredFromBelow && currentIdxRef.current !== n - 1) {
@@ -112,9 +110,9 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
           applySlide(0, true);
         }
         lockPage();
-      } else if (!nowPinned && isPinned) {
+      } else if (!nowPinned && isPinnedRef.current) {
         // Just unpinned — unlock
-        isPinned = false;
+        isPinnedRef.current = false;
         unlockPage();
       }
     };
@@ -128,17 +126,21 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
       if (next < 0) {
         // Before first slide — release upward
         unlockPage();
-        isPinned = false;
+        isPinnedRef.current = false;
+        lockedRef.current = true;
         const track = trackRef.current;
         if (track) window.scrollTo({ top: track.offsetTop - 10, behavior: "smooth" });
+        setTimeout(() => { lockedRef.current = false; }, COOLDOWN);
         return;
       }
       if (next >= n) {
         // After last slide — release downward
         unlockPage();
-        isPinned = false;
+        isPinnedRef.current = false;
+        lockedRef.current = true;
         const track = trackRef.current;
         if (track) window.scrollTo({ top: track.offsetTop + track.offsetHeight + 10, behavior: "smooth" });
+        setTimeout(() => { lockedRef.current = false; }, COOLDOWN);
         return;
       }
 
@@ -149,8 +151,10 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
 
     // ── Wheel ─────────────────────────────────────────────────────────────
     const onWheel = (e: WheelEvent) => {
-      checkPin();
-      if (!isPinned) return;
+      if (!isPinnedRef.current) {
+        checkPin();
+        return;
+      }
 
       e.preventDefault(); // always prevent when pinned
 
@@ -164,11 +168,11 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
 
       wheelAccum += e.deltaY;
       clearTimeout(wheelTimer);
-      wheelTimer = window.setTimeout(() => { wheelAccum = 0; }, 200);
+      wheelTimer = window.setTimeout(() => { wheelAccum = 0; }, 150);
 
       if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
       const dir = wheelAccum > 0 ? 1 : -1;
-      wheelAccum = 0; // reset before advance so residual delta can't re-fire
+      wheelAccum = 0;
       advance(dir);
     };
 
@@ -178,8 +182,10 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
     };
 
     const onTouchEnd = (e: TouchEvent) => {
-      checkPin();
-      if (!isPinned) return;
+      if (!isPinnedRef.current) {
+        checkPin();
+        return;
+      }
       const diff = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(diff) < 40) return;
       e.preventDefault();
@@ -188,7 +194,7 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
 
     // ── Keyboard ──────────────────────────────────────────────────────────
     const onKey = (e: KeyboardEvent) => {
-      if (!isPinned) return;
+      if (!isPinnedRef.current) return;
       if (e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); advance(1); }
       else if (e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); advance(-1); }
     };
@@ -269,15 +275,26 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
           </div>
         )}
 
-        {/* Skip button */}
+        {/* Down-arrow skip button */}
         <button
           onClick={skip}
-          aria-label="Skip this section"
-          className="absolute bottom-8 right-8 z-10 flex items-center gap-1.5 text-white/60 hover:text-white text-xs font-sans tracking-widest uppercase transition-colors duration-200"
+          aria-label="Skip to next section"
+          className="absolute bottom-8 right-8 z-10 w-9 h-9 flex items-center justify-center rounded-full border border-white/30 text-white/50 hover:text-white hover:border-white/60 hover:bg-white/10 transition-all duration-200"
         >
-          Skip
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 3v10M3 9l5 5 5-5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </button>
       </div>
