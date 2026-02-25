@@ -33,8 +33,8 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <FounderBio />
-      <BrownieSection />
       <FoundingStory />
+      <BrownieSection />
       <CtaSection />
     </>
   );

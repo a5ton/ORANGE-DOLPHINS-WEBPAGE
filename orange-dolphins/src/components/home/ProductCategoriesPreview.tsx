@@ -16,7 +16,7 @@ export function ProductCategoriesPreview() {
   const toggle = (i: number) => setOpenIdx(openIdx === i ? null : i);
 
   return (
-    <section className="bg-grey-100 py-24 md:py-32">
+    <section className="bg-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Header row */}
