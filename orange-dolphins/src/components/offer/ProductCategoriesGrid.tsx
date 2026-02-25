@@ -26,7 +26,7 @@ export function ProductCategoriesGrid() {
 
         {/* Editorial numbered rows */}
         <div className="divide-y divide-darkGreen/10 mt-12">
-          {groups.map((group, i) => (
+          {groups.map((group) => (
             <div
               key={group.name}
               className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 py-7 cursor-default"

@@ -35,7 +35,7 @@ export function ProductCategoriesPreview() {
 
         {/* Editorial numbered rows */}
         <div className="divide-y divide-darkGreen/10 mt-12">
-          {items.map((item, i) => (
+          {items.map((item) => (
             <div
               key={item.name}
               className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 py-7 cursor-default"
