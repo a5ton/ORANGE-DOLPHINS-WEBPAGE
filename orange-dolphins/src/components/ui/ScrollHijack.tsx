@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface ScrollHijackProps {
@@ -9,194 +9,204 @@ interface ScrollHijackProps {
 }
 
 /**
- * ScrollHijack — sticky parallax slide section.
+ * ScrollHijack — full-lock sticky slide section.
  *
- * Architecture:
- * - A tall scroll track (n × 100vh) keeps the sticky panel pinned.
- * - Slides advance ONE AT A TIME, gated by a cooldown after each transition.
- *   This means fast scrolling still steps through every slide in order —
- *   you can never jump from slide 0 to slide 3 by scrolling fast.
- * - The page scroll position is kept in sync with the current slide index
- *   so the section exits cleanly when the last slide is done.
- * - Wheel, touch, and keyboard are all handled.
+ * When the sticky panel reaches the top of the viewport the page scroll is
+ * locked (overflow:hidden on <html>). The user then scrolls deliberately
+ * through each slide one at a time. On the final slide a further scroll
+ * down releases the lock and continues the page. A "Skip" button also
+ * releases immediately.
  */
 export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const currentIdxRef = useRef(0); // sync ref for event handlers
+  const lockedRef = useRef(false);  // cooldown between slides
   const n = slides.length;
 
+  // ── Apply slide styles directly to DOM (no re-render needed) ────────────
+  const applySlide = (idx: number, instant = false) => {
+    const DURATION = 500;
+    const transition = instant
+      ? "none"
+      : `opacity ${DURATION}ms cubic-bezier(0.16,1,0.3,1), transform ${DURATION}ms cubic-bezier(0.16,1,0.3,1)`;
+
+    slideRefs.current.forEach((el, i) => {
+      if (!el) return;
+      el.style.transition = transition;
+      if (i === idx) {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0px) scale(1)";
+        el.style.pointerEvents = "auto";
+        el.setAttribute("aria-hidden", "false");
+      } else if (i < idx) {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(-40px) scale(0.96)";
+        el.style.pointerEvents = "none";
+        el.setAttribute("aria-hidden", "true");
+      } else {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(40px) scale(1)";
+        el.style.pointerEvents = "none";
+        el.setAttribute("aria-hidden", "true");
+      }
+    });
+
+    dotRefs.current.forEach((dot, i) => {
+      if (!dot) return;
+      dot.style.transition = instant ? "none" : "width 0.4s ease, background-color 0.4s ease";
+      dot.style.width = i === idx ? "24px" : "6px";
+      dot.style.backgroundColor = i === idx ? "#f97316" : "rgba(255,255,255,0.35)";
+    });
+
+    currentIdxRef.current = idx;
+    setCurrentIdx(idx);
+  };
+
+  // ── Lock / unlock page scroll ─────────────────────────────────────────
+  const lockPage = () => {
+    document.documentElement.style.overflow = "hidden";
+  };
+
+  const unlockPage = () => {
+    document.documentElement.style.overflow = "";
+  };
+
+  // ── Skip: jump to end of section and unlock ───────────────────────────
+  const skip = () => {
+    unlockPage();
+    const track = trackRef.current;
+    if (!track) return;
+    // Scroll just past the end of the track
+    window.scrollTo({ top: track.offsetTop + track.offsetHeight, behavior: "smooth" });
+    applySlide(n - 1, true);
+  };
+
   useEffect(() => {
-    const DURATION = 500;       // slide transition duration (ms)
-    const COOLDOWN = 700;       // ms to lock after a transition — prevents skipping
-    const WHEEL_THRESHOLD = 30; // min accumulated wheel delta to trigger advance
-
-    let currentIdx = 0;
-    let locked = false;
+    const COOLDOWN = 650;
+    const WHEEL_THRESHOLD = 25;
     let wheelAccum = 0;
-    let wheelResetTimer = 0;
+    let wheelTimer = 0;
     let touchStartY = 0;
+    let isPinned = false;
 
-    // Momentum drain: ignore wheel input for this many ms after the section
-    // first pins. Prevents scroll momentum that brought the section into view
-    // from immediately triggering a slide advance.
-    const ENTRY_DRAIN = 600;
-    let draining = false;
-    let drainTimer = 0;
-    let wasPinned = false;
+    applySlide(0, true);
 
-    // ── Apply a slide ──────────────────────────────────────────────────────
-    const applySlide = (idx: number, instant = false) => {
-      const transition = instant
-        ? "none"
-        : `opacity ${DURATION}ms cubic-bezier(0.16,1,0.3,1), transform ${DURATION}ms cubic-bezier(0.16,1,0.3,1)`;
-
-      slideRefs.current.forEach((el, i) => {
-        if (!el) return;
-        el.style.transition = transition;
-        if (i === idx) {
-          el.style.opacity = "1";
-          el.style.transform = "translateY(0px) scale(1)";
-          el.style.pointerEvents = "auto";
-          el.setAttribute("aria-hidden", "false");
-        } else if (i < idx) {
-          el.style.opacity = "0";
-          el.style.transform = "translateY(-40px) scale(0.96)";
-          el.style.pointerEvents = "none";
-          el.setAttribute("aria-hidden", "true");
-        } else {
-          el.style.opacity = "0";
-          el.style.transform = "translateY(40px) scale(1)";
-          el.style.pointerEvents = "none";
-          el.setAttribute("aria-hidden", "true");
-        }
-      });
-
-      dotRefs.current.forEach((dot, i) => {
-        if (!dot) return;
-        dot.style.transition = instant ? "none" : "width 0.4s ease, background-color 0.4s ease";
-        dot.style.width = i === idx ? "24px" : "6px";
-        dot.style.backgroundColor = i === idx ? "#f97316" : "rgba(255,255,255,0.35)";
-      });
-    };
-
-    // ── Check if section is currently pinned/visible ───────────────────────
-    const isSectionActive = (): boolean => {
+    // ── Check if section is pinned at top of viewport ─────────────────────
+    const checkPin = () => {
       const track = trackRef.current;
-      if (!track) return false;
+      if (!track) return;
       const rect = track.getBoundingClientRect();
-      // Active when the sticky panel is fully covering the viewport
-      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1;
-    };
+      const nowPinned = rect.top <= 0 && rect.bottom >= window.innerHeight;
 
-    // ── Advance by one slide in direction (+1 / -1) ────────────────────────
-    const tryAdvance = (dir: number): boolean => {
-      if (locked) return false;
-      if (!isSectionActive()) return false;
-
-      const next = currentIdx + dir;
-
-      // At the boundaries — let page scroll continue naturally
-      if (next < 0 || next >= n) return false;
-
-      currentIdx = next;
-      applySlide(currentIdx);
-
-      // Snap page scroll to match the slide so the section exits correctly
-      const track = trackRef.current;
-      if (track) {
-        const targetScroll = track.offsetTop + currentIdx * window.innerHeight;
-        window.scrollTo({ top: targetScroll, behavior: "instant" });
-      }
-
-      locked = true;
-      setTimeout(() => { locked = false; }, COOLDOWN);
-      return true;
-    };
-
-    // ── Wheel ──────────────────────────────────────────────────────────────
-    const onWheel = (e: WheelEvent) => {
-      const pinned = isSectionActive();
-
-      // Detect the moment the section becomes pinned and start drain window
-      if (pinned && !wasPinned) {
-        // If entering from below (scrolling up), snap to last slide
-        const track = trackRef.current;
-        if (track) {
-          const scrollY = window.scrollY;
-          const enteredFromBelow = scrollY < track.offsetTop + (n - 1) * window.innerHeight;
-          if (!enteredFromBelow && currentIdx !== n - 1) {
-            currentIdx = n - 1;
-            applySlide(currentIdx, true);
-          }
+      if (nowPinned && !isPinned) {
+        // Just pinned — lock page, snap to correct slide based on direction
+        isPinned = true;
+        const scrollY = window.scrollY;
+        const enteredFromBelow = scrollY >= track.offsetTop + (n - 0.5) * window.innerHeight;
+        if (enteredFromBelow && currentIdxRef.current !== n - 1) {
+          applySlide(n - 1, true);
+        } else if (!enteredFromBelow && currentIdxRef.current !== 0) {
+          applySlide(0, true);
         }
-        draining = true;
-        wheelAccum = 0;
-        clearTimeout(drainTimer);
-        drainTimer = window.setTimeout(() => { draining = false; }, ENTRY_DRAIN);
+        lockPage();
+      } else if (!nowPinned && isPinned) {
+        // Just unpinned — unlock
+        isPinned = false;
+        unlockPage();
       }
-      wasPinned = pinned;
+    };
 
-      if (!pinned) return;
-      if (draining) { e.preventDefault(); return; } // absorb momentum, don't advance
+    // ── Advance one slide ─────────────────────────────────────────────────
+    const advance = (dir: number) => {
+      if (lockedRef.current) return;
+      const idx = currentIdxRef.current;
+      const next = idx + dir;
+
+      if (next < 0) {
+        // Before first slide — release upward
+        unlockPage();
+        isPinned = false;
+        const track = trackRef.current;
+        if (track) window.scrollTo({ top: track.offsetTop - 10, behavior: "smooth" });
+        return;
+      }
+      if (next >= n) {
+        // After last slide — release downward
+        unlockPage();
+        isPinned = false;
+        const track = trackRef.current;
+        if (track) window.scrollTo({ top: track.offsetTop + track.offsetHeight + 10, behavior: "smooth" });
+        return;
+      }
+
+      lockedRef.current = true;
+      applySlide(next);
+      setTimeout(() => { lockedRef.current = false; }, COOLDOWN);
+    };
+
+    // ── Wheel ─────────────────────────────────────────────────────────────
+    const onWheel = (e: WheelEvent) => {
+      checkPin();
+      if (!isPinned) return;
+
+      e.preventDefault(); // always prevent when pinned
 
       wheelAccum += e.deltaY;
-      clearTimeout(wheelResetTimer);
-      wheelResetTimer = window.setTimeout(() => { wheelAccum = 0; }, 150);
+      clearTimeout(wheelTimer);
+      wheelTimer = window.setTimeout(() => { wheelAccum = 0; }, 200);
 
       if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
-
       const dir = wheelAccum > 0 ? 1 : -1;
       wheelAccum = 0;
-
-      // At boundary — don't intercept, let page scroll
-      if ((dir === 1 && currentIdx >= n - 1) || (dir === -1 && currentIdx <= 0)) return;
-
-      e.preventDefault();
-      tryAdvance(dir);
+      advance(dir);
     };
 
-    // ── Touch ──────────────────────────────────────────────────────────────
+    // ── Touch ─────────────────────────────────────────────────────────────
     const onTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY;
     };
 
     const onTouchEnd = (e: TouchEvent) => {
-      if (!isSectionActive()) return;
+      checkPin();
+      if (!isPinned) return;
       const diff = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(diff) < 40) return;
-      const dir = diff > 0 ? 1 : -1;
-      if ((dir === 1 && currentIdx >= n - 1) || (dir === -1 && currentIdx <= 0)) return;
       e.preventDefault();
-      tryAdvance(dir);
+      advance(diff > 0 ? 1 : -1);
     };
 
-    // ── Keyboard ───────────────────────────────────────────────────────────
+    // ── Keyboard ──────────────────────────────────────────────────────────
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown" || e.key === "PageDown") {
-        if (tryAdvance(1)) e.preventDefault();
-      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-        if (tryAdvance(-1)) e.preventDefault();
-      }
+      if (!isPinned) return;
+      if (e.key === "ArrowDown" || e.key === "PageDown") { e.preventDefault(); advance(1); }
+      else if (e.key === "ArrowUp" || e.key === "PageUp") { e.preventDefault(); advance(-1); }
     };
 
-    // Init
-    applySlide(0, true);
+    // ── Scroll listener to detect pin/unpin ──────────────────────────────
+    const onScroll = () => { checkPin(); };
 
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchend", onTouchEnd, { passive: false });
     window.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Initial check in case page loads mid-section
+    checkPin();
 
     return () => {
+      unlockPage(); // always restore on unmount
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("keydown", onKey);
-      clearTimeout(wheelResetTimer);
-      clearTimeout(drainTimer);
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(wheelTimer);
     };
-  }, [n]);
+  }, [n]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
@@ -227,6 +237,7 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
           </div>
         ))}
 
+        {/* Progress dots */}
         {n > 1 && (
           <div
             className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10"
@@ -249,6 +260,18 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
             ))}
           </div>
         )}
+
+        {/* Skip button */}
+        <button
+          onClick={skip}
+          aria-label="Skip this section"
+          className="absolute bottom-8 right-8 z-10 flex items-center gap-1.5 text-white/60 hover:text-white text-xs font-sans tracking-widest uppercase transition-colors duration-200"
+        >
+          Skip
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
       </div>
     </div>
   );
