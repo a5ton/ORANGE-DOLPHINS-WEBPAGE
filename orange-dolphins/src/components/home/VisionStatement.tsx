@@ -14,7 +14,7 @@ export function VisionStatement() {
 
   // Brand colour themes per slide: [bg, accent, heading, body, divider]
   const themes = [
-    { bg: "bg-grey-100",   accent: "text-orange-500",  heading: "text-darkGreen",    body: "text-darkGreen/70", divider: "bg-orange-500" },
+    { bg: "bg-blue-500",   accent: "text-orange-300",  heading: "text-white",         body: "text-white/80",     divider: "bg-orange-300" },
     { bg: "bg-darkGreen",  accent: "text-orange-300",  heading: "text-white",         body: "text-white/70",     divider: "bg-orange-300" },
     { bg: "bg-orange-500", accent: "text-white/60",    heading: "text-white",         body: "text-white/80",     divider: "bg-white/60"   },
     { bg: "bg-blue-500",   accent: "text-orange-300",  heading: "text-white",         body: "text-white/80",     divider: "bg-orange-300" },

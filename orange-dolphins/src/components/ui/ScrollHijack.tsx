@@ -54,6 +54,10 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
     let animTimer = 0;
     let rafId = 0;
 
+    // Hysteresis: fraction of a slide zone the user must cross past a boundary
+    // before the slide commits. Prevents back-and-forth jitter at thresholds.
+    const HYSTERESIS = 0.08; // 8% of a slide zone (~80px at speedPerSlide=100)
+
     /**
      * Drive all slide + dot elements to show `idx` as the active slide.
      * Pass `instant = true` on mount to set the initial state with no animation.
@@ -109,14 +113,6 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
       if (animating) {
         animTimer = window.setTimeout(() => {
           animating = false;
-          // After debounce window, re-sync in case scroll moved on
-          const el = trackRef.current;
-          if (!el) return;
-          const { top, height } = el.getBoundingClientRect();
-          const vh = window.innerHeight;
-          const rp = Math.max(0, Math.min(1, (vh - top) / height));
-          const ti = Math.max(0, Math.min(n - 1, Math.floor(rp * n)));
-          applySlide(ti);
         }, DURATION + 80);
       }
     };
@@ -144,8 +140,20 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
         const stickyRange = Math.max(1, height - vh);
         const rawProgress = Math.max(0, Math.min(1, -top / stickyRange));
 
-        // Integer slide index — each slide owns 1/n of the progress range
-        const targetIdx = Math.max(0, Math.min(n - 1, Math.floor(rawProgress * n)));
+        // Integer slide index with hysteresis — prevents jitter at boundaries.
+        // To advance to the next slide, rawProgress must cross the boundary by
+        // HYSTERESIS. To retreat, it must fall back by HYSTERESIS the other way.
+        const slotSize = 1 / n;
+        const rawIdx = rawProgress / slotSize; // e.g. 1.03 means 3% into slot 1
+        let targetIdx = currentIdx < 0 ? Math.floor(rawIdx) : currentIdx;
+        if (rawIdx > targetIdx + 1 - HYSTERESIS) {
+          // Scrolled far enough forward — advance
+          targetIdx = Math.min(n - 1, targetIdx + 1);
+        } else if (rawIdx < targetIdx - (1 - HYSTERESIS)) {
+          // Scrolled far enough back — retreat
+          targetIdx = Math.max(0, targetIdx - 1);
+        }
+        targetIdx = Math.max(0, Math.min(n - 1, targetIdx));
 
         applySlide(targetIdx);
       });
