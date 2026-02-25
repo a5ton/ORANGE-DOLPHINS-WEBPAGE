@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="inline-block mb-5">
-              <Logo variant="white" showWordmark showTagline markSize={40} />
+              <Logo variant="on-blue" showWordmark showTagline markSize={40} />
             </Link>
             <p className="text-sm text-white/75 leading-relaxed max-w-xs mb-6 font-sans">
               {tf("tagline")}

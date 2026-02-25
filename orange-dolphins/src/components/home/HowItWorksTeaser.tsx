@@ -16,7 +16,7 @@ export function HowItWorksTeaser() {
         {/* Section header */}
         <div className="mb-12 max-w-2xl">
           <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6 block">
-            {t("title")}
+            {t("label")}
           </span>
           <h2 className="font-display font-extrabold text-white text-4xl sm:text-5xl leading-[0.93] tracking-tight">
             {t("title")}

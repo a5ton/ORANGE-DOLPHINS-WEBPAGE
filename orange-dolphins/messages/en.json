@@ -1,345 +1,346 @@
 {
-  "nav": {
-    "home": "Home",
-    "about": "About Us",
-    "offer": "Our Offer",
-    "partners": "Partners",
-    "collaborate": "Collaborate",
-    "contact": "Contact",
-    "shopNow": "SHOP NOW"
-  },
-  "home": {
-    "hero": {
-      "headline": "Fresh, Local, Delivered with Care",
-      "headlineLine1": "Fresh, Local,",
-      "headlineLine2": "Delivered",
-      "headlineAccent": "with Care.",
-      "subheadline": "Swift and effortless boat provisioning in the Dodecanese — connecting sailors to the vibrant flavors of the Aegean.",
-      "cta": "SHOP NOW",
-      "ourStory": "Our Story"
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "offer": "Our Offer",
+        "partners": "Partners",
+        "collaborate": "Collaborate",
+        "contact": "Contact",
+        "shopNow": "SHOP NOW"
     },
-    "vision": {
-      "title": "Our Vision",
-      "body": "Our vision is to redefine the sailing experience by effortlessly connecting sailors with the vibrant flavors and rich culture of the Aegean. We aim to become the go-to source for fresh, local provisions, making every sailing adventure a delightful culinary journey.",
-      "pillars": [
-        {
-          "label": "Boat-first",
-          "headline1": "We come",
-          "headline2": "to you.",
-          "body": "Wherever you're anchored in Leros — drop the dinghy, we'll do the rest."
+    "home": {
+        "hero": {
+            "headline": "Fresh, Local, Delivered with Care",
+            "headlineLine1": "Fresh, Local,",
+            "headlineLine2": "Delivered",
+            "headlineAccent": "with Care.",
+            "subheadline": "Swift and effortless boat provisioning in the Dodecanese — connecting sailors to the vibrant flavors of the Aegean.",
+            "cta": "SHOP NOW",
+            "ourStory": "Our Story"
         },
-        {
-          "label": "Fresh & local",
-          "headline1": "Island-fresh.",
-          "headline2": "Every time.",
-          "body": "Sourced daily from Leros producers — farmers, bakers, fishmongers."
+        "vision": {
+            "title": "Our Vision",
+            "body": "Our vision is to redefine the sailing experience by effortlessly connecting sailors with the vibrant flavors and rich culture of the Aegean. We aim to become the go-to source for fresh, local provisions, making every sailing adventure a delightful culinary journey.",
+            "pillars": [
+                {
+                    "label": "Boat-first",
+                    "headline1": "We come",
+                    "headline2": "to you.",
+                    "body": "Wherever you're anchored in Leros — drop the dinghy, we'll do the rest."
+                },
+                {
+                    "label": "Fresh & local",
+                    "headline1": "Island-fresh.",
+                    "headline2": "Every time.",
+                    "body": "Sourced daily from Leros producers — farmers, bakers, fishmongers."
+                },
+                {
+                    "label": "Two slots daily",
+                    "headline1": "Morning",
+                    "headline2": "or evening.",
+                    "body": "9:00–11:00 or 17:00–19:00. Pick what fits your sailing day."
+                }
+            ],
+            "headline": "Connecting sailors to island flavors."
         },
-        {
-          "label": "Two slots daily",
-          "headline1": "Morning",
-          "headline2": "or evening.",
-          "body": "9:00–11:00 or 17:00–19:00. Pick what fits your sailing day."
+        "mission": {
+            "title": "Our Mission",
+            "quoteLine1": "Fresh. Fast.",
+            "quoteLine2": "Wherever you float.",
+            "body": "At Orange Dolphins, we simplify boat provisioning by linking sailors to the best local suppliers — farms, bakeries, fishmongers, shops, markets and more — delivering fresh, sustainable Aegean flavors directly to their boats while supporting the local economy."
+        },
+        "howItWorks": {
+            "title": "How It Works",
+            "subtitle": "Getting fresh provisions to your boat has never been easier",
+            "stepLabel": "Step",
+            "steps": [
+                {
+                    "number": "01",
+                    "title": "Order Online",
+                    "description": "Use your phone or laptop to browse and order"
+                },
+                {
+                    "number": "02",
+                    "title": "Choose Your Location",
+                    "description": "Select your anchorage or port"
+                },
+                {
+                    "number": "03",
+                    "title": "Pick & Schedule",
+                    "description": "Choose what you need and a delivery time"
+                },
+                {
+                    "number": "04",
+                    "title": "Relax on Board",
+                    "description": "We deliver fresh to your boat, even at anchor"
+                }
+            ],
+            "learnMore": "See full details",
+            "label": "Simple Steps"
+        },
+        "categories": {
+            "title": "What We Deliver",
+            "subtitle": "Everything you need for life on the water",
+            "fullCatalogue": "Full Catalogue",
+            "items": [
+                {
+                    "name": "Fresh & Local",
+                    "description": "Fruit, vegetables, meat, fish and more"
+                },
+                {
+                    "name": "Daily Essentials",
+                    "description": "Dairy, breakfast, canned goods and condiments"
+                },
+                {
+                    "name": "Beverages",
+                    "description": "Wine, beer, spirits, soft drinks and water"
+                },
+                {
+                    "name": "Household & Hygiene",
+                    "description": "Cleaning, hygiene and beauty products"
+                },
+                {
+                    "name": "Bakery",
+                    "description": "Fresh bread and pastries from local bakers"
+                },
+                {
+                    "name": "Ice",
+                    "description": "Ice cubes and ice blocks"
+                }
+            ]
+        },
+        "cta": {
+            "title": "Ready to Provision Your Boat?",
+            "subtitle": "Order now and enjoy the freshest local flavors delivered right to your vessel.",
+            "button": "SHOP NOW",
+            "label": "Ready to Order?",
+            "getInTouch": "Get in Touch"
         }
-      ],
-      "headline": "Connecting sailors to island flavors."
     },
-    "mission": {
-      "title": "Our Mission",
-      "quoteLine1": "Fresh. Fast.",
-      "quoteLine2": "Wherever you float.",
-      "body": "At Orange Dolphins, we simplify boat provisioning by linking sailors to the best local suppliers — farms, bakeries, fishmongers, shops, markets and more — delivering fresh, sustainable Aegean flavors directly to their boats while supporting the local economy."
-    },
-    "howItWorks": {
-      "title": "How It Works",
-      "subtitle": "Getting fresh provisions to your boat has never been easier",
-      "stepLabel": "Step",
-      "steps": [
-        {
-          "number": "01",
-          "title": "Order Online",
-          "description": "Use your phone or laptop to browse and order"
+    "about": {
+        "hero": {
+            "title": "About Us",
+            "subtitle": "Two sailors on a mission to make provisioning effortless"
         },
-        {
-          "number": "02",
-          "title": "Choose Your Location",
-          "description": "Select your anchorage or port"
+        "bio": {
+            "title": "Hi there! We're Inna and Sigi",
+            "short": "We're two passionate sailors who have been navigating the waves since we were just 15. While we love sailing, boat provisioning has always been a hassle! We spent too much valuable holiday time searching for food, often lugging heavy bags filled with frozen and canned goods back to the boat instead of fresh local flavors. Navigating new islands while anchored felt like solving a puzzle. Plus, with limited storage, we frequently dealt with food waste, needing to refill supplies every few days.\n\nOne sunny morning, while enjoying breakfast on our deck, we had a lightbulb moment: \"What if there were a provisioning service to make life on the boat easier and more enjoyable?\" With our backgrounds in marketing, we decided to tackle this challenge for ourselves and fellow sailors. That's how Orange Dolphins was born! Our platform connects sailors with local food and beverage suppliers, making provisioning simple and fun.\n\nLast summer, we fell in love with the island of Leros and chose it as our pilot island, dreaming of expanding throughout the Dodecanese. Thank you for joining us on this adventure! Let's enjoy the rich flavors of the islands together, with our labrador Brownie by our side to keep our spirits high!",
+            "long": "Hi there! We're Inna and Sigi, two passionate sailors who have been navigating the waves since we were just 15. Our love for sailing and exploring the stunning islands of Greece runs deep, but we've always found one thing rather frustrating: boat provisioning!\n\nPicture this: valuable holiday time spent searching for food, only to end up with frozen and canned goods from the nearest supermarket. We'd lug our heavy bags back to the boat, drenched in sweat, and often found ourselves needing to rent a car to find a shop or pay for pricey marinas while we would rather prefer those beautiful, less-crowded anchorages.\n\nEach island we visited was bursting with mouth-watering flavors: local fruits, fresh veggies, amazing wines, and fish that could make any meal shine. But navigating through a new place while anchored was like solving a puzzle! Dropping the dinghy down and fixing the motor, and lifting it all back up again was no small feat. And bulky water and drink deliveries? A total hassle unless you're tied up in a marina.\n\nThen there were the food waste issues! Fruits and veggies, meat and fish spoil so quickly, and our limited storage space made it impossible to stock up for a week of sailing. We absolutely love eating fresh and healthy food but found ourselves needing to refill supplies every couple of days.\n\nOne sunny day, while having breakfast on our deck with some friends, we had a lightbulb moment: \"What if there was a provisioning service that could make life on the boat a whole lot easier and more enjoyable?\" Someone out there had to solve this provisioning puzzle, right?\n\nThen it hit us — why not us? With our backgrounds in marketing and insights, we've helped numerous big brands grow, and we love tackling challenging tasks. So, why not take on the provisioning issue for us and our fellow sailors? And that's how the idea of Orange Dolphins was born.\n\nWe created a platform and an app designed to connect sailors like us with local food and beverage suppliers, making the whole provisioning process easy, effortless, and, dare we say, enjoyable! Last summer, we fell in love with the charming island of Leros and decided to keep our boat there, so naturally, we chose Leros as our pilot island with dreams of expanding to all the Dodecanese islands.\n\nThank you for choosing us to join you on your sailing adventures and for helping us make this pilot a success! Let's embrace the rich flavors of the islands together, with Brownie by our side, ensuring that every journey is filled with joy and laughter!",
+            "readMore": "Read the full story",
+            "readLess": "Show less"
         },
-        {
-          "number": "03",
-          "title": "Pick & Schedule",
-          "description": "Choose what you need and a delivery time"
+        "brownie": {
+            "title": "Meet Brownie!",
+            "description": "Our lovely labrador Brownie will be part of our crew this summer, cheering us up and keeping our spirits high as we build our company and new boat economy together. Every great adventure needs a four-legged first mate!"
         },
-        {
-          "number": "04",
-          "title": "Relax on Board",
-          "description": "We deliver fresh to your boat, even at anchor"
+        "founding": {
+            "title": "Born in the Aegean",
+            "description": "Last summer we fell in love with the charming island of Leros and decided to keep our boat there. Naturally, Leros became our pilot island — the perfect testing ground for our vision of bringing fresh, local provisioning to sailors across the Dodecanese.\n\nOur dream? To expand to all the Dodecanese islands by 2027, making every anchorage an opportunity to taste the very best of the Aegean.",
+            "leros": "Pilot Island: Leros",
+            "expansion": "Expanding to all Dodecanese by 2027"
         }
-      ],
-      "learnMore": "See full details"
     },
-    "categories": {
-      "title": "What We Deliver",
-      "subtitle": "Everything you need for life on the water",
-      "fullCatalogue": "Full Catalogue",
-      "items": [
-        {
-          "name": "Fresh & Local",
-          "description": "Fruit, vegetables, meat, fish and more"
+    "offer": {
+        "hero": {
+            "title": "Our Offer",
+            "subtitle": "Simple ordering, fresh local products, delivered straight to your boat"
         },
-        {
-          "name": "Daily Essentials",
-          "description": "Dairy, breakfast, canned goods and condiments"
+        "steps": {
+            "title": "How It Works",
+            "subtitle": "4 easy steps to fresh provisions",
+            "stepLabel": "Step",
+            "items": [
+                {
+                    "number": "01",
+                    "title": "Order Online",
+                    "description": "Order easily on your phone or laptop — wherever you are."
+                },
+                {
+                    "number": "02",
+                    "title": "Your Boat & Location",
+                    "description": "Select your anchorage or port, then enter your boat name, colour and flag so we can find you."
+                },
+                {
+                    "number": "03",
+                    "title": "Pick & Schedule",
+                    "description": "Browse our fresh local products and choose morning (9–11) or evening (17–19) delivery."
+                },
+                {
+                    "number": "04",
+                    "title": "Relax on Board",
+                    "description": "Our dolphins deliver everything fresh, even to your anchorage."
+                }
+            ]
         },
-        {
-          "name": "Beverages",
-          "description": "Wine, beer, spirits, soft drinks and water"
+        "delivery": {
+            "title": "Our Dolphins Deliver",
+            "description": "Our friendly \"dolphins\" collect food and drinks from the best local suppliers and deliver straight to your boat — even at anchor! They help you unload and check that everything is fresh, complete, and in great condition."
         },
-        {
-          "name": "Household & Hygiene",
-          "description": "Cleaning, hygiene and beauty products"
+        "categories": {
+            "title": "What We Deliver",
+            "groups": [
+                {
+                    "name": "Fresh & Local",
+                    "items": [
+                        "Fresh Fruit & Vegetables",
+                        "Fresh Meat & Fish",
+                        "Meze & Snacks",
+                        "Bakery",
+                        "Best of Local"
+                    ]
+                },
+                {
+                    "name": "Daily Essentials",
+                    "items": [
+                        "Breakfast & Spreads",
+                        "Dairy, Cheese & Alternatives",
+                        "Canned & Preserved Food",
+                        "Condiments, Oils & Sauces",
+                        "Frozen Foods"
+                    ]
+                },
+                {
+                    "name": "Household & Hygiene",
+                    "items": [
+                        "Hygiene & Beauty",
+                        "Household & Cleaning"
+                    ]
+                },
+                {
+                    "name": "Beverages",
+                    "items": [
+                        "Wine & Beer",
+                        "Spirits",
+                        "Soft Drinks",
+                        "Water"
+                    ]
+                },
+                {
+                    "name": "Ice",
+                    "items": [
+                        "Ice Cubes",
+                        "Ice Block"
+                    ]
+                }
+            ]
         },
-        {
-          "name": "Bakery",
-          "description": "Fresh bread and pastries from local bakers"
-        },
-        {
-          "name": "Ice",
-          "description": "Ice cubes and ice blocks"
+        "map": {
+            "title": "Where We Deliver",
+            "subtitle": "Currently serving Leros — expanding to all Dodecanese in 2027",
+            "pilot": "Pilot Market: Leros",
+            "expansion": "Expanding to the full Dodecanese by 2027",
+            "mapNote": "Detailed delivery bay map coming soon — provided by our team"
         }
-      ]
     },
-    "cta": {
-      "title": "Ready to Provision Your Boat?",
-      "subtitle": "Order now and enjoy the freshest local flavors delivered right to your vessel.",
-      "button": "SHOP NOW",
-      "label": "Ready to Order?",
-      "getInTouch": "Get in Touch"
-    }
-  },
-  "about": {
-    "hero": {
-      "title": "About Us",
-      "subtitle": "Two sailors on a mission to make provisioning effortless"
-    },
-    "bio": {
-      "title": "Hi there! We're Inna and Sigi",
-      "short": "We're two passionate sailors who have been navigating the waves since we were just 15. While we love sailing, boat provisioning has always been a hassle! We spent too much valuable holiday time searching for food, often lugging heavy bags filled with frozen and canned goods back to the boat instead of fresh local flavors. Navigating new islands while anchored felt like solving a puzzle. Plus, with limited storage, we frequently dealt with food waste, needing to refill supplies every few days.\n\nOne sunny morning, while enjoying breakfast on our deck, we had a lightbulb moment: \"What if there were a provisioning service to make life on the boat easier and more enjoyable?\" With our backgrounds in marketing, we decided to tackle this challenge for ourselves and fellow sailors. That's how Orange Dolphins was born! Our platform connects sailors with local food and beverage suppliers, making provisioning simple and fun.\n\nLast summer, we fell in love with the island of Leros and chose it as our pilot island, dreaming of expanding throughout the Dodecanese. Thank you for joining us on this adventure! Let's enjoy the rich flavors of the islands together, with our labrador Brownie by our side to keep our spirits high!",
-      "long": "Hi there! We're Inna and Sigi, two passionate sailors who have been navigating the waves since we were just 15. Our love for sailing and exploring the stunning islands of Greece runs deep, but we've always found one thing rather frustrating: boat provisioning!\n\nPicture this: valuable holiday time spent searching for food, only to end up with frozen and canned goods from the nearest supermarket. We'd lug our heavy bags back to the boat, drenched in sweat, and often found ourselves needing to rent a car to find a shop or pay for pricey marinas while we would rather prefer those beautiful, less-crowded anchorages.\n\nEach island we visited was bursting with mouth-watering flavors: local fruits, fresh veggies, amazing wines, and fish that could make any meal shine. But navigating through a new place while anchored was like solving a puzzle! Dropping the dinghy down and fixing the motor, and lifting it all back up again was no small feat. And bulky water and drink deliveries? A total hassle unless you're tied up in a marina.\n\nThen there were the food waste issues! Fruits and veggies, meat and fish spoil so quickly, and our limited storage space made it impossible to stock up for a week of sailing. We absolutely love eating fresh and healthy food but found ourselves needing to refill supplies every couple of days.\n\nOne sunny day, while having breakfast on our deck with some friends, we had a lightbulb moment: \"What if there was a provisioning service that could make life on the boat a whole lot easier and more enjoyable?\" Someone out there had to solve this provisioning puzzle, right?\n\nThen it hit us — why not us? With our backgrounds in marketing and insights, we've helped numerous big brands grow, and we love tackling challenging tasks. So, why not take on the provisioning issue for us and our fellow sailors? And that's how the idea of Orange Dolphins was born.\n\nWe created a platform and an app designed to connect sailors like us with local food and beverage suppliers, making the whole provisioning process easy, effortless, and, dare we say, enjoyable! Last summer, we fell in love with the charming island of Leros and decided to keep our boat there, so naturally, we chose Leros as our pilot island with dreams of expanding to all the Dodecanese islands.\n\nThank you for choosing us to join you on your sailing adventures and for helping us make this pilot a success! Let's embrace the rich flavors of the islands together, with Brownie by our side, ensuring that every journey is filled with joy and laughter!",
-      "readMore": "Read the full story",
-      "readLess": "Show less"
-    },
-    "brownie": {
-      "title": "Meet Brownie!",
-      "description": "Our lovely labrador Brownie will be part of our crew this summer, cheering us up and keeping our spirits high as we build our company and new boat economy together. Every great adventure needs a four-legged first mate!"
-    },
-    "founding": {
-      "title": "Born in the Aegean",
-      "description": "Last summer we fell in love with the charming island of Leros and decided to keep our boat there. Naturally, Leros became our pilot island — the perfect testing ground for our vision of bringing fresh, local provisioning to sailors across the Dodecanese.\n\nOur dream? To expand to all the Dodecanese islands by 2027, making every anchorage an opportunity to taste the very best of the Aegean.",
-      "leros": "Pilot Island: Leros",
-      "expansion": "Expanding to all Dodecanese by 2027"
-    }
-  },
-  "offer": {
-    "hero": {
-      "title": "Our Offer",
-      "subtitle": "Simple ordering, fresh local products, delivered straight to your boat"
-    },
-    "steps": {
-      "title": "How It Works",
-      "subtitle": "4 easy steps to fresh provisions",
-      "stepLabel": "Step",
-      "items": [
-        {
-          "number": "01",
-          "title": "Order Online",
-          "description": "Order easily on your phone or laptop — wherever you are."
+    "partners": {
+        "hero": {
+            "title": "Our Local Partners",
+            "subtitle": "The finest local suppliers who make our service possible"
         },
-        {
-          "number": "02",
-          "title": "Your Boat & Location",
-          "description": "Select your anchorage or port, then enter your boat name, colour and flag so we can find you."
+        "readMore": "Read our story",
+        "readLess": "Show less",
+        "comingSoon": "Partner profile coming soon"
+    },
+    "collaborate": {
+        "hero": {
+            "title": "Collaborate With Us",
+            "subtitle": "Join the Orange Dolphins network and grow together"
         },
-        {
-          "number": "03",
-          "title": "Pick & Schedule",
-          "description": "Browse our fresh local products and choose morning (9–11) or evening (17–19) delivery."
+        "tabs": {
+            "charter": {
+                "label": "Charter Companies & Skippers",
+                "title": "For Charter Companies & Skippers",
+                "bullets": [
+                    "Attract More Customers: Provide your clients with an effortless provisioning solution, enhancing their overall sailing experience.",
+                    "Seamless Integration: Easy-to-implement system, making provisioning simple and efficient for your fleet.",
+                    "Exclusive Offers: Enjoy a special surprise on your next shopping trip as a token of appreciation for partnering with us.",
+                    "Support Local Economy: Help promote local suppliers and businesses, offering your clients authentic island flavors."
+                ]
+            },
+            "marina": {
+                "label": "Shipyards & Marinas",
+                "title": "For Shipyards & Marinas",
+                "bullets": [
+                    "Enhance Services: Add value to your marina by offering a reliable provisioning option for boaters.",
+                    "Attract More Customers: Drive more visitors to your marina as sailors enjoy our great local provisioning service.",
+                    "Collaborative Marketing: Increase visibility through co-branding opportunities and promotional activities with Orange Dolphins."
+                ]
+            },
+            "business": {
+                "label": "Local Businesses",
+                "title": "For Local Businesses",
+                "bullets": [
+                    "Sales Growth: Drive more sales by tapping into an expanding market of boaters looking for local products.",
+                    "Increased Exposure: Gain visibility by being featured on our platform, connecting with a wider audience of sailors.",
+                    "Community Support: Be part of a network that prioritizes supporting local economies and promoting sustainable practices.",
+                    "Easy Onboarding: Simple process to join our platform and get started quickly and easily."
+                ]
+            },
+            "rider": {
+                "label": "Become a Dolphin",
+                "title": "Join Our Team of Dolphins",
+                "bullets": [
+                    "Attractive Work Opportunity: Earn extra money working only a few hours a week, whether you have a car or a boat — easy to combine with other seasonal jobs.",
+                    "Competitive Earnings: Earn competitive pay for your deliveries, with potential for bonuses based on performance.",
+                    "Support Your Community: Participate in a service that supports local suppliers and enhances the sailing experience for boaters.",
+                    "Be Part of a Vibrant Team: Join a friendly team who share a passion for sailing and the local culture."
+                ]
+            }
         },
-        {
-          "number": "04",
-          "title": "Relax on Board",
-          "description": "Our dolphins deliver everything fresh, even to your anchorage."
+        "form": {
+            "title": "Get in Touch",
+            "subtitle": "Tell us about yourself and how you'd like to collaborate",
+            "name": "Full Name",
+            "email": "Email Address",
+            "organization": "Organization / Company",
+            "category": "I am a...",
+            "categoryOptions": {
+                "charter": "Charter Company / Skipper",
+                "marina": "Shipyard / Marina",
+                "business": "Local Business",
+                "rider": "Prospective Dolphin (Rider)",
+                "other": "Other"
+            },
+            "message": "Your Message",
+            "submit": "Send Message",
+            "success": "Thank you! We'll be in touch soon.",
+            "error": "Something went wrong. Please try again."
         }
-      ]
     },
-    "delivery": {
-      "title": "Our Dolphins Deliver",
-      "description": "Our friendly \"dolphins\" collect food and drinks from the best local suppliers and deliver straight to your boat — even at anchor! They help you unload and check that everything is fresh, complete, and in great condition."
-    },
-    "categories": {
-      "title": "What We Deliver",
-      "groups": [
-        {
-          "name": "Fresh & Local",
-          "items": [
-            "Fresh Fruit & Vegetables",
-            "Fresh Meat & Fish",
-            "Meze & Snacks",
-            "Bakery",
-            "Best of Local"
-          ]
+    "contact": {
+        "hero": {
+            "title": "Contact Us",
+            "subtitle": "We'd love to hear from you"
         },
-        {
-          "name": "Daily Essentials",
-          "items": [
-            "Breakfast & Spreads",
-            "Dairy, Cheese & Alternatives",
-            "Canned & Preserved Food",
-            "Condiments, Oils & Sauces",
-            "Frozen Foods"
-          ]
+        "topics": {
+            "title": "What's this about?",
+            "feedback": "Feedback",
+            "complaint": "Complaint",
+            "suggestion": "Suggestion",
+            "general": "General Inquiry"
         },
-        {
-          "name": "Household & Hygiene",
-          "items": [
-            "Hygiene & Beauty",
-            "Household & Cleaning"
-          ]
+        "social": {
+            "title": "Find Us Online",
+            "instagram": "Instagram",
+            "facebook": "Facebook",
+            "linkedin": "LinkedIn"
         },
-        {
-          "name": "Beverages",
-          "items": [
-            "Wine & Beer",
-            "Spirits",
-            "Soft Drinks",
-            "Water"
-          ]
-        },
-        {
-          "name": "Ice",
-          "items": [
-            "Ice Cubes",
-            "Ice Block"
-          ]
+        "form": {
+            "title": "Send Us a Message",
+            "name": "Full Name",
+            "email": "Email Address",
+            "topic": "Topic",
+            "message": "Your Message",
+            "submit": "Send Message",
+            "success": "Thank you! We'll get back to you shortly.",
+            "error": "Something went wrong. Please try again."
         }
-      ]
     },
-    "map": {
-      "title": "Where We Deliver",
-      "subtitle": "Currently serving Leros — expanding to all Dodecanese in 2027",
-      "pilot": "Pilot Market: Leros",
-      "expansion": "Expanding to the full Dodecanese by 2027",
-      "mapNote": "Detailed delivery bay map coming soon — provided by our team"
+    "footer": {
+        "tagline": "Fresh, local provisions delivered to your boat in the Aegean.",
+        "pages": "Pages",
+        "connect": "Connect",
+        "rights": "All rights reserved.",
+        "madeWith": "Made with love in Leros"
     }
-  },
-  "partners": {
-    "hero": {
-      "title": "Our Local Partners",
-      "subtitle": "The finest local suppliers who make our service possible"
-    },
-    "readMore": "Read our story",
-    "readLess": "Show less",
-    "comingSoon": "Partner profile coming soon"
-  },
-  "collaborate": {
-    "hero": {
-      "title": "Collaborate With Us",
-      "subtitle": "Join the Orange Dolphins network and grow together"
-    },
-    "tabs": {
-      "charter": {
-        "label": "Charter Companies & Skippers",
-        "title": "For Charter Companies & Skippers",
-        "bullets": [
-          "Attract More Customers: Provide your clients with an effortless provisioning solution, enhancing their overall sailing experience.",
-          "Seamless Integration: Easy-to-implement system, making provisioning simple and efficient for your fleet.",
-          "Exclusive Offers: Enjoy a special surprise on your next shopping trip as a token of appreciation for partnering with us.",
-          "Support Local Economy: Help promote local suppliers and businesses, offering your clients authentic island flavors."
-        ]
-      },
-      "marina": {
-        "label": "Shipyards & Marinas",
-        "title": "For Shipyards & Marinas",
-        "bullets": [
-          "Enhance Services: Add value to your marina by offering a reliable provisioning option for boaters.",
-          "Attract More Customers: Drive more visitors to your marina as sailors enjoy our great local provisioning service.",
-          "Collaborative Marketing: Increase visibility through co-branding opportunities and promotional activities with Orange Dolphins."
-        ]
-      },
-      "business": {
-        "label": "Local Businesses",
-        "title": "For Local Businesses",
-        "bullets": [
-          "Sales Growth: Drive more sales by tapping into an expanding market of boaters looking for local products.",
-          "Increased Exposure: Gain visibility by being featured on our platform, connecting with a wider audience of sailors.",
-          "Community Support: Be part of a network that prioritizes supporting local economies and promoting sustainable practices.",
-          "Easy Onboarding: Simple process to join our platform and get started quickly and easily."
-        ]
-      },
-      "rider": {
-        "label": "Become a Dolphin",
-        "title": "Join Our Team of Dolphins",
-        "bullets": [
-          "Attractive Work Opportunity: Earn extra money working only a few hours a week, whether you have a car or a boat — easy to combine with other seasonal jobs.",
-          "Competitive Earnings: Earn competitive pay for your deliveries, with potential for bonuses based on performance.",
-          "Support Your Community: Participate in a service that supports local suppliers and enhances the sailing experience for boaters.",
-          "Be Part of a Vibrant Team: Join a friendly team who share a passion for sailing and the local culture."
-        ]
-      }
-    },
-    "form": {
-      "title": "Get in Touch",
-      "subtitle": "Tell us about yourself and how you'd like to collaborate",
-      "name": "Full Name",
-      "email": "Email Address",
-      "organization": "Organization / Company",
-      "category": "I am a...",
-      "categoryOptions": {
-        "charter": "Charter Company / Skipper",
-        "marina": "Shipyard / Marina",
-        "business": "Local Business",
-        "rider": "Prospective Dolphin (Rider)",
-        "other": "Other"
-      },
-      "message": "Your Message",
-      "submit": "Send Message",
-      "success": "Thank you! We'll be in touch soon.",
-      "error": "Something went wrong. Please try again."
-    }
-  },
-  "contact": {
-    "hero": {
-      "title": "Contact Us",
-      "subtitle": "We'd love to hear from you"
-    },
-    "topics": {
-      "title": "What's this about?",
-      "feedback": "Feedback",
-      "complaint": "Complaint",
-      "suggestion": "Suggestion",
-      "general": "General Inquiry"
-    },
-    "social": {
-      "title": "Find Us Online",
-      "instagram": "Instagram",
-      "facebook": "Facebook",
-      "linkedin": "LinkedIn"
-    },
-    "form": {
-      "title": "Send Us a Message",
-      "name": "Full Name",
-      "email": "Email Address",
-      "topic": "Topic",
-      "message": "Your Message",
-      "submit": "Send Message",
-      "success": "Thank you! We'll get back to you shortly.",
-      "error": "Something went wrong. Please try again."
-    }
-  },
-  "footer": {
-    "tagline": "Fresh, local provisions delivered to your boat in the Aegean.",
-    "pages": "Pages",
-    "connect": "Connect",
-    "rights": "All rights reserved.",
-    "madeWith": "Made with love in Leros"
-  }
 }

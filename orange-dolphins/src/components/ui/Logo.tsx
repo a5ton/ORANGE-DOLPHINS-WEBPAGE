@@ -1,7 +1,14 @@
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
-  variant?: "orange" | "blue" | "white";
+  /**
+   * Colour variant — per brand book (page 1.4):
+   *   "orange"  → orange mark + orange wordmark + blue tagline  (on white/grey bg)
+   *   "on-blue" → orange mark + orange wordmark + orange tagline (on blue bg)
+   *   "on-orange" → blue mark + blue wordmark + blue tagline    (on orange bg)
+   *   "white"   → all-white                                     (on dark/photo bg)
+   */
+  variant?: "orange" | "on-blue" | "on-orange" | "white";
   showWordmark?: boolean;
   showTagline?: boolean;
   className?: string;
@@ -9,10 +16,10 @@ interface LogoProps {
 }
 
 /**
- * Orange Dolphins brand logo.
+ * Orange Dolphins brand logo — per brand book page 1.1–1.4.
  * Logomark: two dolphins in a circular yin-yang flow.
- * Wordmark: "ORANGE DOLPHINS" in Kit Rounded Bold (orange).
- * Tagline:  "boat delivery" in Kit Rounded SemiBold (blue).
+ * Wordmark: "ORANGE DOLPHINS" in Kit Rounded Bold.
+ * Tagline:  "boat delivery" in Kit Rounded SemiBold.
  */
 export function Logo({
   variant = "orange",
@@ -21,12 +28,30 @@ export function Logo({
   className,
   markSize = 40,
 }: LogoProps) {
+  // Mark (dolphin icon) colour
   const markColor =
-    variant === "blue" ? "#1e4cec" : variant === "white" ? "#ffffff" : "#ff7900";
+    variant === "white"     ? "#ffffff"
+    : variant === "on-orange" ? "#1e4cec"
+    : "#ff7900"; // orange + on-blue
 
-  const wordmarkColor = variant === "white" ? "#ffffff" : "#ff7900";
-  const taglineColor  = variant === "white" ? "#ffffff" : "#1e4cec";
-  const eyeColor      = variant === "blue" ? "#1e4cec" : "white";
+  // Wordmark colour
+  const wordmarkColor =
+    variant === "white"      ? "#ffffff"
+    : variant === "on-orange" ? "#1e4cec"
+    : "#ff7900";
+
+  // Tagline colour — on-blue uses orange (not blue-on-blue), on-orange uses blue
+  const taglineColor =
+    variant === "white"      ? "#ffffff"
+    : variant === "on-blue"  ? "#ff7900"
+    : variant === "on-orange" ? "#1e4cec"
+    : "#1e4cec"; // default orange variant: blue tagline on white/grey bg
+
+  // Eye dot — must contrast against the mark colour
+  const eyeColor =
+    variant === "white"      ? "rgba(255,255,255,0.4)"
+    : variant === "on-orange" ? "#1e4cec"
+    : "white"; // orange or on-blue mark: white eye
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
