@@ -28,12 +28,12 @@ export function MissionStatement() {
         ))}
       </div>
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center max-w-3xl">
         <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-10 block">
           {t("title")}
         </span>
 
-        {/* The headline — fluid type that fills the viewport */}
+        {/* The tagline — big typographic moment */}
         <blockquote
           className="font-display font-extrabold text-white leading-[0.9] tracking-tight"
           style={{ fontSize: "clamp(3rem, 8vw, 9rem)" }}
@@ -45,7 +45,8 @@ export function MissionStatement() {
 
         <div className="mt-10 w-16 h-px bg-orange-500" />
 
-        <p className="mt-10 text-lightGreen text-lg sm:text-xl leading-relaxed max-w-lg font-sans font-normal">
+        {/* Real mission statement body text */}
+        <p className="mt-10 text-lightGreen text-lg sm:text-xl leading-relaxed font-sans font-normal">
           {t("body")}
         </p>
       </div>

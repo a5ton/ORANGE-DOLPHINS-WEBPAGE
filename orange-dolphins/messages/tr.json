@@ -22,10 +22,26 @@
       "title": "Vizyonumuz",
       "body": "Vizyonumuz, yelkencileri Ege'nin canlı tatlarıyla ve zengin kültürüyle zahmetsizce buluşturarak yelken deneyimini yeniden tanımlamaktır.",
       "pillars": [
-        { "label": "Tekne Önce", "headline1": "Biz geliyoruz", "headline2": "size.", "body": "Leros'ta nerede demirlerseniz demirhleyin — botu indirin, gerisini biz hallederiz." },
-        { "label": "Taze & Yerel", "headline1": "Ada tazeliğinde.", "headline2": "Her zaman.", "body": "Her gün Leros üreticilerinden — çiftçiler, fırıncılar, balıkçılar." },
-        { "label": "Günde İki Teslimat", "headline1": "Sabah", "headline2": "ya da akşam.", "body": "09:00–11:00 veya 17:00–19:00. Yelken gününüze uyan zamanı seçin." }
-      ]
+        {
+          "label": "Tekne Önce",
+          "headline1": "Biz geliyoruz",
+          "headline2": "size.",
+          "body": "Leros'ta nerede demirlerseniz demirhleyin — botu indirin, gerisini biz hallederiz."
+        },
+        {
+          "label": "Taze & Yerel",
+          "headline1": "Ada tazeliğinde.",
+          "headline2": "Her zaman.",
+          "body": "Her gün Leros üreticilerinden — çiftçiler, fırıncılar, balıkçılar."
+        },
+        {
+          "label": "Günde İki Teslimat",
+          "headline1": "Sabah",
+          "headline2": "ya da akşam.",
+          "body": "09:00–11:00 veya 17:00–19:00. Yelken gününüze uyan zamanı seçin."
+        }
+      ],
+      "headline": "Yelkencileri ada lezzetleriyle buluşturuyoruz."
     },
     "mission": {
       "title": "Misyonumuz",
@@ -38,10 +54,26 @@
       "subtitle": "Teknenize taze erzak sağlamak hiç bu kadar kolay olmamıştı",
       "stepLabel": "Adım",
       "steps": [
-        { "number": "01", "title": "Online Sipariş", "description": "Telefon veya dizüstü bilgisayarınızdan sipariş verin" },
-        { "number": "02", "title": "Konum Seçin", "description": "Demirleme yerinizi veya limanınızı seçin" },
-        { "number": "03", "title": "Seçin & Planlayın", "description": "İhtiyaçlarınızı ve teslimat saatini seçin" },
-        { "number": "04", "title": "Teknede Rahatlayın", "description": "Demirde bile teknenize taze teslimat yapıyoruz" }
+        {
+          "number": "01",
+          "title": "Online Sipariş",
+          "description": "Telefon veya dizüstü bilgisayarınızdan sipariş verin"
+        },
+        {
+          "number": "02",
+          "title": "Konum Seçin",
+          "description": "Demirleme yerinizi veya limanınızı seçin"
+        },
+        {
+          "number": "03",
+          "title": "Seçin & Planlayın",
+          "description": "İhtiyaçlarınızı ve teslimat saatini seçin"
+        },
+        {
+          "number": "04",
+          "title": "Teknede Rahatlayın",
+          "description": "Demirde bile teknenize taze teslimat yapıyoruz"
+        }
       ],
       "learnMore": "Tüm detayları görün"
     },
@@ -50,12 +82,30 @@
       "subtitle": "Denizde yaşam için ihtiyacınız olan her şey",
       "fullCatalogue": "Tam Katalog",
       "items": [
-        { "name": "Taze & Yerel", "description": "Meyve, sebze, et, balık ve daha fazlası" },
-        { "name": "Günlük Temel İhtiyaçlar", "description": "Süt ürünleri, kahvaltı, konserve ve çeşniler" },
-        { "name": "İçecekler", "description": "Şarap, bira, alkol, meşrubat ve su" },
-        { "name": "Ev & Hijyen", "description": "Temizlik, hijyen ve güzellik ürünleri" },
-        { "name": "Fırın", "description": "Yerel fırınlardan taze ekmek ve börekler" },
-        { "name": "Buz", "description": "Buz küpleri ve buz blokları" }
+        {
+          "name": "Taze & Yerel",
+          "description": "Meyve, sebze, et, balık ve daha fazlası"
+        },
+        {
+          "name": "Günlük Temel İhtiyaçlar",
+          "description": "Süt ürünleri, kahvaltı, konserve ve çeşniler"
+        },
+        {
+          "name": "İçecekler",
+          "description": "Şarap, bira, alkol, meşrubat ve su"
+        },
+        {
+          "name": "Ev & Hijyen",
+          "description": "Temizlik, hijyen ve güzellik ürünleri"
+        },
+        {
+          "name": "Fırın",
+          "description": "Yerel fırınlardan taze ekmek ve börekler"
+        },
+        {
+          "name": "Buz",
+          "description": "Buz küpleri ve buz blokları"
+        }
       ]
     },
     "cta": {
@@ -67,7 +117,10 @@
     }
   },
   "about": {
-    "hero": { "title": "Hakkımızda", "subtitle": "İkmal işini zahmetsiz hale getirme misyonuyla iki yelkenci" },
+    "hero": {
+      "title": "Hakkımızda",
+      "subtitle": "İkmal işini zahmetsiz hale getirme misyonuyla iki yelkenci"
+    },
     "bio": {
       "title": "Merhaba! Biz Inna ve Sigi'yiz",
       "short": "15 yaşından beri dalgaları aşan iki tutkulu yelkenciyiz. Yelkenciliği sevmekle birlikte, tekne ikmali her zaman bir baş ağrısıydı! Taze yerel lezzetler yerine dondurulmuş ürünlerle dolu ağır çantalar taşıdık. Bu yüzden Orange Dolphins'i kurduk!",
@@ -87,16 +140,35 @@
     }
   },
   "offer": {
-    "hero": { "title": "Teklifimiz", "subtitle": "Kolay sipariş, taze yerel ürünler, doğrudan teknenize" },
+    "hero": {
+      "title": "Teklifimiz",
+      "subtitle": "Kolay sipariş, taze yerel ürünler, doğrudan teknenize"
+    },
     "steps": {
       "title": "Nasıl Çalışır",
       "subtitle": "Taze erzak için 4 kolay adım",
       "stepLabel": "Adım",
       "items": [
-        { "number": "01", "title": "Online Sipariş", "description": "Telefon veya dizüstü bilgisayarınızdan kolayca sipariş verin." },
-        { "number": "02", "title": "Tekneniz & Konumunuz", "description": "Demirleme yerinizi veya limanınızı seçin ve tekne adı, rengi ve bayrağını girin." },
-        { "number": "03", "title": "Seçin & Planlayın", "description": "Taze yerel ürünlere göz atın ve sabah (9–11) veya akşam (17–19) teslimatını seçin." },
-        { "number": "04", "title": "Teknede Rahatlayın", "description": "Yunuslarımız her şeyi taze teslim eder, demirde bile." }
+        {
+          "number": "01",
+          "title": "Online Sipariş",
+          "description": "Telefon veya dizüstü bilgisayarınızdan kolayca sipariş verin."
+        },
+        {
+          "number": "02",
+          "title": "Tekneniz & Konumunuz",
+          "description": "Demirleme yerinizi veya limanınızı seçin ve tekne adı, rengi ve bayrağını girin."
+        },
+        {
+          "number": "03",
+          "title": "Seçin & Planlayın",
+          "description": "Taze yerel ürünlere göz atın ve sabah (9–11) veya akşam (17–19) teslimatını seçin."
+        },
+        {
+          "number": "04",
+          "title": "Teknede Rahatlayın",
+          "description": "Yunuslarımız her şeyi taze teslim eder, demirde bile."
+        }
       ]
     },
     "delivery": {
@@ -106,11 +178,49 @@
     "categories": {
       "title": "Ne Teslim Ediyoruz",
       "groups": [
-        { "name": "Taze & Yerel", "items": ["Taze Meyve & Sebze", "Taze Et & Balık", "Meze & Atıştırmalıklar", "Fırın", "En İyi Yerel Ürünler"] },
-        { "name": "Günlük Temel İhtiyaçlar", "items": ["Kahvaltı & Sürme", "Süt Ürünleri, Peynir & Alternatifler", "Konserve & Salamura", "Çeşniler, Yağlar & Soslar", "Dondurulmuş Gıdalar"] },
-        { "name": "Ev & Hijyen", "items": ["Hijyen & Güzellik", "Ev & Temizlik"] },
-        { "name": "İçecekler", "items": ["Şarap & Bira", "Alkollü İçkiler", "Meşrubat", "Su"] },
-        { "name": "Buz", "items": ["Buz Küpleri", "Buz Bloku"] }
+        {
+          "name": "Taze & Yerel",
+          "items": [
+            "Taze Meyve & Sebze",
+            "Taze Et & Balık",
+            "Meze & Atıştırmalıklar",
+            "Fırın",
+            "En İyi Yerel Ürünler"
+          ]
+        },
+        {
+          "name": "Günlük Temel İhtiyaçlar",
+          "items": [
+            "Kahvaltı & Sürme",
+            "Süt Ürünleri, Peynir & Alternatifler",
+            "Konserve & Salamura",
+            "Çeşniler, Yağlar & Soslar",
+            "Dondurulmuş Gıdalar"
+          ]
+        },
+        {
+          "name": "Ev & Hijyen",
+          "items": [
+            "Hijyen & Güzellik",
+            "Ev & Temizlik"
+          ]
+        },
+        {
+          "name": "İçecekler",
+          "items": [
+            "Şarap & Bira",
+            "Alkollü İçkiler",
+            "Meşrubat",
+            "Su"
+          ]
+        },
+        {
+          "name": "Buz",
+          "items": [
+            "Buz Küpleri",
+            "Buz Bloku"
+          ]
+        }
       ]
     },
     "map": {
@@ -122,26 +232,114 @@
     }
   },
   "partners": {
-    "hero": { "title": "Yerel Ortaklarımız", "subtitle": "Hizmetimizi mümkün kılan en iyi yerel tedarikçiler" },
+    "hero": {
+      "title": "Yerel Ortaklarımız",
+      "subtitle": "Hizmetimizi mümkün kılan en iyi yerel tedarikçiler"
+    },
     "readMore": "Hikayemizi okuyun",
     "readLess": "Daha az göster",
     "comingSoon": "Ortak profili yakında"
   },
   "collaborate": {
-    "hero": { "title": "Bizimle İşbirliği Yapın", "subtitle": "Orange Dolphins ağına katılın ve birlikte büyüyün" },
-    "tabs": {
-      "charter": { "label": "Kiralık Şirketler & Kaptan", "title": "Kiralık Şirketler & Kaptanlar İçin", "bullets": ["Daha Fazla Müşteri Çekin", "Sorunsuz Entegrasyon", "Özel Teklifler", "Yerel Ekonomiyi Destekleyin"] },
-      "marina": { "label": "Tersaneler & Marinalar", "title": "Tersaneler & Marinalar İçin", "bullets": ["Hizmetlerinizi Geliştirin", "Daha Fazla Müşteri Çekin", "İşbirlikçi Pazarlama"] },
-      "business": { "label": "Yerel İşletmeler", "title": "Yerel İşletmeler İçin", "bullets": ["Satış Artışı", "Daha Fazla Görünürlük", "Topluluk Desteği", "Kolay Kayıt"] },
-      "rider": { "label": "Yunus Ol", "title": "Ekibimize Katılın", "bullets": ["Cazip İş Fırsatı", "Rekabetçi Kazanç", "Topluluğunuzu Destekleyin", "Canlı Bir Ekibin Parçası Olun"] }
+    "hero": {
+      "title": "Bizimle İşbirliği Yapın",
+      "subtitle": "Orange Dolphins ağına katılın ve birlikte büyüyün"
     },
-    "form": { "title": "İletişime Geçin", "subtitle": "Kendinizden ve nasıl işbirliği yapmak istediğinizden bahsedin", "name": "Ad Soyad", "email": "E-posta Adresi", "organization": "Kuruluş / Şirket", "category": "Ben bir...", "categoryOptions": { "charter": "Kiralık Şirket / Kaptan", "marina": "Tersane / Marina", "business": "Yerel İşletme", "rider": "Aday Sürücü", "other": "Diğer" }, "message": "Mesajınız", "submit": "Gönder", "success": "Teşekkürler! Yakında iletişime geçeceğiz.", "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin." }
+    "tabs": {
+      "charter": {
+        "label": "Kiralık Şirketler & Kaptan",
+        "title": "Kiralık Şirketler & Kaptanlar İçin",
+        "bullets": [
+          "Daha Fazla Müşteri Çekin",
+          "Sorunsuz Entegrasyon",
+          "Özel Teklifler",
+          "Yerel Ekonomiyi Destekleyin"
+        ]
+      },
+      "marina": {
+        "label": "Tersaneler & Marinalar",
+        "title": "Tersaneler & Marinalar İçin",
+        "bullets": [
+          "Hizmetlerinizi Geliştirin",
+          "Daha Fazla Müşteri Çekin",
+          "İşbirlikçi Pazarlama"
+        ]
+      },
+      "business": {
+        "label": "Yerel İşletmeler",
+        "title": "Yerel İşletmeler İçin",
+        "bullets": [
+          "Satış Artışı",
+          "Daha Fazla Görünürlük",
+          "Topluluk Desteği",
+          "Kolay Kayıt"
+        ]
+      },
+      "rider": {
+        "label": "Yunus Ol",
+        "title": "Ekibimize Katılın",
+        "bullets": [
+          "Cazip İş Fırsatı",
+          "Rekabetçi Kazanç",
+          "Topluluğunuzu Destekleyin",
+          "Canlı Bir Ekibin Parçası Olun"
+        ]
+      }
+    },
+    "form": {
+      "title": "İletişime Geçin",
+      "subtitle": "Kendinizden ve nasıl işbirliği yapmak istediğinizden bahsedin",
+      "name": "Ad Soyad",
+      "email": "E-posta Adresi",
+      "organization": "Kuruluş / Şirket",
+      "category": "Ben bir...",
+      "categoryOptions": {
+        "charter": "Kiralık Şirket / Kaptan",
+        "marina": "Tersane / Marina",
+        "business": "Yerel İşletme",
+        "rider": "Aday Sürücü",
+        "other": "Diğer"
+      },
+      "message": "Mesajınız",
+      "submit": "Gönder",
+      "success": "Teşekkürler! Yakında iletişime geçeceğiz.",
+      "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+    }
   },
   "contact": {
-    "hero": { "title": "İletişim", "subtitle": "Sizi duymaktan mutluluk duyarız" },
-    "topics": { "title": "Konu nedir?", "feedback": "Geri Bildirim", "complaint": "Şikayet", "suggestion": "Öneri", "general": "Genel Soru" },
-    "social": { "title": "Bizi Online Bulun", "instagram": "Instagram", "facebook": "Facebook", "linkedin": "LinkedIn" },
-    "form": { "title": "Mesaj Gönderin", "name": "Ad Soyad", "email": "E-posta Adresi", "topic": "Konu", "message": "Mesajınız", "submit": "Gönder", "success": "Teşekkürler! Kısa süre içinde geri döneceğiz.", "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin." }
+    "hero": {
+      "title": "İletişim",
+      "subtitle": "Sizi duymaktan mutluluk duyarız"
+    },
+    "topics": {
+      "title": "Konu nedir?",
+      "feedback": "Geri Bildirim",
+      "complaint": "Şikayet",
+      "suggestion": "Öneri",
+      "general": "Genel Soru"
+    },
+    "social": {
+      "title": "Bizi Online Bulun",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "title": "Mesaj Gönderin",
+      "name": "Ad Soyad",
+      "email": "E-posta Adresi",
+      "topic": "Konu",
+      "message": "Mesajınız",
+      "submit": "Gönder",
+      "success": "Teşekkürler! Kısa süre içinde geri döneceğiz.",
+      "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+    }
   },
-  "footer": { "tagline": "Ege'de teknenize taze yerel erzak.", "pages": "Sayfalar", "connect": "Bağlantı", "rights": "Tüm hakları saklıdır.", "madeWith": "Leros'ta sevgiyle yapıldı" }
+  "footer": {
+    "tagline": "Ege'de teknenize taze yerel erzak.",
+    "pages": "Sayfalar",
+    "connect": "Bağlantı",
+    "rights": "Tüm hakları saklıdır.",
+    "madeWith": "Leros'ta sevgiyle yapıldı"
+  }
 }

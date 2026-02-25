@@ -22,10 +22,26 @@
       "title": "Our Vision",
       "body": "Our vision is to redefine the sailing experience by effortlessly connecting sailors with the vibrant flavors and rich culture of the Aegean. We aim to become the go-to source for fresh, local provisions, making every sailing adventure a delightful culinary journey.",
       "pillars": [
-        { "label": "Boat-first", "headline1": "We come", "headline2": "to you.", "body": "Wherever you're anchored in Leros — drop the dinghy, we'll do the rest." },
-        { "label": "Fresh & local", "headline1": "Island-fresh.", "headline2": "Every time.", "body": "Sourced daily from Leros producers — farmers, bakers, fishmongers." },
-        { "label": "Two slots daily", "headline1": "Morning", "headline2": "or evening.", "body": "9:00–11:00 or 17:00–19:00. Pick what fits your sailing day." }
-      ]
+        {
+          "label": "Boat-first",
+          "headline1": "We come",
+          "headline2": "to you.",
+          "body": "Wherever you're anchored in Leros — drop the dinghy, we'll do the rest."
+        },
+        {
+          "label": "Fresh & local",
+          "headline1": "Island-fresh.",
+          "headline2": "Every time.",
+          "body": "Sourced daily from Leros producers — farmers, bakers, fishmongers."
+        },
+        {
+          "label": "Two slots daily",
+          "headline1": "Morning",
+          "headline2": "or evening.",
+          "body": "9:00–11:00 or 17:00–19:00. Pick what fits your sailing day."
+        }
+      ],
+      "headline": "Connecting sailors to island flavors."
     },
     "mission": {
       "title": "Our Mission",
@@ -38,10 +54,26 @@
       "subtitle": "Getting fresh provisions to your boat has never been easier",
       "stepLabel": "Step",
       "steps": [
-        { "number": "01", "title": "Order Online", "description": "Use your phone or laptop to browse and order" },
-        { "number": "02", "title": "Choose Your Location", "description": "Select your anchorage or port" },
-        { "number": "03", "title": "Pick & Schedule", "description": "Choose what you need and a delivery time" },
-        { "number": "04", "title": "Relax on Board", "description": "We deliver fresh to your boat, even at anchor" }
+        {
+          "number": "01",
+          "title": "Order Online",
+          "description": "Use your phone or laptop to browse and order"
+        },
+        {
+          "number": "02",
+          "title": "Choose Your Location",
+          "description": "Select your anchorage or port"
+        },
+        {
+          "number": "03",
+          "title": "Pick & Schedule",
+          "description": "Choose what you need and a delivery time"
+        },
+        {
+          "number": "04",
+          "title": "Relax on Board",
+          "description": "We deliver fresh to your boat, even at anchor"
+        }
       ],
       "learnMore": "See full details"
     },
@@ -50,12 +82,30 @@
       "subtitle": "Everything you need for life on the water",
       "fullCatalogue": "Full Catalogue",
       "items": [
-        { "name": "Fresh & Local", "description": "Fruit, vegetables, meat, fish and more" },
-        { "name": "Daily Essentials", "description": "Dairy, breakfast, canned goods and condiments" },
-        { "name": "Beverages", "description": "Wine, beer, spirits, soft drinks and water" },
-        { "name": "Household & Hygiene", "description": "Cleaning, hygiene and beauty products" },
-        { "name": "Bakery", "description": "Fresh bread and pastries from local bakers" },
-        { "name": "Ice", "description": "Ice cubes and ice blocks" }
+        {
+          "name": "Fresh & Local",
+          "description": "Fruit, vegetables, meat, fish and more"
+        },
+        {
+          "name": "Daily Essentials",
+          "description": "Dairy, breakfast, canned goods and condiments"
+        },
+        {
+          "name": "Beverages",
+          "description": "Wine, beer, spirits, soft drinks and water"
+        },
+        {
+          "name": "Household & Hygiene",
+          "description": "Cleaning, hygiene and beauty products"
+        },
+        {
+          "name": "Bakery",
+          "description": "Fresh bread and pastries from local bakers"
+        },
+        {
+          "name": "Ice",
+          "description": "Ice cubes and ice blocks"
+        }
       ]
     },
     "cta": {
@@ -99,10 +149,26 @@
       "subtitle": "4 easy steps to fresh provisions",
       "stepLabel": "Step",
       "items": [
-        { "number": "01", "title": "Order Online", "description": "Order easily on your phone or laptop — wherever you are." },
-        { "number": "02", "title": "Your Boat & Location", "description": "Select your anchorage or port, then enter your boat name, colour and flag so we can find you." },
-        { "number": "03", "title": "Pick & Schedule", "description": "Browse our fresh local products and choose morning (9–11) or evening (17–19) delivery." },
-        { "number": "04", "title": "Relax on Board", "description": "Our dolphins deliver everything fresh, even to your anchorage." }
+        {
+          "number": "01",
+          "title": "Order Online",
+          "description": "Order easily on your phone or laptop — wherever you are."
+        },
+        {
+          "number": "02",
+          "title": "Your Boat & Location",
+          "description": "Select your anchorage or port, then enter your boat name, colour and flag so we can find you."
+        },
+        {
+          "number": "03",
+          "title": "Pick & Schedule",
+          "description": "Browse our fresh local products and choose morning (9–11) or evening (17–19) delivery."
+        },
+        {
+          "number": "04",
+          "title": "Relax on Board",
+          "description": "Our dolphins deliver everything fresh, even to your anchorage."
+        }
       ]
     },
     "delivery": {
@@ -114,23 +180,46 @@
       "groups": [
         {
           "name": "Fresh & Local",
-          "items": ["Fresh Fruit & Vegetables", "Fresh Meat & Fish", "Meze & Snacks", "Bakery", "Best of Local"]
+          "items": [
+            "Fresh Fruit & Vegetables",
+            "Fresh Meat & Fish",
+            "Meze & Snacks",
+            "Bakery",
+            "Best of Local"
+          ]
         },
         {
           "name": "Daily Essentials",
-          "items": ["Breakfast & Spreads", "Dairy, Cheese & Alternatives", "Canned & Preserved Food", "Condiments, Oils & Sauces", "Frozen Foods"]
+          "items": [
+            "Breakfast & Spreads",
+            "Dairy, Cheese & Alternatives",
+            "Canned & Preserved Food",
+            "Condiments, Oils & Sauces",
+            "Frozen Foods"
+          ]
         },
         {
           "name": "Household & Hygiene",
-          "items": ["Hygiene & Beauty", "Household & Cleaning"]
+          "items": [
+            "Hygiene & Beauty",
+            "Household & Cleaning"
+          ]
         },
         {
           "name": "Beverages",
-          "items": ["Wine & Beer", "Spirits", "Soft Drinks", "Water"]
+          "items": [
+            "Wine & Beer",
+            "Spirits",
+            "Soft Drinks",
+            "Water"
+          ]
         },
         {
           "name": "Ice",
-          "items": ["Ice Cubes", "Ice Block"]
+          "items": [
+            "Ice Cubes",
+            "Ice Block"
+          ]
         }
       ]
     },

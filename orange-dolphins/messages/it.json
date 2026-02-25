@@ -22,10 +22,26 @@
       "title": "La Nostra Visione",
       "body": "La nostra visione è ridefinire l'esperienza della vela connettendo senza sforzo i marinai con i vivaci sapori e la ricca cultura dell'Egeo.",
       "pillars": [
-        { "label": "Prima la Barca", "headline1": "Veniamo", "headline2": "da te.", "body": "Ovunque tu sia ancorato a Leros — cala il tender, pensiamo noi al resto." },
-        { "label": "Fresco & Locale", "headline1": "Fresco d'isola.", "headline2": "Ogni volta.", "body": "Ogni giorno dai produttori di Leros — agricoltori, panettieri, pescatori." },
-        { "label": "Due Consegne al Giorno", "headline1": "Mattina", "headline2": "o sera.", "body": "9:00–11:00 o 17:00–19:00. Scegli quello che si adatta alla tua giornata di vela." }
-      ]
+        {
+          "label": "Prima la Barca",
+          "headline1": "Veniamo",
+          "headline2": "da te.",
+          "body": "Ovunque tu sia ancorato a Leros — cala il tender, pensiamo noi al resto."
+        },
+        {
+          "label": "Fresco & Locale",
+          "headline1": "Fresco d'isola.",
+          "headline2": "Ogni volta.",
+          "body": "Ogni giorno dai produttori di Leros — agricoltori, panettieri, pescatori."
+        },
+        {
+          "label": "Due Consegne al Giorno",
+          "headline1": "Mattina",
+          "headline2": "o sera.",
+          "body": "9:00–11:00 o 17:00–19:00. Scegli quello che si adatta alla tua giornata di vela."
+        }
+      ],
+      "headline": "Connettere i marinai ai sapori dell'isola."
     },
     "mission": {
       "title": "La Nostra Missione",
@@ -38,10 +54,26 @@
       "subtitle": "Rifornire la tua barca non è mai stato così facile",
       "stepLabel": "Passo",
       "steps": [
-        { "number": "01", "title": "Ordina Online", "description": "Usa il tuo telefono o laptop per sfogliare e ordinare" },
-        { "number": "02", "title": "Scegli la Posizione", "description": "Seleziona il tuo ancoraggio o porto" },
-        { "number": "03", "title": "Scegli & Programma", "description": "Scegli cosa ti serve e un orario di consegna" },
-        { "number": "04", "title": "Rilassati a Bordo", "description": "Consegniamo fresco alla tua barca, anche all'ancora" }
+        {
+          "number": "01",
+          "title": "Ordina Online",
+          "description": "Usa il tuo telefono o laptop per sfogliare e ordinare"
+        },
+        {
+          "number": "02",
+          "title": "Scegli la Posizione",
+          "description": "Seleziona il tuo ancoraggio o porto"
+        },
+        {
+          "number": "03",
+          "title": "Scegli & Programma",
+          "description": "Scegli cosa ti serve e un orario di consegna"
+        },
+        {
+          "number": "04",
+          "title": "Rilassati a Bordo",
+          "description": "Consegniamo fresco alla tua barca, anche all'ancora"
+        }
       ],
       "learnMore": "Vedi tutti i dettagli"
     },
@@ -50,12 +82,30 @@
       "subtitle": "Tutto il necessario per la vita in mare",
       "fullCatalogue": "Catalogo Completo",
       "items": [
-        { "name": "Fresco & Locale", "description": "Frutta, verdura, carne, pesce e altro" },
-        { "name": "Essenziali Quotidiani", "description": "Latticini, colazione, conserve e condimenti" },
-        { "name": "Bevande", "description": "Vino, birra, alcolici, bibite e acqua" },
-        { "name": "Casa & Igiene", "description": "Prodotti per la pulizia, igiene e bellezza" },
-        { "name": "Panetteria", "description": "Pane fresco e dolci da fornai locali" },
-        { "name": "Ghiaccio", "description": "Cubetti di ghiaccio e blocchi di ghiaccio" }
+        {
+          "name": "Fresco & Locale",
+          "description": "Frutta, verdura, carne, pesce e altro"
+        },
+        {
+          "name": "Essenziali Quotidiani",
+          "description": "Latticini, colazione, conserve e condimenti"
+        },
+        {
+          "name": "Bevande",
+          "description": "Vino, birra, alcolici, bibite e acqua"
+        },
+        {
+          "name": "Casa & Igiene",
+          "description": "Prodotti per la pulizia, igiene e bellezza"
+        },
+        {
+          "name": "Panetteria",
+          "description": "Pane fresco e dolci da fornai locali"
+        },
+        {
+          "name": "Ghiaccio",
+          "description": "Cubetti di ghiaccio e blocchi di ghiaccio"
+        }
       ]
     },
     "cta": {
@@ -67,7 +117,10 @@
     }
   },
   "about": {
-    "hero": { "title": "Chi Siamo", "subtitle": "Due velisti in missione per rendere il rifornimento senza sforzo" },
+    "hero": {
+      "title": "Chi Siamo",
+      "subtitle": "Due velisti in missione per rendere il rifornimento senza sforzo"
+    },
     "bio": {
       "title": "Ciao! Siamo Inna e Sigi",
       "short": "Siamo due velisti appassionati che navigano le onde da quando avevamo 15 anni. Pur amando la vela, il rifornimento della barca è sempre stato un problema! Così è nata Orange Dolphins!",
@@ -87,16 +140,35 @@
     }
   },
   "offer": {
-    "hero": { "title": "La Nostra Offerta", "subtitle": "Ordine semplice, prodotti locali freschi, consegnati direttamente alla tua barca" },
+    "hero": {
+      "title": "La Nostra Offerta",
+      "subtitle": "Ordine semplice, prodotti locali freschi, consegnati direttamente alla tua barca"
+    },
     "steps": {
       "title": "Come Funziona",
       "subtitle": "4 semplici passi per rifornimenti freschi",
       "stepLabel": "Passo",
       "items": [
-        { "number": "01", "title": "Ordina Online", "description": "Ordina facilmente dal tuo telefono o laptop." },
-        { "number": "02", "title": "La Tua Barca & Posizione", "description": "Seleziona l'ancoraggio o il porto e inserisci nome, colore e bandiera della tua barca." },
-        { "number": "03", "title": "Scegli & Pianifica", "description": "Sfoglia i prodotti freschi locali e scegli la consegna mattutina (9–11) o serale (17–19)." },
-        { "number": "04", "title": "Rilassati a Bordo", "description": "I nostri delfini consegnano tutto fresco, anche all'ancora." }
+        {
+          "number": "01",
+          "title": "Ordina Online",
+          "description": "Ordina facilmente dal tuo telefono o laptop."
+        },
+        {
+          "number": "02",
+          "title": "La Tua Barca & Posizione",
+          "description": "Seleziona l'ancoraggio o il porto e inserisci nome, colore e bandiera della tua barca."
+        },
+        {
+          "number": "03",
+          "title": "Scegli & Pianifica",
+          "description": "Sfoglia i prodotti freschi locali e scegli la consegna mattutina (9–11) o serale (17–19)."
+        },
+        {
+          "number": "04",
+          "title": "Rilassati a Bordo",
+          "description": "I nostri delfini consegnano tutto fresco, anche all'ancora."
+        }
       ]
     },
     "delivery": {
@@ -106,11 +178,49 @@
     "categories": {
       "title": "Cosa Consegniamo",
       "groups": [
-        { "name": "Fresco & Locale", "items": ["Frutta & Verdura Fresca", "Carne & Pesce Fresco", "Meze & Snack", "Panetteria", "Il Meglio del Locale"] },
-        { "name": "Essenziali Quotidiani", "items": ["Colazione & Creme", "Latticini, Formaggi & Alternative", "Conserve & Sottaceti", "Condimenti, Oli & Salse", "Surgelati"] },
-        { "name": "Casa & Igiene", "items": ["Igiene & Bellezza", "Casa & Pulizia"] },
-        { "name": "Bevande", "items": ["Vino & Birra", "Superalcolici", "Bibite", "Acqua"] },
-        { "name": "Ghiaccio", "items": ["Cubetti di Ghiaccio", "Blocco di Ghiaccio"] }
+        {
+          "name": "Fresco & Locale",
+          "items": [
+            "Frutta & Verdura Fresca",
+            "Carne & Pesce Fresco",
+            "Meze & Snack",
+            "Panetteria",
+            "Il Meglio del Locale"
+          ]
+        },
+        {
+          "name": "Essenziali Quotidiani",
+          "items": [
+            "Colazione & Creme",
+            "Latticini, Formaggi & Alternative",
+            "Conserve & Sottaceti",
+            "Condimenti, Oli & Salse",
+            "Surgelati"
+          ]
+        },
+        {
+          "name": "Casa & Igiene",
+          "items": [
+            "Igiene & Bellezza",
+            "Casa & Pulizia"
+          ]
+        },
+        {
+          "name": "Bevande",
+          "items": [
+            "Vino & Birra",
+            "Superalcolici",
+            "Bibite",
+            "Acqua"
+          ]
+        },
+        {
+          "name": "Ghiaccio",
+          "items": [
+            "Cubetti di Ghiaccio",
+            "Blocco di Ghiaccio"
+          ]
+        }
       ]
     },
     "map": {
@@ -122,26 +232,114 @@
     }
   },
   "partners": {
-    "hero": { "title": "I Nostri Partner Locali", "subtitle": "I migliori fornitori locali che rendono possibile il nostro servizio" },
+    "hero": {
+      "title": "I Nostri Partner Locali",
+      "subtitle": "I migliori fornitori locali che rendono possibile il nostro servizio"
+    },
     "readMore": "Leggi la nostra storia",
     "readLess": "Mostra meno",
     "comingSoon": "Profilo partner in arrivo"
   },
   "collaborate": {
-    "hero": { "title": "Collabora Con Noi", "subtitle": "Unisciti alla rete Orange Dolphins e cresci insieme a noi" },
-    "tabs": {
-      "charter": { "label": "Charter & Skipper", "title": "Per Compagnie Charter & Skipper", "bullets": ["Attrai Più Clienti", "Integrazione Senza Sforzo", "Offerte Esclusive", "Supporta l'Economia Locale"] },
-      "marina": { "label": "Cantieri & Marine", "title": "Per Cantieri Navali & Marine", "bullets": ["Migliora i Tuoi Servizi", "Attrai Più Clienti", "Marketing Collaborativo"] },
-      "business": { "label": "Imprese Locali", "title": "Per le Imprese Locali", "bullets": ["Crescita delle Vendite", "Maggiore Visibilità", "Supporto alla Comunità", "Onboarding Facile"] },
-      "rider": { "label": "Diventa un Delfino", "title": "Unisciti al Nostro Team", "bullets": ["Opportunità di Lavoro Attraente", "Guadagni Competitivi", "Sostieni la Tua Comunità", "Fai Parte di un Team Vivace"] }
+    "hero": {
+      "title": "Collabora Con Noi",
+      "subtitle": "Unisciti alla rete Orange Dolphins e cresci insieme a noi"
     },
-    "form": { "title": "Mettiti in Contatto", "subtitle": "Parlaci di te e di come vorresti collaborare", "name": "Nome Completo", "email": "Indirizzo Email", "organization": "Organizzazione / Azienda", "category": "Sono...", "categoryOptions": { "charter": "Compagnia Charter / Skipper", "marina": "Cantiere / Marina", "business": "Impresa Locale", "rider": "Potenziale Rider", "other": "Altro" }, "message": "Il Tuo Messaggio", "submit": "Invia Messaggio", "success": "Grazie! Ti contatteremo presto.", "error": "Qualcosa è andato storto. Riprova." }
+    "tabs": {
+      "charter": {
+        "label": "Charter & Skipper",
+        "title": "Per Compagnie Charter & Skipper",
+        "bullets": [
+          "Attrai Più Clienti",
+          "Integrazione Senza Sforzo",
+          "Offerte Esclusive",
+          "Supporta l'Economia Locale"
+        ]
+      },
+      "marina": {
+        "label": "Cantieri & Marine",
+        "title": "Per Cantieri Navali & Marine",
+        "bullets": [
+          "Migliora i Tuoi Servizi",
+          "Attrai Più Clienti",
+          "Marketing Collaborativo"
+        ]
+      },
+      "business": {
+        "label": "Imprese Locali",
+        "title": "Per le Imprese Locali",
+        "bullets": [
+          "Crescita delle Vendite",
+          "Maggiore Visibilità",
+          "Supporto alla Comunità",
+          "Onboarding Facile"
+        ]
+      },
+      "rider": {
+        "label": "Diventa un Delfino",
+        "title": "Unisciti al Nostro Team",
+        "bullets": [
+          "Opportunità di Lavoro Attraente",
+          "Guadagni Competitivi",
+          "Sostieni la Tua Comunità",
+          "Fai Parte di un Team Vivace"
+        ]
+      }
+    },
+    "form": {
+      "title": "Mettiti in Contatto",
+      "subtitle": "Parlaci di te e di come vorresti collaborare",
+      "name": "Nome Completo",
+      "email": "Indirizzo Email",
+      "organization": "Organizzazione / Azienda",
+      "category": "Sono...",
+      "categoryOptions": {
+        "charter": "Compagnia Charter / Skipper",
+        "marina": "Cantiere / Marina",
+        "business": "Impresa Locale",
+        "rider": "Potenziale Rider",
+        "other": "Altro"
+      },
+      "message": "Il Tuo Messaggio",
+      "submit": "Invia Messaggio",
+      "success": "Grazie! Ti contatteremo presto.",
+      "error": "Qualcosa è andato storto. Riprova."
+    }
   },
   "contact": {
-    "hero": { "title": "Contatti", "subtitle": "Siamo felici di sentirti" },
-    "topics": { "title": "Di cosa si tratta?", "feedback": "Feedback", "complaint": "Reclamo", "suggestion": "Suggerimento", "general": "Richiesta Generale" },
-    "social": { "title": "Trovaci Online", "instagram": "Instagram", "facebook": "Facebook", "linkedin": "LinkedIn" },
-    "form": { "title": "Inviaci un Messaggio", "name": "Nome Completo", "email": "Indirizzo Email", "topic": "Argomento", "message": "Il Tuo Messaggio", "submit": "Invia Messaggio", "success": "Grazie! Ti risponderemo presto.", "error": "Qualcosa è andato storto. Riprova." }
+    "hero": {
+      "title": "Contatti",
+      "subtitle": "Siamo felici di sentirti"
+    },
+    "topics": {
+      "title": "Di cosa si tratta?",
+      "feedback": "Feedback",
+      "complaint": "Reclamo",
+      "suggestion": "Suggerimento",
+      "general": "Richiesta Generale"
+    },
+    "social": {
+      "title": "Trovaci Online",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "title": "Inviaci un Messaggio",
+      "name": "Nome Completo",
+      "email": "Indirizzo Email",
+      "topic": "Argomento",
+      "message": "Il Tuo Messaggio",
+      "submit": "Invia Messaggio",
+      "success": "Grazie! Ti risponderemo presto.",
+      "error": "Qualcosa è andato storto. Riprova."
+    }
   },
-  "footer": { "tagline": "Rifornimenti locali freschi consegnati alla tua barca nell'Egeo.", "pages": "Pagine", "connect": "Connettiti", "rights": "Tutti i diritti riservati.", "madeWith": "Fatto con amore a Leros" }
+  "footer": {
+    "tagline": "Rifornimenti locali freschi consegnati alla tua barca nell'Egeo.",
+    "pages": "Pagine",
+    "connect": "Connettiti",
+    "rights": "Tutti i diritti riservati.",
+    "madeWith": "Fatto con amore a Leros"
+  }
 }
