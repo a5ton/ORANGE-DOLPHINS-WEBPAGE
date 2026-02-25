@@ -5,72 +5,40 @@ import { cn } from "@/lib/utils";
 
 interface ScrollHijackProps {
   slides: React.ReactNode[];
-  /**
-   * How many viewport heights of scroll track each slide gets (default 100).
-   * Higher = more breathing room inside a slide before it advances.
-   */
-  speedPerSlide?: number;
-  /**
-   * Tailwind class(es) applied to the sticky viewport-pinned panel.
-   * Use this to match the parent section's background so the panel fully
-   * covers the page behind it during the sticky-release handoff — preventing
-   * the next section from bleeding through (e.g. "bg-grey-100").
-   */
   panelClassName?: string;
 }
 
 /**
- * Scroll-hijack with discrete slide snapping.
+ * ScrollHijack — sticky parallax slide section.
  *
  * Architecture:
- *  - A tall scroll track (n × speedPerSlide vh) keeps the sticky panel pinned.
- *  - rawProgress maps the STICKY phase (top: 0 → -(height−vh)) to 0→1.
- *    It starts from zero when the section is fully pinned at the top of the
- *    viewport — NOT from when it first enters from below.  This gives the
- *    first slide a full slide-zone of buffer before it transitions, preventing
- *    accidental jumps when the user scrolls into the section.
- *  - targetIdx = Math.floor(rawProgress × n) — switches once per "slide zone".
- *  - When targetIdx changes, a CSS transition (400 ms, spring ease) animates
- *    the outgoing slide out and the incoming slide in.
- *  - Transitions are never blocked mid-animation — interrupting one simply
- *    starts the next from the current visual state, which feels natural on
- *    fast scroll (similar to drag-and-release behaviour).
- *
- * Because the trigger is integer-based (not fractional), the user is always
- * looking at either a fully-visible slide or a short cross-fade between two
- * fully-visible slides — exactly the behaviour of the reference sites.
+ * - A tall scroll track (n × 100vh) keeps the sticky panel pinned.
+ * - Slides advance ONE AT A TIME, gated by a cooldown after each transition.
+ *   This means fast scrolling still steps through every slide in order —
+ *   you can never jump from slide 0 to slide 3 by scrolling fast.
+ * - The page scroll position is kept in sync with the current slide index
+ *   so the section exits cleanly when the last slide is done.
+ * - Wheel, touch, and keyboard are all handled.
  */
-export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: ScrollHijackProps) {
+export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const n = slides.length;
 
   useEffect(() => {
-    const DURATION = 400; // ms — must match the CSS transition values below
+    const DURATION = 500;       // slide transition duration (ms)
+    const COOLDOWN = 700;       // ms to lock after a transition — prevents skipping
+    const WHEEL_THRESHOLD = 30; // min accumulated wheel delta to trigger advance
 
-    let currentIdx = -1; // -1 forces the first applySlide to run
-    let animating = false;
-    let animTimer = 0;
-    let rafId = 0;
+    let currentIdx = 0;
+    let locked = false;
+    let wheelAccum = 0;
+    let wheelResetTimer = 0;
+    let touchStartY = 0;
 
-    // Hysteresis: fraction of a slide zone the user must cross past a boundary
-    // before the slide commits. Prevents back-and-forth jitter at thresholds.
-    const HYSTERESIS = 0.08; // 8% of a slide zone (~80px at speedPerSlide=100)
-
-    /**
-     * Drive all slide + dot elements to show `idx` as the active slide.
-     * Pass `instant = true` on mount to set the initial state with no animation.
-     */
+    // ── Apply a slide ──────────────────────────────────────────────────────
     const applySlide = (idx: number, instant = false) => {
-      if (idx === currentIdx) return;
-      // Transitions are never blocked — interrupting one starts the next from
-      // the current visual state, which feels natural on fast scroll.
-
-      clearTimeout(animTimer);
-      currentIdx = idx;
-      animating = !instant;
-
       const transition = instant
         ? "none"
         : `opacity ${DURATION}ms cubic-bezier(0.16,1,0.3,1), transform ${DURATION}ms cubic-bezier(0.16,1,0.3,1)`;
@@ -78,23 +46,19 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
       slideRefs.current.forEach((el, i) => {
         if (!el) return;
         el.style.transition = transition;
-
         if (i === idx) {
-          // Active slide: fully visible, centred
           el.style.opacity = "1";
           el.style.transform = "translateY(0px) scale(1)";
           el.style.pointerEvents = "auto";
           el.setAttribute("aria-hidden", "false");
         } else if (i < idx) {
-          // Past slide: ghosted above
           el.style.opacity = "0";
           el.style.transform = "translateY(-40px) scale(0.96)";
           el.style.pointerEvents = "none";
           el.setAttribute("aria-hidden", "true");
         } else {
-          // Future slide: waiting below
           el.style.opacity = "0";
-          el.style.transform = "translateY(50px) scale(1)";
+          el.style.transform = "translateY(40px) scale(1)";
           el.style.pointerEvents = "none";
           el.setAttribute("aria-hidden", "true");
         }
@@ -102,83 +66,118 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
 
       dotRefs.current.forEach((dot, i) => {
         if (!dot) return;
-        dot.style.transition = instant
-          ? "none"
-          : "width 0.4s ease, background-color 0.4s ease";
+        dot.style.transition = instant ? "none" : "width 0.4s ease, background-color 0.4s ease";
         dot.style.width = i === idx ? "24px" : "6px";
-        dot.style.backgroundColor =
-          i === idx ? "#f97316" : "rgba(156, 163, 175, 0.4)";
+        dot.style.backgroundColor = i === idx ? "#f97316" : "rgba(255,255,255,0.35)";
       });
+    };
 
-      if (animating) {
-        animTimer = window.setTimeout(() => {
-          animating = false;
-        }, DURATION + 80);
+    // ── Check if section is currently pinned/visible ───────────────────────
+    const isSectionActive = (): boolean => {
+      const track = trackRef.current;
+      if (!track) return false;
+      const rect = track.getBoundingClientRect();
+      // Active when the sticky panel is fully covering the viewport
+      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1;
+    };
+
+    // ── Advance by one slide in direction (+1 / -1) ────────────────────────
+    const tryAdvance = (dir: number): boolean => {
+      if (locked) return false;
+      if (!isSectionActive()) return false;
+
+      const next = currentIdx + dir;
+
+      // At the boundaries — let page scroll continue naturally
+      if (next < 0 || next >= n) return false;
+
+      currentIdx = next;
+      applySlide(currentIdx);
+
+      // Snap page scroll to match the slide so the section exits correctly
+      const track = trackRef.current;
+      if (track) {
+        const targetScroll = track.offsetTop + currentIdx * window.innerHeight;
+        window.scrollTo({ top: targetScroll, behavior: "instant" });
+      }
+
+      locked = true;
+      setTimeout(() => { locked = false; }, COOLDOWN);
+      return true;
+    };
+
+    // ── Wheel ──────────────────────────────────────────────────────────────
+    const onWheel = (e: WheelEvent) => {
+      if (!isSectionActive()) return;
+
+      wheelAccum += e.deltaY;
+      clearTimeout(wheelResetTimer);
+      wheelResetTimer = window.setTimeout(() => { wheelAccum = 0; }, 150);
+
+      if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
+
+      const dir = wheelAccum > 0 ? 1 : -1;
+      wheelAccum = 0;
+
+      // At boundary — don't intercept, let page scroll
+      if ((dir === 1 && currentIdx >= n - 1) || (dir === -1 && currentIdx <= 0)) return;
+
+      e.preventDefault();
+      tryAdvance(dir);
+    };
+
+    // ── Touch ──────────────────────────────────────────────────────────────
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (!isSectionActive()) return;
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) < 40) return;
+      const dir = diff > 0 ? 1 : -1;
+      if ((dir === 1 && currentIdx >= n - 1) || (dir === -1 && currentIdx <= 0)) return;
+      e.preventDefault();
+      tryAdvance(dir);
+    };
+
+    // ── Keyboard ───────────────────────────────────────────────────────────
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "PageDown") {
+        if (tryAdvance(1)) e.preventDefault();
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        if (tryAdvance(-1)) e.preventDefault();
       }
     };
 
-    // Set slide 0 immediately with no transition
+    // Init
     applySlide(0, true);
 
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const track = trackRef.current;
-        if (!track) return;
-
-        const { top, height } = track.getBoundingClientRect();
-        const vh = window.innerHeight;
-
-        // Outside our section entirely — nothing to do
-        if (top > vh || -top > height) return;
-
-        // rawProgress: 0 when section is pinned at top (rect.top = 0),
-        // 1 when the track is fully scrolled through.
-        // Starting from the PINNED state (not from when the section enters
-        // from below) gives slide 0 a full zone of buffer — the user must
-        // scroll an entire slide-zone past the snap point before slide 1 shows.
-        const stickyRange = Math.max(1, height - vh);
-        const rawProgress = Math.max(0, Math.min(1, -top / stickyRange));
-
-        // Integer slide index with hysteresis — prevents jitter at boundaries.
-        // To advance to the next slide, rawProgress must cross the boundary by
-        // HYSTERESIS. To retreat, it must fall back by HYSTERESIS the other way.
-        const slotSize = 1 / n;
-        const rawIdx = rawProgress / slotSize; // e.g. 1.03 means 3% into slot 1
-        let targetIdx = currentIdx < 0 ? Math.floor(rawIdx) : currentIdx;
-        if (rawIdx > targetIdx + 1 - HYSTERESIS) {
-          // Scrolled far enough forward — advance
-          targetIdx = Math.min(n - 1, targetIdx + 1);
-        } else if (rawIdx < targetIdx - (1 - HYSTERESIS)) {
-          // Scrolled far enough back — retreat
-          targetIdx = Math.max(0, targetIdx - 1);
-        }
-        targetIdx = Math.max(0, Math.min(n - 1, targetIdx));
-
-        applySlide(targetIdx);
-      });
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // sync immediately on mount
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: false });
+    window.addEventListener("keydown", onKey);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafId);
-      clearTimeout(animTimer);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("keydown", onKey);
+      clearTimeout(wheelResetTimer);
     };
-  }, [n]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [n]);
 
   return (
-    <div ref={trackRef} style={{ height: `${n * speedPerSlide}vh` }} className="relative">
-      {/* Sticky viewport-pinned panel */}
+    <div
+      ref={trackRef}
+      style={{ height: `${n * 100}vh` }}
+      className="relative"
+    >
       <div className={cn("sticky top-0 h-screen overflow-hidden", panelClassName)}>
         {slides.map((slide, i) => (
           <div
             key={i}
-            ref={(el) => {
-              slideRefs.current[i] = el;
-            }}
+            ref={(el) => { slideRefs.current[i] = el; }}
             aria-hidden={i !== 0}
             style={{
               position: "absolute",
@@ -187,10 +186,8 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              // Initial state before JS runs — slide 0 visible, rest below
               opacity: i === 0 ? 1 : 0,
-              transform:
-                i === 0 ? "translateY(0px) scale(1)" : "translateY(50px) scale(1)",
+              transform: i === 0 ? "translateY(0px) scale(1)" : "translateY(40px) scale(1)",
               pointerEvents: i === 0 ? "auto" : "none",
               willChange: "transform, opacity",
             }}
@@ -199,7 +196,6 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
           </div>
         ))}
 
-        {/* Progress dots */}
         {n > 1 && (
           <div
             className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10"
@@ -208,18 +204,14 @@ export function ScrollHijack({ slides, speedPerSlide = 100, panelClassName }: Sc
             {slides.map((_, i) => (
               <span
                 key={i}
-                ref={(el) => {
-                  dotRefs.current[i] = el;
-                }}
+                ref={(el) => { dotRefs.current[i] = el; }}
                 style={{
                   display: "block",
                   borderRadius: "9999px",
                   height: "6px",
                   width: i === 0 ? "24px" : "6px",
-                  backgroundColor:
-                    i === 0 ? "#f97316" : "rgba(156, 163, 175, 0.4)",
-                  transition:
-                    "width 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.35s ease",
+                  backgroundColor: i === 0 ? "#f97316" : "rgba(255,255,255,0.35)",
+                  transition: "width 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.35s ease",
                   flexShrink: 0,
                 }}
               />
