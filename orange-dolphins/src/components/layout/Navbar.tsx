@@ -47,7 +47,7 @@ export default function Navbar() {
           "w-full transition-all duration-300",
           transparent
             ? "bg-transparent border-transparent"
-            : "bg-white/95 backdrop-blur-sm border-b border-grey-100 shadow-sm"
+            : "bg-white/70 backdrop-blur-md border-b border-grey-100/60 shadow-sm"
         )}
       >
         <div className="mx-auto max-w-7xl px-6">
@@ -116,7 +116,7 @@ export default function Navbar() {
 
         {/* Mobile drawer */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-grey-100 bg-white/98 backdrop-blur-md">
+          <div className="lg:hidden border-t border-grey-100/60 bg-white/70 backdrop-blur-md">
             <div className="mx-auto max-w-7xl px-6 py-4 space-y-0">
               {NAV_LINKS.map((link) => (
                 <Link
