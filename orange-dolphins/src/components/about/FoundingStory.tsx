@@ -17,7 +17,7 @@ export function FoundingStory() {
         >
           {t("title")}
         </h2>
-        <div className="text-lightGreen text-lg leading-relaxed space-y-4 mb-10 font-sans">
+        <div className="text-white/70 text-lg leading-relaxed space-y-4 mb-10 font-sans">
           {t("description")
             .split("\n\n")
             .map((para, i) => (
