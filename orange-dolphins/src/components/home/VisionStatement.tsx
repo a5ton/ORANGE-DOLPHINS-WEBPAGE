@@ -12,41 +12,56 @@ export function VisionStatement() {
     body: string;
   }>;
 
+  // Brand colour themes per slide: [bg, accent, heading, body, divider]
+  const themes = [
+    { bg: "bg-grey-100",   accent: "text-orange-500",  heading: "text-darkGreen",    body: "text-darkGreen/70", divider: "bg-orange-500" },
+    { bg: "bg-darkGreen",  accent: "text-orange-300",  heading: "text-white",         body: "text-white/70",     divider: "bg-orange-300" },
+    { bg: "bg-orange-500", accent: "text-white/60",    heading: "text-white",         body: "text-white/80",     divider: "bg-white/60"   },
+    { bg: "bg-blue-500",   accent: "text-orange-300",  heading: "text-white",         body: "text-white/80",     divider: "bg-orange-300" },
+  ];
+
   const slides = [
     /* ── Opening slide ── */
-    <div key="open" className="text-center px-6 max-w-4xl">
-      <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
-        {t("title")}
-      </span>
-      <h2 className="font-display font-extrabold text-darkGreen text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
-        {t("title")}
-      </h2>
-      <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
-      <p className="mt-8 text-darkGreen/70 text-lg sm:text-xl font-sans font-normal max-w-lg mx-auto leading-relaxed">
-        {t("body")}
-      </p>
+    <div key="open" className={`w-full h-full flex flex-col items-center justify-center ${themes[0].bg}`}>
+      <div className="text-center px-6 max-w-4xl">
+        <span className={`text-xs font-display font-bold tracking-[0.2em] uppercase ${themes[0].accent} mb-8 block`}>
+          {t("title")}
+        </span>
+        <h2 className={`font-display font-extrabold ${themes[0].heading} text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight`}>
+          {t("title")}
+        </h2>
+        <div className={`mt-10 w-12 h-px ${themes[0].divider} mx-auto`} />
+        <p className={`mt-8 ${themes[0].body} text-lg sm:text-xl font-sans font-normal max-w-lg mx-auto leading-relaxed`}>
+          {t("body")}
+        </p>
+      </div>
     </div>,
 
     /* ── One slide per pillar ── */
-    ...pillars.map((p) => (
-      <div key={p.label} className="text-center px-6 max-w-3xl">
-        <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
-          {p.label}
-        </span>
-        <h3 className="font-display font-extrabold text-darkGreen text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight">
-          {p.headline1}
-          <br />
-          {p.headline2}
-        </h3>
-        <div className="mt-10 w-12 h-px bg-orange-500 mx-auto" />
-        <p className="mt-8 text-darkGreen/70 text-xl font-sans font-normal">{p.body}</p>
-      </div>
-    )),
+    ...pillars.map((p, i) => {
+      const theme = themes[i + 1] ?? themes[0];
+      return (
+        <div key={p.label} className={`w-full h-full flex flex-col items-center justify-center ${theme.bg}`}>
+          <div className="text-center px-6 max-w-3xl">
+            <span className={`text-xs font-display font-bold tracking-[0.2em] uppercase ${theme.accent} mb-8 block`}>
+              {p.label}
+            </span>
+            <h3 className={`font-display font-extrabold ${theme.heading} text-5xl sm:text-7xl md:text-8xl leading-[0.93] tracking-tight`}>
+              {p.headline1}
+              <br />
+              {p.headline2}
+            </h3>
+            <div className={`mt-10 w-12 h-px ${theme.divider} mx-auto`} />
+            <p className={`mt-8 ${theme.body} text-xl font-sans font-normal`}>{p.body}</p>
+          </div>
+        </div>
+      );
+    }),
   ];
 
   return (
-    <section className="bg-grey-100">
-      <ScrollHijack slides={slides} speedPerSlide={100} panelClassName="bg-grey-100" />
+    <section>
+      <ScrollHijack slides={slides} speedPerSlide={100} />
     </section>
   );
 }
