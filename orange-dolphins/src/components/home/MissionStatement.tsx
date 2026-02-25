@@ -46,7 +46,7 @@ export function MissionStatement() {
         <div className="mt-10 w-16 h-px bg-orange-500" />
 
         {/* Real mission statement body text */}
-        <p className="mt-10 text-lightGreen text-lg sm:text-xl leading-relaxed font-sans font-normal">
+        <p className="mt-10 text-white/70 text-lg sm:text-xl leading-relaxed font-sans font-normal max-w-2xl">
           {t("body")}
         </p>
       </div>

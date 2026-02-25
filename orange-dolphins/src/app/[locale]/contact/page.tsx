@@ -15,19 +15,19 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-grey-100 pt-24 pb-16 md:pt-32 md:pb-20">
+      <section className="bg-orange-500 pt-28 pb-16 md:pt-36 md:pb-20">
         <FadeReveal className="mx-auto max-w-7xl px-6">
-          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
+          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-white/60 mb-6">
             Get in Touch
           </p>
           <h1
-            className="font-display font-extrabold text-darkGreen leading-[0.9] tracking-tight"
+            className="font-display font-extrabold text-white leading-[0.9] tracking-tight"
             style={{ fontSize: "clamp(3rem, 7vw, 7rem)" }}
           >
             {t("hero.title")}
           </h1>
-          <div className="mt-8 w-12 h-px bg-orange-500" />
-          <p className="mt-8 text-darkGreen/60 text-lg sm:text-xl max-w-xl font-sans font-normal leading-relaxed">
+          <div className="mt-8 w-12 h-px bg-white/40" />
+          <p className="mt-8 text-white/80 text-lg sm:text-xl max-w-xl font-sans font-normal leading-relaxed">
             {t("hero.subtitle")}
           </p>
         </FadeReveal>
