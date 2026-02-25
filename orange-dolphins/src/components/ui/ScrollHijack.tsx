@@ -37,6 +37,14 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
     let wheelResetTimer = 0;
     let touchStartY = 0;
 
+    // Momentum drain: ignore wheel input for this many ms after the section
+    // first pins. Prevents scroll momentum that brought the section into view
+    // from immediately triggering a slide advance.
+    const ENTRY_DRAIN = 600;
+    let draining = false;
+    let drainTimer = 0;
+    let wasPinned = false;
+
     // ── Apply a slide ──────────────────────────────────────────────────────
     const applySlide = (idx: number, instant = false) => {
       const transition = instant
@@ -108,7 +116,29 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
 
     // ── Wheel ──────────────────────────────────────────────────────────────
     const onWheel = (e: WheelEvent) => {
-      if (!isSectionActive()) return;
+      const pinned = isSectionActive();
+
+      // Detect the moment the section becomes pinned and start drain window
+      if (pinned && !wasPinned) {
+        // If entering from below (scrolling up), snap to last slide
+        const track = trackRef.current;
+        if (track) {
+          const scrollY = window.scrollY;
+          const enteredFromBelow = scrollY < track.offsetTop + (n - 1) * window.innerHeight;
+          if (!enteredFromBelow && currentIdx !== n - 1) {
+            currentIdx = n - 1;
+            applySlide(currentIdx, true);
+          }
+        }
+        draining = true;
+        wheelAccum = 0;
+        clearTimeout(drainTimer);
+        drainTimer = window.setTimeout(() => { draining = false; }, ENTRY_DRAIN);
+      }
+      wasPinned = pinned;
+
+      if (!pinned) return;
+      if (draining) { e.preventDefault(); return; } // absorb momentum, don't advance
 
       wheelAccum += e.deltaY;
       clearTimeout(wheelResetTimer);
@@ -164,6 +194,7 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
       window.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("keydown", onKey);
       clearTimeout(wheelResetTimer);
+      clearTimeout(drainTimer);
     };
   }, [n]);
 

@@ -61,7 +61,7 @@ export function VisionStatement() {
 
   return (
     <section>
-      <ScrollHijack slides={slides} speedPerSlide={100} />
+      <ScrollHijack slides={slides} />
     </section>
   );
 }
