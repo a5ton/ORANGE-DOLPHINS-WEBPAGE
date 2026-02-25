@@ -1,54 +1,50 @@
 import { useTranslations } from "next-intl";
 
-const REPEAT = "ORANGE DOLPHINS  ";
-const ROW = REPEAT.repeat(12);
-const ROWS = Array.from({ length: 30 });
-
 export function MissionStatement() {
   const t = useTranslations("home.mission");
 
   return (
-    <section className="h-screen bg-darkGreen flex flex-col items-center justify-center text-center px-6 sm:px-10 overflow-hidden relative">
-      {/* Repeating background text — very subtle */}
-      <div
-        className="absolute inset-0 flex flex-col select-none pointer-events-none overflow-hidden"
-        aria-hidden="true"
-      >
-        {ROWS.map((_, i) => (
-          <p
-            key={i}
-            className="font-display font-extrabold text-white/[0.012] whitespace-nowrap leading-none"
-            style={{
-              fontSize: "clamp(1.6rem, 3.5vw, 4rem)",
-              transform: i % 2 === 1 ? "translateX(-6rem)" : undefined,
-            }}
-          >
-            {ROW}
-          </p>
-        ))}
+    <section className="bg-white">
+      {/* Top strip — just the label and a rule */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 pt-20 pb-10">
+        <div className="flex items-center gap-6">
+          <span className="text-xs font-display font-bold tracking-[0.22em] uppercase text-orange-500 shrink-0">
+            {t("title")}
+          </span>
+          <div className="flex-1 h-px bg-darkGreen/10" />
+        </div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center max-w-3xl">
-        <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-10 block">
-          {t("title")}
-        </span>
+      {/* Quote block — darkGreen on white, opening mark as display element */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 pb-16">
+        <div className="relative">
+          {/* Giant opening quotation mark */}
+          <span
+            className="absolute -top-6 -left-2 sm:-left-4 font-display font-extrabold text-orange-500 leading-none select-none pointer-events-none"
+            style={{ fontSize: "clamp(6rem, 14vw, 16rem)", lineHeight: 1 }}
+            aria-hidden="true"
+          >
+            &ldquo;
+          </span>
 
-        {/* The tagline — big typographic moment */}
-        <blockquote
-          className="font-display font-extrabold text-white leading-[0.9] tracking-tight"
-          style={{ fontSize: "clamp(3rem, 8vw, 9rem)" }}
-        >
-          &ldquo;{t("quoteLine1")}
-          <br />
-          {t("quoteLine2")}&rdquo;
-        </blockquote>
+          <blockquote
+            className="relative font-display font-extrabold text-darkGreen leading-[0.88] tracking-tight pt-16 sm:pt-20 lg:pt-24"
+            style={{ fontSize: "clamp(3rem, 8.5vw, 9.5rem)" }}
+          >
+            {t("quoteLine1")}
+            <br />
+            {t("quoteLine2")}
+          </blockquote>
+        </div>
+      </div>
 
-        <div className="mt-10 w-16 h-px bg-orange-500" />
-
-        {/* Real mission statement body text */}
-        <p className="mt-10 text-white/70 text-lg sm:text-xl leading-relaxed font-sans font-normal max-w-2xl">
-          {t("body")}
-        </p>
+      {/* Body strip — contrasting darkGreen band, text right-aligned on desktop */}
+      <div className="bg-darkGreen">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 py-12 sm:py-14 flex flex-col sm:flex-row sm:items-center sm:justify-end">
+          <p className="text-white/70 text-base sm:text-lg leading-relaxed font-sans font-normal max-w-2xl">
+            {t("body")}
+          </p>
+        </div>
       </div>
     </section>
   );
