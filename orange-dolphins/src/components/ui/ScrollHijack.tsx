@@ -154,13 +154,21 @@ export function ScrollHijack({ slides, panelClassName }: ScrollHijackProps) {
 
       e.preventDefault(); // always prevent when pinned
 
+      // While cooldown is active, discard ALL wheel input so a big flick
+      // cannot queue up and fire again the moment the lock releases
+      if (lockedRef.current) {
+        wheelAccum = 0;
+        clearTimeout(wheelTimer);
+        return;
+      }
+
       wheelAccum += e.deltaY;
       clearTimeout(wheelTimer);
       wheelTimer = window.setTimeout(() => { wheelAccum = 0; }, 200);
 
       if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
       const dir = wheelAccum > 0 ? 1 : -1;
-      wheelAccum = 0;
+      wheelAccum = 0; // reset before advance so residual delta can't re-fire
       advance(dir);
     };
 
