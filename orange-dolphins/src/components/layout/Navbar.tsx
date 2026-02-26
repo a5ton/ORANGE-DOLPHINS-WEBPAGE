@@ -89,7 +89,7 @@ export default function Navbar() {
               <LanguageSwitcher className="hidden md:flex" transparent={transparent} />
               <Link
                 href="/our-offer"
-                className="hidden sm:inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-display font-bold uppercase tracking-[0.2em] text-[0.7rem] xl:text-[0.78rem] px-6 py-2.5 transition-colors whitespace-nowrap"
+                className="hidden sm:inline-flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white font-display font-bold uppercase tracking-[0.2em] text-[0.7rem] xl:text-[0.78rem] px-6 py-2.5 transition-colors whitespace-nowrap"
               >
                 {t("shopNow")}
               </Link>
@@ -138,7 +138,7 @@ export default function Navbar() {
                 <Link
                   href="/our-offer"
                   onClick={() => setMobileOpen(false)}
-                  className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-display font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-colors"
+                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm font-display font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-colors"
                 >
                   {t("shopNow")}
                 </Link>

@@ -145,7 +145,7 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-10 py-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-10 py-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Sending…" : t("submit")}
       </button>

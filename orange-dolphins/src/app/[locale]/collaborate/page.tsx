@@ -44,7 +44,7 @@ function CollaborateCta() {
           </div>
           <Link
             href="/contact"
-            className="shrink-0 inline-flex items-center justify-center rounded-full bg-orange-500 hover:bg-orange-600 text-white font-display font-bold text-[0.7rem] sm:text-[0.8rem] tracking-[0.18em] uppercase px-10 py-4 transition-colors"
+            className="shrink-0 inline-flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white font-display font-bold text-[0.7rem] sm:text-[0.8rem] tracking-[0.18em] uppercase px-10 py-4 transition-colors"
           >
             Get in Touch
           </Link>
