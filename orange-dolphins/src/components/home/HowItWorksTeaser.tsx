@@ -34,16 +34,16 @@ export function HowItWorksTeaser() {
         </div>
       </div>
 
-      {/* 2×2 grid — white cards with darkGreen text */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-lightGreen/40">
+      {/* 2×2 grid — all lightGreen, divided by white gaps */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/20">
         {steps.map((step, i) => (
           <div
             key={step.number}
-            className="relative p-10 overflow-hidden bg-white"
+            className="relative p-10 overflow-hidden bg-lightGreen"
           >
             {/* Ghost number — bottom-right corner */}
             <span
-              className="absolute right-4 bottom-2 font-display font-extrabold text-lightGreen/30 leading-none select-none pointer-events-none"
+              className="absolute right-4 bottom-2 font-display font-extrabold text-white/[0.15] leading-none select-none pointer-events-none"
               style={{ fontSize: "clamp(5rem, 11vw, 8rem)" }}
               aria-hidden="true"
             >
@@ -51,13 +51,13 @@ export function HowItWorksTeaser() {
             </span>
 
             <div className="relative">
-              <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5 block">
+              <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-white/70 mb-5 block">
                 {t("stepLabel")} {i + 1}
               </span>
-              <h3 className="font-display font-extrabold text-darkGreen text-3xl sm:text-4xl leading-[0.93] tracking-tight mb-4">
+              <h3 className="font-display font-extrabold text-white text-3xl sm:text-4xl leading-[0.93] tracking-tight mb-4">
                 {step.title}
               </h3>
-              <p className="text-darkGreen/60 text-base font-sans leading-relaxed max-w-xs">
+              <p className="text-white/75 text-base font-sans leading-relaxed max-w-xs">
                 {step.description}
               </p>
             </div>
