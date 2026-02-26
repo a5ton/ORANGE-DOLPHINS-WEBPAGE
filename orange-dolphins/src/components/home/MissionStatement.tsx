@@ -38,10 +38,10 @@ export function MissionStatement() {
         </div>
       </div>
 
-      {/* Body strip — contrasting darkGreen band, text right-aligned on desktop */}
-      <div className="bg-darkGreen">
+      {/* Body strip — white band, text right-aligned on desktop */}
+      <div className="bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 py-12 sm:py-14 flex flex-col sm:flex-row sm:items-center sm:justify-end">
-          <p className="text-white/70 text-base sm:text-lg leading-relaxed font-sans font-normal max-w-2xl">
+          <p className="text-darkGreen/60 text-base sm:text-lg leading-relaxed font-sans font-normal max-w-2xl">
             {t("body")}
           </p>
         </div>

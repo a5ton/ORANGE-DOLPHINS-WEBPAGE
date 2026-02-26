@@ -10,12 +10,12 @@ export function HowItWorksTeaser() {
   }>;
 
   return (
-    <section className="bg-lightGreen">
-      {/* Section header — white on lightGreen */}
+    <section className="bg-darkGreen">
+      {/* Section header — white on darkGreen */}
       <div className="mx-auto max-w-7xl px-6 pt-20 md:pt-28 pb-12">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div>
-            <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-white/70 mb-6 block">
+            <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6 block">
               {t("label")}
             </span>
             <h2 className="font-display font-extrabold text-white text-4xl sm:text-5xl leading-[0.93] tracking-tight">
@@ -34,16 +34,17 @@ export function HowItWorksTeaser() {
         </div>
       </div>
 
-      {/* 2×2 grid — all lightGreen, divided by white gaps */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/20">
+      {/* 2×2 grid — all darkGreen, divided by white/10 gaps */}
+      <div className="mx-auto max-w-7xl px-6 pb-20 md:pb-28">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10">
         {steps.map((step, i) => (
           <div
             key={step.number}
-            className="relative p-10 overflow-hidden bg-lightGreen"
+            className="relative p-10 overflow-hidden bg-darkGreen"
           >
             {/* Ghost number — bottom-right corner */}
             <span
-              className="absolute right-4 bottom-2 font-display font-extrabold text-white/[0.15] leading-none select-none pointer-events-none"
+              className="absolute right-4 bottom-2 font-display font-extrabold text-white/[0.08] leading-none select-none pointer-events-none"
               style={{ fontSize: "clamp(5rem, 11vw, 8rem)" }}
               aria-hidden="true"
             >
@@ -51,18 +52,19 @@ export function HowItWorksTeaser() {
             </span>
 
             <div className="relative">
-              <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-white/70 mb-5 block">
+              <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5 block">
                 {t("stepLabel")} {i + 1}
               </span>
               <h3 className="font-display font-extrabold text-white text-3xl sm:text-4xl leading-[0.93] tracking-tight mb-4">
                 {step.title}
               </h3>
-              <p className="text-white/75 text-base font-sans leading-relaxed max-w-xs">
+              <p className="text-white/70 text-base font-sans leading-relaxed max-w-xs">
                 {step.description}
               </p>
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );
