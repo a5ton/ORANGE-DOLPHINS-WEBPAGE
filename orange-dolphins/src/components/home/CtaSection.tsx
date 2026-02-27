@@ -5,7 +5,7 @@ export function CtaSection() {
   const t = useTranslations("home.cta");
 
   return (
-    <section className="bg-darkGreen py-24 md:py-32">
+    <section className="bg-darkGreen py-24 md:py-32 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           {/* Left: heading */}

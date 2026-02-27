@@ -9,11 +9,13 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <VisionStatement />
-      <MissionStatement />
-      <HowItWorksTeaser />
-      <ProductCategoriesPreview />
-      <CtaSection />
+      <div className="flex flex-col gap-3 px-3 md:px-4 pb-4 pt-3">
+        <VisionStatement />
+        <MissionStatement />
+        <HowItWorksTeaser />
+        <ProductCategoriesPreview />
+        <CtaSection />
+      </div>
     </>
   );
 }

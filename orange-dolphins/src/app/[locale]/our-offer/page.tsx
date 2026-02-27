@@ -31,9 +31,11 @@ export default function OurOfferPage() {
   return (
     <>
       <OfferHero />
-      <OrderStepsSection />
-      <ProductCategoriesGrid />
-      <CtaSection />
+      <div className="flex flex-col gap-3 px-3 md:px-4 pb-4 pt-3">
+        <OrderStepsSection />
+        <ProductCategoriesGrid />
+        <CtaSection />
+      </div>
     </>
   );
 }

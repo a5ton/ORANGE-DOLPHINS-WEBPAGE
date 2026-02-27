@@ -1,12 +1,37 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
 export function HeroSection() {
   const t = useTranslations("home.hero");
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      // Animate over the first 500px of scroll
+      const progress = Math.min(Math.max(y / 500, 0), 1);
+
+      // Height shrinks from 100vh → 65vh
+      el.style.height = `${100 - progress * 35}vh`;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative h-screen overflow-hidden"
+      style={{ willChange: "height" }}
+    >
       {/* Background image */}
       <Image
         src="/hero-boat.jpg"

@@ -28,7 +28,7 @@ function CollaborateHero() {
 
 function CollaborateCta() {
   return (
-    <section className="bg-grey-100 py-20 md:py-28">
+    <section className="bg-grey-100 py-20 md:py-28 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-4xl px-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8">
           <div>
@@ -58,8 +58,10 @@ export default function CollaboratePage() {
   return (
     <>
       <CollaborateHero />
-      <AudienceTabs />
-      <CollaborateCta />
+      <div className="flex flex-col gap-3 px-3 md:px-4 pb-4 pt-3">
+        <AudienceTabs />
+        <CollaborateCta />
+      </div>
     </>
   );
 }

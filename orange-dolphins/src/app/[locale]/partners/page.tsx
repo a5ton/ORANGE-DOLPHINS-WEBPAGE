@@ -30,8 +30,10 @@ export default function PartnersPage() {
   return (
     <>
       <PartnersHero />
-      <PartnerGrid />
-      <CtaSection />
+      <div className="flex flex-col gap-3 px-3 md:px-4 pb-4 pt-3">
+        <PartnerGrid />
+        <CtaSection />
+      </div>
     </>
   );
 }

@@ -32,10 +32,12 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <FounderBio />
-      <FoundingStory />
-      <BrownieSection />
-      <CtaSection />
+      <div className="flex flex-col gap-3 px-3 md:px-4 pb-4 pt-3">
+        <FounderBio />
+        <FoundingStory />
+        <BrownieSection />
+        <CtaSection />
+      </div>
     </>
   );
 }

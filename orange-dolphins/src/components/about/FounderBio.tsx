@@ -6,7 +6,7 @@ export function FounderBio() {
   const t = useTranslations("about.bio");
 
   return (
-    <SectionWrapper className="bg-white">
+    <SectionWrapper className="bg-white rounded-3xl overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-stretch">
 
         {/* Left: bio text */}

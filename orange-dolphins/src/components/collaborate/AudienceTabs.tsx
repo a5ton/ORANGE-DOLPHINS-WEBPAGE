@@ -21,7 +21,7 @@ export function AudienceTabs() {
   const activeTab = tabs.find((tab) => tab.key === active)!;
 
   return (
-    <section className="bg-darkGreen py-20 md:py-28">
+    <section className="bg-darkGreen py-20 md:py-28 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Tab navigation */}

@@ -6,7 +6,7 @@ export function FoundingStory() {
   const t = useTranslations("about.founding");
 
   return (
-    <SectionWrapper className="bg-darkGreen">
+    <SectionWrapper className="bg-darkGreen rounded-3xl overflow-hidden">
       <div className="max-w-3xl">
         <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
           Origins

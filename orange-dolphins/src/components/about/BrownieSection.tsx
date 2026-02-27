@@ -5,7 +5,7 @@ export function BrownieSection() {
   const t = useTranslations("about.brownie");
 
   return (
-    <SectionWrapper className="bg-grey-100">
+    <SectionWrapper className="bg-white rounded-3xl overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
         {/* Left: circular photo */}

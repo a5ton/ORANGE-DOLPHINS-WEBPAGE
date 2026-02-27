@@ -34,7 +34,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main: social links + form */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-20 md:py-28 rounded-3xl overflow-hidden mx-3 md:mx-4 mb-4 mt-3">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 

@@ -4,7 +4,7 @@ import { FadeReveal } from "@/components/ui/FadeReveal";
 
 export function PartnerGrid() {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
         <FadeReveal className="mb-14">
           <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-4">

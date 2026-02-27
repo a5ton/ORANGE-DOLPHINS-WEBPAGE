@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
@@ -23,11 +23,26 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 10);
+
+      if (y > lastScrollY.current && y > 80) {
+        // Scrolling down past 80px — hide the navbar
+        setHidden(true);
+      } else if (y < lastScrollY.current) {
+        // Scrolling up — reveal the navbar
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -41,7 +56,12 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50">
+    <div
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out",
+        hidden && !mobileOpen ? "-translate-y-full" : "translate-y-0"
+      )}
+    >
       <header
         className={cn(
           "w-full transition-all duration-300",

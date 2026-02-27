@@ -9,7 +9,7 @@ export function OrderStepsSection() {
   }>;
 
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-white py-20 md:py-28 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Section header */}
