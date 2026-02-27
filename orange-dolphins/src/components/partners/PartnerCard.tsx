@@ -2,37 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { ReadMoreToggle } from "@/components/ui/ReadMoreToggle";
-import {
-  LeafIcon,
-  ScissorsIcon,
-  CakeIcon,
-  FishIcon,
-  SailboatIcon,
-  ShoppingCartIcon,
-  GiftIcon,
-  CubeIcon,
-  BeakerIcon,
-  NewspaperIcon,
-  BuildingStorefrontIcon,
-  MapPinIcon,
-} from "@/components/ui/icons";
-import { ComponentType, SVGProps } from "react";
-
-const TYPE_ICONS: Record<
-  string,
-  ComponentType<SVGProps<SVGSVGElement> & { className?: string }>
-> = {
-  "fruits-veg": LeafIcon,
-  butcher: ScissorsIcon,
-  bakery: CakeIcon,
-  fishmonger: FishIcon,
-  poultry: SailboatIcon,
-  supermarket: ShoppingCartIcon,
-  deli: GiftIcon,
-  "ice-maker": CubeIcon,
-  winery: BeakerIcon,
-  kiosk: NewspaperIcon,
-};
+import { MapPinIcon } from "@/components/ui/icons";
 
 interface PartnerCardProps {
   id: string;
@@ -47,7 +17,6 @@ interface PartnerCardProps {
 
 export function PartnerCard({
   name,
-  type,
   typeLabel,
   shortDescription,
   fullDescription,
@@ -55,7 +24,6 @@ export function PartnerCard({
   location,
 }: PartnerCardProps) {
   const t = useTranslations("partners");
-  const Icon = TYPE_ICONS[type] || BuildingStorefrontIcon;
 
   return (
     <div className="border border-gray-100 hover:border-orange-200 transition-colors overflow-hidden group rounded-2xl">
