@@ -5,7 +5,7 @@ export function MissionStatement() {
   const t = useTranslations("home.mission");
 
   return (
-    <section className="bg-white py-20 md:py-28 rounded-3xl overflow-hidden">
+    <section className="bg-white pt-10 md:pt-14 pb-20 md:pb-28 rounded-3xl overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
 
         {/* Label + rule */}

@@ -12,7 +12,7 @@ export function VisionStatement() {
   }>;
 
   return (
-    <section className="bg-white py-24 md:py-36 rounded-3xl overflow-hidden">
+    <section className="bg-white pt-24 md:pt-36 pb-10 md:pb-14 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Two-column layout on large screens */}
