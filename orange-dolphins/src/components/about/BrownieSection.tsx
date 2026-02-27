@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import Image from "next/image";
 
 export function BrownieSection() {
   const t = useTranslations("about.brownie");
@@ -11,11 +12,14 @@ export function BrownieSection() {
         {/* Left: circular photo */}
         <div className="flex items-center justify-center">
           {/* Swap the inner div for: <Image src="..." alt="Brownie" fill className="object-cover" /> */}
-          <div className="relative w-full max-w-[380px] mx-auto aspect-square rounded-full overflow-hidden bg-white shadow-md">
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-              <p className="text-sm font-display font-bold text-gray-300">Brownie</p>
-              <p className="text-xs text-gray-300 font-sans italic">Photo coming soon</p>
-            </div>
+          <div className="relative w-full max-w-[380px] mx-auto aspect-square rounded-full overflow-hidden shadow-md">
+            <Image
+              src="/d178707d58e38b0d90bb9026956246fd.jpg"
+              fill
+              className="object-cover object-center"
+              alt="Brownie — the Orange Dolphins mascot"
+              sizes="380px"
+            />
           </div>
         </div>
 

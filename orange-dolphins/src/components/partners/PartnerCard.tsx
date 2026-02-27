@@ -60,17 +60,13 @@ export function PartnerCard({
   return (
     <div className="border border-gray-100 hover:border-orange-200 transition-colors overflow-hidden group rounded-2xl">
       {/* Image / placeholder */}
-      <div className="aspect-[4/3] bg-grey-100 flex items-center justify-center overflow-hidden">
-        {imageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={imageUrl}
-            alt={name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <Icon className="h-10 w-10 text-gray-200 group-hover:text-orange-200 transition-colors duration-300" />
-        )}
+      <div className="aspect-[4/3] bg-grey-100 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imageUrl ?? "/d178707d58e38b0d90bb9026956246fd.jpg"}
+          alt={name}
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Content */}

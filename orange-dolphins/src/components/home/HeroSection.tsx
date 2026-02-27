@@ -8,10 +8,12 @@ import Image from "next/image";
 export function HeroSection() {
   const t = useTranslations("home.hero");
   const sectionRef = useRef<HTMLElement>(null);
+  const darkOverlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
+    const overlay = darkOverlayRef.current;
+    if (!el || !overlay) return;
 
     const onScroll = () => {
       const y = window.scrollY;
@@ -20,6 +22,9 @@ export function HeroSection() {
 
       // Height shrinks from 100vh → 65vh
       el.style.height = `${100 - progress * 35}vh`;
+
+      // Image darkens from transparent → black/50
+      overlay.style.opacity = String(progress * 0.55);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -34,8 +39,8 @@ export function HeroSection() {
     >
       {/* Background image */}
       <Image
-        src="/hero-boat.jpg"
-        alt="Aerial view of a motor yacht on deep blue Aegean water"
+        src="/hero-section.jpg"
+        alt="Sailboat on the Mediterranean sea at sunset"
         fill
         priority
         className="object-cover object-center"
@@ -45,10 +50,17 @@ export function HeroSection() {
       {/* Dark gradient overlay — heavy at bottom, light at top */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
 
+      {/* Scroll-driven darkening overlay */}
+      <div
+        ref={darkOverlayRef}
+        className="absolute inset-0 bg-black pointer-events-none"
+        style={{ opacity: 0 }}
+      />
+
       {/* Content — pinned to bottom-left like CHCKN */}
       <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-6 pb-16 lg:pb-20">
         {/* Eyebrow */}
-        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-6">
+        <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-white/75 mb-6">
           Leros · Dodecanese · Est.&nbsp;2024
         </p>
 

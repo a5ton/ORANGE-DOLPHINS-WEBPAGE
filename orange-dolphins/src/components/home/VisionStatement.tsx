@@ -1,6 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+
+// Replace with real per-pillar images when available
+const PILLAR_IMAGES = [
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+];
 
 export function VisionStatement() {
   const t = useTranslations("home.vision");
@@ -12,50 +20,62 @@ export function VisionStatement() {
   }>;
 
   return (
-    <section className="bg-white pt-24 md:pt-36 pb-10 md:pb-14 rounded-3xl overflow-hidden">
+    <section className="bg-white pt-14 md:pt-20 pb-10 md:pb-14 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
 
-        {/* Two-column layout on large screens */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-24">
+        {/* Top — full-width stacked */}
+        <div className="mb-10 md:mb-12">
+          <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5 block">
+            {t("title")}
+          </span>
+          <h2
+            className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
+            style={{ fontSize: "clamp(2.6rem, 5vw, 5.5rem)" }}
+          >
+            {t("headline")}
+          </h2>
+          <div className="mt-6 w-12 h-px bg-orange-500" />
+          <p className="mt-5 text-darkGreen/60 text-base sm:text-lg font-sans font-normal leading-relaxed max-w-xl">
+            {t("body")}
+          </p>
+        </div>
 
-          {/* Left col — label + headline, sticky on desktop */}
-          <div className="lg:w-5/12 mb-14 lg:mb-0 lg:sticky lg:top-28 self-start">
-            <span className="text-xs font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-8 block">
-              {t("title")}
-            </span>
-            <h2
-              className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
-              style={{ fontSize: "clamp(2.6rem, 5vw, 5.5rem)" }}
-            >
-              {t("headline")}
-            </h2>
-            <div className="mt-10 w-12 h-px bg-orange-500" />
-            <p className="mt-8 text-darkGreen/60 text-base sm:text-lg font-sans font-normal leading-relaxed">
-              {t("body")}
-            </p>
-          </div>
+        {/* 3 pillar cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {pillars.map((p, i) => (
+            <div key={p.label} className="rounded-2xl overflow-hidden border border-gray-100">
 
-          {/* Right col — 3 pillars stacked */}
-          <div className="lg:w-7/12 flex flex-col divide-y divide-darkGreen/10">
-            {pillars.map((p, i) => (
-              <div key={p.label} className={`py-10 ${i === 0 ? "pt-0 lg:pt-10" : ""}`}>
-                <span className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-4 block">
+              {/* Image */}
+              <div className="relative aspect-video w-full">
+                <Image
+                  src={PILLAR_IMAGES[i]}
+                  fill
+                  className="object-cover object-center"
+                  alt={`${p.headline1} ${p.headline2}`}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-5 md:p-6">
+                <span className="text-[10px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-3 block">
                   {p.label}
                 </span>
                 <h3
-                  className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight mb-4"
-                  style={{ fontSize: "clamp(2rem, 3.5vw, 3.5rem)" }}
+                  className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight mb-3"
+                  style={{ fontSize: "clamp(1.3rem, 2vw, 1.75rem)" }}
                 >
                   {p.headline1} {p.headline2}
                 </h3>
-                <p className="text-darkGreen/55 font-sans text-base leading-relaxed max-w-sm">
+                <p className="text-darkGreen/55 font-sans text-sm leading-relaxed">
                   {p.body}
                 </p>
               </div>
-            ))}
-          </div>
 
+            </div>
+          ))}
         </div>
+
       </div>
     </section>
   );

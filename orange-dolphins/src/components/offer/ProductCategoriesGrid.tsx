@@ -2,6 +2,18 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import Image from "next/image";
+
+// Replace with real per-category images when available
+const CATEGORY_IMAGES = [
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+];
 
 export function ProductCategoriesGrid() {
   const t = useTranslations("offer.categories");
@@ -14,20 +26,28 @@ export function ProductCategoriesGrid() {
   const toggle = (i: number) => setOpenIdx(openIdx === i ? null : i);
 
   return (
-    <section className="bg-grey-100 py-24 md:py-32 rounded-3xl overflow-hidden">
+    <section className="bg-white py-24 md:py-32 rounded-3xl overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
 
-        {/* Header */}
-        <div className="mb-16">
-          <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
-            {t("title")}
-          </p>
-          <h2
-            className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
+        {/* Header row */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+          <div>
+            <p className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-5">
+              {t("title")}
+            </p>
+            <h2
+              className="font-display font-extrabold text-darkGreen leading-[0.93] tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)" }}
+            >
+              {t("title")}
+            </h2>
+          </div>
+          <Link
+            href="/our-offer"
+            className="shrink-0 self-start lg:self-auto inline-flex items-center justify-center rounded-full border-2 border-darkGreen text-darkGreen hover:bg-darkGreen hover:text-white font-display font-bold text-[0.7rem] tracking-[0.18em] uppercase px-7 py-3 transition-colors duration-200"
           >
-            {t("title")}
-          </h2>
+            {t("fullCatalogue")} →
+          </Link>
         </div>
 
         {/* Accordion rows */}
@@ -57,7 +77,11 @@ export function ProductCategoriesGrid() {
 
                   {/* Animated +/× icon */}
                   <span
-                    className="shrink-0 w-8 h-8 rounded-full border border-darkGreen/20 group-hover:border-orange-500 group-hover:bg-orange-500 flex items-center justify-center transition-all duration-200"
+                    className={`shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-200 ${
+                      isOpen
+                        ? "border-orange-500 bg-orange-500"
+                        : "border-darkGreen/20 group-hover:border-orange-500 group-hover:bg-orange-500"
+                    }`}
                     aria-hidden="true"
                   >
                     <svg
@@ -77,15 +101,26 @@ export function ProductCategoriesGrid() {
                   </span>
                 </button>
 
-                {/* Expandable items list */}
+                {/* Expandable items + image */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-32 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="pl-6 pb-6 text-darkGreen/60 font-sans text-base leading-relaxed">
-                    {group.items.join(" · ")}
-                  </p>
+                  <div className="pl-6 pb-6 flex items-start gap-6">
+                    <p className="flex-1 text-darkGreen/60 font-sans text-base leading-relaxed pt-1">
+                      {group.items.join(" · ")}
+                    </p>
+                    <div className="shrink-0 w-40 h-28 relative rounded-2xl overflow-hidden">
+                      <Image
+                        src={CATEGORY_IMAGES[i] ?? "/d178707d58e38b0d90bb9026956246fd.jpg"}
+                        fill
+                        className="object-cover object-center"
+                        alt={group.name}
+                        sizes="160px"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             );

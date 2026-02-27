@@ -3,6 +3,17 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
+
+// Replace with real per-category images when available
+const CATEGORY_IMAGES = [
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/d178707d58e38b0d90bb9026956246fd.jpg",
+];
 
 export function ProductCategoriesPreview() {
   const t = useTranslations("home.categories");
@@ -91,15 +102,26 @@ export function ProductCategoriesPreview() {
                   </span>
                 </button>
 
-                {/* Expandable description */}
+                {/* Expandable description + image */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-24 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="pl-6 pb-6 text-darkGreen/60 font-sans text-base leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="pl-6 pb-6 flex items-start gap-6">
+                    <p className="flex-1 text-darkGreen/60 font-sans text-base leading-relaxed pt-1">
+                      {item.description}
+                    </p>
+                    <div className="shrink-0 w-40 h-28 relative rounded-2xl overflow-hidden">
+                      <Image
+                        src={CATEGORY_IMAGES[i] ?? "/d178707d58e38b0d90bb9026956246fd.jpg"}
+                        fill
+                        className="object-cover object-center"
+                        alt={item.name}
+                        sizes="160px"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             );
