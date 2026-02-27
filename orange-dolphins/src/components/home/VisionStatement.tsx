@@ -12,7 +12,7 @@ export function VisionStatement() {
   }>;
 
   return (
-    <section className="bg-white pt-24 md:pt-36 pb-0 rounded-3xl">
+    <section className="bg-white pt-24 md:pt-36 pb-0 lg:pb-16 rounded-3xl">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Two-column layout on large screens */}
@@ -38,7 +38,7 @@ export function VisionStatement() {
           {/* Right col — 3 pillars stacked */}
           <div className="lg:w-7/12 flex flex-col divide-y divide-darkGreen/10">
             {pillars.map((p, i) => (
-              <div key={p.label} className={`py-10 ${i === 0 ? "pt-0 lg:pt-10" : ""}`}>
+              <div key={p.label} className={`py-10 ${i === 0 ? "pt-0 lg:pt-10" : ""} ${i === pillars.length - 1 ? "pb-0" : ""}`}>
                 <span className="text-[11px] font-display font-bold tracking-[0.2em] uppercase text-orange-500 mb-4 block">
                   {p.label}
                 </span>
