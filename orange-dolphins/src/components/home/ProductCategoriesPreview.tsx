@@ -67,7 +67,11 @@ export function ProductCategoriesPreview() {
 
                   {/* Animated +/× icon */}
                   <span
-                    className="shrink-0 w-8 h-8 rounded-full border border-darkGreen/20 group-hover:border-orange-500 group-hover:bg-orange-500 flex items-center justify-center transition-all duration-200"
+                    className={`shrink-0 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-200 ${
+                      isOpen
+                        ? "border-orange-500 bg-orange-500"
+                        : "border-darkGreen/20 group-hover:border-orange-500 group-hover:bg-orange-500"
+                    }`}
                     aria-hidden="true"
                   >
                     <svg
