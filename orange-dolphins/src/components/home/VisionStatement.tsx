@@ -12,7 +12,7 @@ export function VisionStatement() {
   }>;
 
   return (
-    <section className="bg-white pt-24 md:pt-36 pb-16 md:pb-24 rounded-3xl">
+    <section className="bg-white pt-24 md:pt-36 pb-0 rounded-3xl">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Two-column layout on large screens */}
