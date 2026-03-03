@@ -5,9 +5,9 @@ import Image from "next/image";
 
 // Replace with real per-pillar images when available
 const PILLAR_IMAGES = [
-  "/d178707d58e38b0d90bb9026956246fd.jpg",
-  "/d178707d58e38b0d90bb9026956246fd.jpg",
-  "/d178707d58e38b0d90bb9026956246fd.jpg",
+  "/boats.jpg",
+  "/fresh-fish.jpg",
+  "/food-selection.jpg",
 ];
 
 export function VisionStatement() {
@@ -50,7 +50,9 @@ export function VisionStatement() {
                 <Image
                   src={PILLAR_IMAGES[i]}
                   fill
-                  className="object-cover object-center"
+                  className={`object-cover ${
+                    i === 1 ? "object-bottom" : i === 2 ? "object-[center_85%]" : "object-center"
+                  }`}
                   alt={`${p.headline1} ${p.headline2}`}
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />

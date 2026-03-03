@@ -14,7 +14,7 @@ export function BrownieSection() {
           {/* Swap the inner div for: <Image src="..." alt="Brownie" fill className="object-cover" /> */}
           <div className="relative w-full max-w-[380px] mx-auto aspect-square rounded-full overflow-hidden shadow-md">
             <Image
-              src="/d178707d58e38b0d90bb9026956246fd.jpg"
+              src="/brownie.webp"
               fill
               className="object-cover object-center"
               alt="Brownie — the Orange Dolphins mascot"

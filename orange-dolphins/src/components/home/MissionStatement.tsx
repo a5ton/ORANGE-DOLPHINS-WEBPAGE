@@ -47,7 +47,7 @@ export function MissionStatement() {
           {/* Right — image (replace src with your actual image) */}
           <div className="relative w-full h-full min-h-[400px] rounded-2xl overflow-hidden">
             <Image
-              src="/d178707d58e38b0d90bb9026956246fd.jpg"
+              src="/friends.jpg"
               fill
               className="object-cover object-center"
               alt="Orange Dolphins — fresh provisions delivered to your boat"
