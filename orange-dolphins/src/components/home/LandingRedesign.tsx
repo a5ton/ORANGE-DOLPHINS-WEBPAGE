@@ -42,25 +42,17 @@ export function LandingRedesign() {
   }>;
 
   return (
-    <div className="bg-grey-100 text-darkGreen">
-      <section className="relative overflow-hidden">
-        <Image
-          src="/hero-section.jpg"
-          fill
-          priority
-          className="object-cover object-center"
-          alt="Orange Dolphins hero background"
-          sizes="100vw"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-darkGreen/92 via-darkGreen/78 to-darkGreen/48" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(154,172,110,0.36),transparent_34%),radial-gradient(circle_at_90%_18%,rgba(255,121,0,0.18),transparent_30%)]" />
+    <div className="bg-[#f7f1e8] text-darkGreen">
+      <section className="relative min-h-[90vh] overflow-hidden">
+        <Image src="/hero-section.jpg" fill priority className="object-cover object-center" alt="Hero" sizes="100vw" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/52 via-black/40 to-black/62" />
 
-        <div className="relative mx-auto grid min-h-[82vh] max-w-7xl grid-cols-1 px-6 pb-14 pt-24 lg:items-end">
-          <FadeReveal>
-            <p className="mb-4 text-[11px] font-display font-bold uppercase tracking-[0.2em] text-white/80">Leros, Dodecanese</p>
+        <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-end px-6 pb-20 pt-24">
+          <FadeReveal className="max-w-4xl">
+            <p className="mb-4 text-[11px] font-display font-bold uppercase tracking-[0.22em] text-white/80">Leros, Dodecanese</p>
             <h1
-              className="font-display font-extrabold leading-[0.9] tracking-tight text-white [text-shadow:0_2px_14px_rgba(0,0,0,0.35)]"
-              style={{ fontSize: "clamp(2.6rem, 7vw, 6.2rem)" }}
+              className="font-display font-extrabold leading-[0.85] tracking-tight text-white [text-shadow:0_3px_16px_rgba(0,0,0,0.38)]"
+              style={{ fontSize: "clamp(2.9rem, 8vw, 7.6rem)" }}
             >
               {hero("headlineLine1")}
               <br />
@@ -68,17 +60,19 @@ export function LandingRedesign() {
               <br />
               <span className="text-orange-500">{hero("headlineAccent")}</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.3)] sm:text-lg">{hero("subheadline")}</p>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/86 sm:text-lg">
+              {hero("subheadline")}
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
               <Link
                 href="/our-offer"
-                className="inline-flex items-center justify-center rounded-full bg-blue-500 px-8 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-blue-600"
+                className="inline-flex items-center justify-center rounded-full bg-orange-500 px-9 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-orange-600"
               >
                 {hero("cta")}
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-7 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white/85 backdrop-blur-sm transition-colors hover:border-white hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/45 px-9 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-lightGreen hover:text-lightGreen"
               >
                 {hero("ourStory")}
               </Link>
@@ -87,133 +81,45 @@ export function LandingRedesign() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12">
-        <FadeReveal>
-          <div className="grid grid-cols-1 gap-4 rounded-[1.6rem] border border-darkGreen/12 bg-white p-6 md:grid-cols-[1fr_auto] md:items-end md:p-9">
-            <div>
-              <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-darkGreen/65">{vision("title")}</p>
-              <h2 className="mt-3 font-display text-[clamp(2rem,5vw,4.4rem)] font-extrabold leading-[0.9] tracking-tight text-darkGreen">
-                {vision("headline")}
-              </h2>
-              <p className="mt-5 max-w-3xl text-base leading-relaxed text-darkGreen/72 sm:text-lg">{vision("body")}</p>
-            </div>
-            <div className="hidden md:flex md:flex-col md:items-end">
-              <span className="rounded-full bg-lightGreen/30 px-4 py-1 text-xs font-semibold text-darkGreen">Wholesome delivery</span>
-              <span className="mt-2 rounded-full bg-orange-500/12 px-4 py-1 text-xs font-semibold text-orange-600">Island-first sourcing</span>
-            </div>
-          </div>
-        </FadeReveal>
+      <section className="border-y border-darkGreen/10 bg-[#fdf9f3]">
+        <div className="animate-marquee flex min-w-max items-center gap-8 py-4">
+          {[...categoryItems, ...categoryItems].map((item, i) => (
+            <span key={`${item.name}-${i}`} className="inline-flex items-center gap-3 px-2 text-sm font-semibold text-darkGreen/75">
+              <span className="h-2 w-2 rounded-full bg-blue-500" />
+              {item.name}
+            </span>
+          ))}
+        </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-12">
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <FadeReveal>
+          <p className="text-[11px] font-display font-bold uppercase tracking-[0.22em] text-orange-600">{vision("title")}</p>
+          <h2 className="mt-4 max-w-5xl font-display text-[clamp(2rem,5vw,4.8rem)] font-extrabold leading-[0.9] tracking-tight text-darkGreen">
+            {vision("headline")}
+          </h2>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-darkGreen/72 sm:text-lg">{vision("body")}</p>
+        </FadeReveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-3">
           {pillars.map((pillar, i) => (
-            <FadeReveal key={pillar.label} delay={i * 90} className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-[1.4rem] border border-darkGreen/12 bg-white">
-                <div className="relative aspect-[16/10] w-full">
-                  <Image
-                    src={PILLAR_IMAGES[i] ?? "/boats.jpg"}
-                    fill
-                    className={`object-cover ${i === 1 ? "object-bottom" : i === 2 ? "object-[center_85%]" : "object-center"}`}
-                    alt={pillar.label}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="flex-1 p-6">
-                  <p className="text-[10px] font-display font-bold uppercase tracking-[0.2em] text-darkGreen/65">{pillar.label}</p>
-                  <h3 className={`mt-2 font-display font-extrabold leading-[0.9] tracking-tight text-darkGreen ${i === 1 ? "text-[2.2rem]" : "text-[2.4rem]"}`}>
-                    {pillar.headline1} {pillar.headline2}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-darkGreen/72">{pillar.body}</p>
-                </div>
-              </article>
-            </FadeReveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-lightGreen/35 py-12">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <FadeReveal>
-            <article className="h-full rounded-[1.5rem] border border-darkGreen/12 bg-white p-7 md:p-10">
-              <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-darkGreen/65">{mission("title")}</p>
-              <h2 className="mt-4 font-display text-[clamp(2.1rem,4.8vw,4.7rem)] font-extrabold leading-[0.9] tracking-tight text-darkGreen">
-                {mission("quoteLine1")}
-                <br />
-                <span className="text-orange-500">{mission("quoteLine2")}</span>
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-darkGreen/74 sm:text-lg">{mission("body")}</p>
-            </article>
-          </FadeReveal>
-
-          <FadeReveal delay={110}>
-            <article className="overflow-hidden rounded-[1.5rem] border border-darkGreen/12 bg-white">
-              <div className="relative aspect-[4/3] w-full">
-                <Image src="/friends.jpg" fill className="object-cover object-center" alt="Friends enjoying food on a boat" sizes="(max-width:1024px)100vw,40vw" />
-              </div>
-            </article>
-          </FadeReveal>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14">
-        <FadeReveal>
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-darkGreen/65">{stepsT("label")}</p>
-              <h2 className="mt-3 font-display text-5xl font-extrabold leading-[0.9] tracking-tight text-darkGreen md:text-6xl">{stepsT("title")}</h2>
-            </div>
-            <Link
-              href="/our-offer"
-              className="inline-flex rounded-full border border-darkGreen/20 bg-white px-6 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-darkGreen transition-colors hover:border-blue-500 hover:text-blue-500"
-            >
-              {stepsT("learnMore")}
-            </Link>
-          </div>
-        </FadeReveal>
-
-        <div className="relative grid grid-cols-1 gap-4 md:grid-cols-4">
-          <div className="pointer-events-none absolute left-4 right-4 top-8 hidden h-[2px] bg-gradient-to-r from-darkGreen/25 via-lightGreen to-darkGreen/25 md:block" />
-          {steps.map((step, i) => (
-            <FadeReveal key={step.number} delay={i * 80}>
-              <article className="relative h-full rounded-xl border border-darkGreen/12 bg-white p-5 md:p-6">
-                <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-full bg-darkGreen text-sm font-display font-bold text-white">
-                  {step.number}
-                </span>
-                <h3 className="font-display text-3xl font-extrabold leading-[0.92] tracking-tight text-darkGreen">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-darkGreen/72">{step.description}</p>
-              </article>
-            </FadeReveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-14">
-        <FadeReveal>
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-darkGreen/65">{categories("title")}</p>
-              <h2 className="mt-3 font-display text-5xl font-extrabold leading-[0.9] tracking-tight text-darkGreen md:text-6xl">{categories("title")}</h2>
-            </div>
-            <Link
-              href="/our-offer"
-              className="inline-flex rounded-full border border-darkGreen/20 bg-white px-7 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-darkGreen transition-colors hover:border-orange-500 hover:text-orange-500"
-            >
-              {categories("fullCatalogue")}
-            </Link>
-          </div>
-        </FadeReveal>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {categoryItems.map((item, i) => (
-            <FadeReveal key={item.name} delay={i * 70}>
-              <article className="overflow-hidden rounded-[1.2rem] border border-darkGreen/12 bg-white">
-                <div className="relative aspect-[16/10] w-full">
-                  <Image src={CATEGORY_IMAGES[i] ?? "/food-selection.jpg"} fill className="object-cover object-center" alt={item.name} sizes="(max-width:768px)100vw,33vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-darkGreen/55 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-                    <h3 className="font-display text-[1.95rem] font-extrabold leading-[0.9] tracking-tight">{item.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/85">{item.description}</p>
+            <FadeReveal key={pillar.label} delay={i * 90}>
+              <article className="relative min-h-[520px] overflow-hidden">
+                <Image
+                  src={PILLAR_IMAGES[i] ?? "/boats.jpg"}
+                  fill
+                  className={`object-cover ${i === 1 ? "object-bottom" : i === 2 ? "object-[center_85%]" : "object-center"}`}
+                  alt={pillar.label}
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <div className="max-w-[95%] rounded-2xl bg-black/42 p-4 text-white backdrop-blur-sm">
+                    <p className="text-[10px] font-display font-bold uppercase tracking-[0.2em] text-lightGreen/90">{pillar.label}</p>
+                    <h3 className={`mt-3 font-display font-extrabold leading-[0.9] tracking-tight ${i === 1 ? "text-[2.2rem]" : "text-[2.35rem]"}`}>
+                      {pillar.headline1} {pillar.headline2}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/88">{pillar.body}</p>
                   </div>
                 </div>
               </article>
@@ -222,28 +128,112 @@ export function LandingRedesign() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-20">
+      <section className="grid grid-cols-1 lg:grid-cols-2">
         <FadeReveal>
-          <div className="rounded-[2rem] border border-darkGreen/15 bg-darkGreen px-7 py-10 text-white md:px-12 md:py-14">
-            <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-lightGreen/80">{cta("label")}</p>
-            <h2 className="mt-4 max-w-4xl font-display text-[clamp(2rem,5vw,4.2rem)] font-extrabold leading-[0.9] tracking-tight">
-              {cta("title")}
-            </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">{cta("subtitle")}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
+          <div className="relative min-h-[560px] overflow-hidden bg-[#1f2b0d] px-6 py-14 text-white md:px-10 lg:px-14">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(154,172,110,0.24),transparent_32%),radial-gradient(circle_at_82%_78%,rgba(30,76,236,0.20),transparent_35%)]" />
+            <div className="relative max-w-xl">
+              <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-lightGreen/80">{mission("title")}</p>
+              <h2 className="mt-4 font-display text-[clamp(2.2rem,4.8vw,4.8rem)] font-extrabold leading-[0.9] tracking-tight">
+                {mission("quoteLine1")}
+                <br />
+                <span className="text-orange-500">{mission("quoteLine2")}</span>
+              </h2>
+              <p className="mt-7 text-base leading-relaxed text-white/80 sm:text-lg">{mission("body")}</p>
+            </div>
+          </div>
+        </FadeReveal>
+
+        <FadeReveal delay={100}>
+          <div className="relative min-h-[560px] overflow-hidden">
+            <Image src="/friends.jpg" fill className="object-cover object-center" alt="Mission image" sizes="(max-width:1024px)100vw,50vw" />
+          </div>
+        </FadeReveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <FadeReveal>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-orange-600">{stepsT("label")}</p>
+              <h2 className="mt-3 font-display text-5xl font-extrabold leading-[0.9] tracking-tight text-darkGreen md:text-6xl">{stepsT("title")}</h2>
+            </div>
+            <Link
+              href="/our-offer"
+              className="inline-flex rounded-full border border-darkGreen/20 px-6 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-darkGreen transition-colors hover:border-blue-500 hover:text-blue-500"
+            >
+              {stepsT("learnMore")}
+            </Link>
+          </div>
+        </FadeReveal>
+
+        <div className="space-y-6">
+          {steps.map((step, i) => (
+            <FadeReveal key={step.number} delay={i * 80}>
+              <div className="grid grid-cols-[70px_1fr] gap-4 border-t border-darkGreen/14 pt-6 md:grid-cols-[90px_1fr_1fr] md:gap-8">
+                <p className="font-display text-4xl font-extrabold leading-none text-blue-500">{step.number}</p>
+                <h3 className="font-display text-3xl font-extrabold leading-[0.92] tracking-tight text-darkGreen">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-darkGreen/72 md:pt-1">{step.description}</p>
+              </div>
+            </FadeReveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#22320f] py-14 text-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <FadeReveal>
+            <div className="mb-9 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-lightGreen/80">{categories("title")}</p>
+                <h2 className="mt-3 font-display text-5xl font-extrabold leading-[0.9] tracking-tight md:text-6xl">{categories("title")}</h2>
+              </div>
               <Link
                 href="/our-offer"
-                className="inline-flex items-center justify-center rounded-full bg-lightGreen px-8 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-darkGreen transition-colors hover:bg-lightGreen/90"
+                className="inline-flex rounded-full border border-white/40 px-7 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-orange-500 hover:text-orange-500"
               >
-                {cta("button")}
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/35 px-8 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-orange-500 hover:text-orange-500"
-              >
-                {cta("getInTouch")}
+                {categories("fullCatalogue")}
               </Link>
             </div>
+          </FadeReveal>
+
+          <div className="space-y-2">
+            {categoryItems.map((item, i) => (
+              <FadeReveal key={item.name} delay={i * 65}>
+                <article className="group relative min-h-[220px] overflow-hidden">
+                  <Image src={CATEGORY_IMAGES[i] ?? "/food-selection.jpg"} fill className="object-cover object-center transition duration-500 group-hover:scale-[1.03]" alt={item.name} sizes="100vw" />
+                  <div className={`absolute inset-0 ${i % 2 === 0 ? "bg-gradient-to-r from-black/72 via-black/38 to-transparent" : "bg-gradient-to-l from-black/72 via-black/38 to-transparent"}`} />
+                  <div className={`relative z-10 flex min-h-[220px] items-end p-6 md:p-8 ${i % 2 === 0 ? "justify-start" : "justify-end"}`}>
+                    <div className={`max-w-xl rounded-2xl bg-black/40 px-4 py-3 backdrop-blur-sm ${i % 2 === 0 ? "text-left" : "text-right"}`}>
+                      <h3 className="font-display text-[2.25rem] font-extrabold leading-[0.9] tracking-tight">{item.name}</h3>
+                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/86">{item.description}</p>
+                    </div>
+                  </div>
+                </article>
+              </FadeReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+        <FadeReveal>
+          <p className="text-[11px] font-display font-bold uppercase tracking-[0.2em] text-orange-600">{cta("label")}</p>
+          <h2 className="mt-4 max-w-4xl font-display text-[clamp(2rem,5vw,4.2rem)] font-extrabold leading-[0.9] tracking-tight text-darkGreen">{cta("title")}</h2>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-darkGreen/74 sm:text-lg">{cta("subtitle")}</p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link
+              href="/our-offer"
+              className="inline-flex items-center justify-center rounded-full bg-orange-500 px-8 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-orange-600"
+            >
+              {cta("button")}
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full border border-darkGreen/20 px-8 py-3 text-[0.72rem] font-display font-bold uppercase tracking-[0.18em] text-darkGreen transition-colors hover:border-blue-500 hover:text-blue-500"
+            >
+              {cta("getInTouch")}
+            </Link>
           </div>
         </FadeReveal>
       </section>
