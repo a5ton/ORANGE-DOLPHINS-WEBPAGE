@@ -66,7 +66,7 @@ export default function Navbar() {
         className={cn(
           "w-full transition-all duration-300",
           transparent
-            ? "bg-transparent border-transparent"
+            ? "bg-white/45 backdrop-blur-sm border-b border-grey-100/50"
             : "bg-white/70 backdrop-blur-md border-b border-grey-100/60 shadow-sm"
         )}
       >
@@ -75,7 +75,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="shrink-0">
               <Logo
-                variant={transparent ? "white" : "orange"}
+                variant="orange"
                 showWordmark
                 showTagline={false}
                 markSize={36}
@@ -92,8 +92,8 @@ export default function Navbar() {
                     "font-display font-semibold uppercase tracking-[0.18em] text-[0.68rem] xl:text-[0.75rem] 2xl:text-xs transition-colors rounded-full px-3.5 py-2",
                     transparent
                       ? isActive(link.href)
-                        ? "text-orange-500"
-                        : "text-white/80 hover:text-white"
+                        ? "bg-orange-500/10 text-orange-500"
+                        : "text-gray-700 hover:text-orange-500 hover:bg-orange-500/5"
                       : isActive(link.href)
                       ? "bg-orange-500/10 text-orange-500"
                       : "text-gray-700 hover:text-orange-500 hover:bg-orange-500/5"
@@ -106,7 +106,7 @@ export default function Navbar() {
 
             {/* Right side */}
             <div className="flex items-center gap-4 shrink-0">
-              <LanguageSwitcher className="hidden md:flex" transparent={transparent} />
+              <LanguageSwitcher className="hidden md:flex" />
               <Link
                 href="/our-offer"
                 className="hidden sm:inline-flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white font-display font-bold uppercase tracking-[0.2em] text-[0.7rem] xl:text-[0.78rem] px-6 py-2.5 transition-colors whitespace-nowrap"
@@ -118,7 +118,7 @@ export default function Navbar() {
                 className={cn(
                   "lg:hidden p-2 rounded-full transition-colors",
                   transparent
-                    ? "text-white/80 hover:text-white"
+                    ? "text-gray-600 hover:text-orange-500 bg-grey-50"
                     : "text-gray-600 hover:text-orange-500 bg-grey-50"
                 )}
                 aria-label="Toggle menu"
